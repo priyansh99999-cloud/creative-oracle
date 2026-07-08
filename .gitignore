@@ -1,0 +1,13 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Developer/Agent config files
+.gemini/
+.agents/
+scratch/
+*.py
+*.pyc
+
+# Local server logs
+*.log

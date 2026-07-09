@@ -2405,6 +2405,10 @@ section {
     color: #ffffff !important;
 }
 .form-glass input::placeholder, .form-glass textarea::placeholder { color: rgba(255,255,255,0.35) !important; }
+.form-glass select option {
+    background: #1a1a2e !important;
+    color: #ffffff !important;
+}
 
 /* --- Addon Cards Creative --- */
 .addon-creative.card-dark .addon-icon { background: rgba(109, 40, 217, 0.2) !important; color: #a78bfa !important; }

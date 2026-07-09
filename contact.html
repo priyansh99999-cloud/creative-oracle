@@ -195,30 +195,30 @@
 <!-- Left: Brief Form -->
 <div class="reveal-item form-glass" style="background-color: var(--bg-secondary); border: 1px solid var(--border); padding: 3.5rem; border-radius: 24px;">
 <h2 style="font-size: 1.8rem; font-family: var(--font-headings); font-weight: 800; color: var(--text-primary); margin-bottom: 2rem;">Start Your Brief</h2>
-<form class="modal-form" id="contactBriefForm" onsubmit="event.preventDefault(); alert('Oracle system activated! Our team will reach out in less than 4 hours.'); window.location.href='index.html';" style="display: flex; flex-direction: column; gap: 1.5rem;">
+<form class="modal-form" id="contactBriefForm" style="display: flex; flex-direction: column; gap: 1.5rem;">
 <div class="form-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
 <div class="form-group">
 <label for="clientName">Full Name</label>
-<input id="clientName" placeholder="e.g. Priyansh Mishra" required="" style="width: 100%;" type="text"/>
+<input id="clientName" name="clientName" placeholder="e.g. Priyansh Mishra" required="" style="width: 100%;" type="text"/>
 </div>
 <div class="form-group">
 <label for="clientEmail">Work Email</label>
-<input id="clientEmail" placeholder="e.g. client@brand.com" required="" style="width: 100%;" type="email"/>
+<input id="clientEmail" name="clientEmail" placeholder="e.g. client@brand.com" required="" style="width: 100%;" type="email"/>
 </div>
 </div>
 <div class="form-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
 <div class="form-group">
 <label for="clientPhone">Phone Number</label>
-<input id="clientPhone" placeholder="e.g. +91 79997 35764" required="" style="width: 100%;" type="tel"/>
+<input id="clientPhone" name="clientPhone" placeholder="e.g. +91 79997 35764" required="" style="width: 100%;" type="tel"/>
 </div>
 <div class="form-group">
 <label for="companyName">Company Name</label>
-<input id="companyName" placeholder="e.g. Veloce Store" required="" style="width: 100%;" type="text"/>
+<input id="companyName" name="companyName" placeholder="e.g. Veloce Store" required="" style="width: 100%;" type="text"/>
 </div>
 </div>
 <div class="form-group">
 <label for="briefGoal">Service Required</label>
-<select id="briefGoal" style="width: 100%;">
+<select id="briefGoal" name="briefGoal" style="width: 100%;">
 <option value="comprehensive">Comprehensive Growth Audit (Recommended)</option>
 <option value="performance">Performance Marketing (Meta/Google Ads)</option>
 <option value="seo">Search Engine Optimization (SEO)</option>
@@ -230,9 +230,9 @@
 </div>
 <div class="form-group">
 <label for="briefMessage">Scale Objectives</label>
-<textarea id="briefMessage" placeholder="Tell us about your conversion bottlenecks or current acquisition channels..." required="" rows="5" style="width: 100%;"></textarea>
+<textarea id="briefMessage" name="briefMessage" placeholder="Tell us about your conversion bottlenecks or current acquisition channels..." required="" rows="5" style="width: 100%;"></textarea>
 </div>
-<button class="btn btn-primary btn-magnetic" style="width: 100%; padding: 1rem; font-size: 1rem;" type="submit" data-event="contact_form_submit">Request Free Audit</button>
+<button class="btn btn-primary btn-magnetic" id="submitBtn" style="width: 100%; padding: 1rem; font-size: 1rem;" type="submit" data-event="contact_form_submit">Request Free Audit</button>
 <p style="font-size: 0.85rem; color: var(--text-tertiary); text-align: center; margin-top: 1rem;">We usually respond within 24 hours. No spam. No obligation.</p>
 <div style="text-align: center; margin-top: 1.5rem;"><p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Prefer a quick conversation?</p><a class="btn btn-secondary btn-magnetic" href="https://wa.me/917999735764" style="border-color: #25D366; color: #25D366; display: inline-flex; justify-content: center;" data-event="whatsapp_click">Message us on WhatsApp</a></div></form>
 </div>
@@ -364,5 +364,40 @@
 </footer>
 <!-- Core Script -->
 <script src="index.js?v=1.0.103"></script>
+<script>
+  const form = document.getElementById('contactBriefForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const scriptURL = '<YOUR_GOOGLE_SCRIPT_URL>'; // TO BE REPLACED
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    if(scriptURL === '<YOUR_GOOGLE_SCRIPT_URL>') {
+      alert('Google Script URL not configured yet.');
+      return;
+    }
+    
+    // Change button state to loading
+    const originalText = submitBtn.innerText;
+    submitBtn.innerText = 'Sending...';
+    submitBtn.disabled = true;
+    submitBtn.style.opacity = '0.7';
+
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+        alert('Success! Your brief has been received. Our team will reach out in less than 24 hours.');
+        form.reset();
+        submitBtn.innerText = originalText;
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+      })
+      .catch(error => {
+        console.error('Error!', error.message);
+        alert('There was an error sending your request. Please try again or message us on WhatsApp.');
+        submitBtn.innerText = originalText;
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+      });
+  });
+</script>
 </body>
 </html>

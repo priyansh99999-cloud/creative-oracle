@@ -488,69 +488,83 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ==========================================================================
-    // 11. Canvas Math Orbit Render Loop
+    // 11. Canvas Math Orbit Render Loop (Rewritten for robustness)
     // ==========================================================================
     const canvas = document.getElementById('orbitalCanvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
-        let width, height;
-        let centerX, centerY;
+        if (!ctx) { console.warn('Canvas 2D context unavailable'); return; }
+
+        let width = 0, height = 0;
+        let centerX = 0, centerY = 0;
 
         const resizeCanvas = () => {
-            const rect = canvas.getBoundingClientRect();
-            width = rect.width;
-            height = rect.height;
+            const parent = canvas.parentElement;
+            const w = parent ? parent.offsetWidth : window.innerWidth;
+            const h = parent ? parent.offsetHeight : window.innerHeight;
+            if (w === 0 || h === 0) return; // Skip if not laid out yet
+
+            width = w;
+            height = h;
+
             const dpr = window.devicePixelRatio || 1;
             canvas.width = width * dpr;
             canvas.height = height * dpr;
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-            
+
             if (window.innerWidth < 992) {
                 centerX = width * 0.5;
                 centerY = height * 0.5;
             } else {
                 centerX = width * 0.68;
-                centerY = height * 0.5;
+                centerY = height * 0.45;
             }
         };
 
+        // Delay initial resize to ensure layout is complete
         resizeCanvas();
-        
-        let mouseX = width / 2;
-        let mouseY = height / 2;
-        let currentMouseX = width / 2;
-        let currentMouseY = height / 2;
+        if (width === 0 || height === 0) {
+            setTimeout(resizeCanvas, 100);
+        }
+
+        let mouseX = 0, mouseY = 0;
+        let currentMouseX = 0, currentMouseY = 0;
+        let mouseInitialized = false;
 
         window.addEventListener('mousemove', (e) => {
             const rect = canvas.getBoundingClientRect();
             mouseX = e.clientX - rect.left;
             mouseY = e.clientY - rect.top;
+            if (!mouseInitialized) {
+                currentMouseX = mouseX;
+                currentMouseY = mouseY;
+                mouseInitialized = true;
+            }
         });
 
         window.addEventListener('resize', resizeCanvas);
-        
-        // Define Canvas parameter settings corresponding to the loaded html filename
+
+        // Page-specific speed tuning
         const pageName = window.location.pathname.split('/').pop().replace('.html', '');
         let rotationScale = 1.0;
         let orbitLineDensity = 1.0;
 
-        // Customise canvas physics depending on theme pages
         if (pageName === 'process') {
-            rotationScale = 0.5; // Slow, precise analytics speed
-            orbitLineDensity = 0.6; 
+            rotationScale = 0.5;
+            orbitLineDensity = 0.6;
         } else if (pageName === 'about') {
             rotationScale = 0.75;
-            orbitLineDensity = 1.4; // Rich structural overlaps
+            orbitLineDensity = 1.4;
         } else if (pageName === 'contact') {
-            rotationScale = 1.8; // High energy campaign velocity
+            rotationScale = 1.8;
             orbitLineDensity = 0.8;
         }
 
         const tracks = [
-            { radius: 130, speed: 0.008 * rotationScale, color: 'rgba(109, 40, 217, 0.09)', angle: 0 }, // Purple
-            { radius: 240, speed: -0.005 * rotationScale, color: 'rgba(16, 165, 178, 0.08)', angle: Math.PI / 4 }, // Teal
-            { radius: 360, speed: 0.003 * rotationScale, color: 'rgba(247, 160, 114, 0.06)', angle: Math.PI / 2 }, // Peach
-            { radius: 500, speed: -0.002 * rotationScale, color: 'rgba(20, 113, 155, 0.05)', angle: Math.PI } // Blue
+            { radius: 130, speed: 0.008 * rotationScale, color: 'rgba(109, 40, 217, 0.12)', angle: 0 },
+            { radius: 240, speed: -0.005 * rotationScale, color: 'rgba(16, 165, 178, 0.10)', angle: Math.PI / 4 },
+            { radius: 360, speed: 0.003 * rotationScale, color: 'rgba(247, 160, 114, 0.08)', angle: Math.PI / 2 },
+            { radius: 500, speed: -0.002 * rotationScale, color: 'rgba(20, 113, 155, 0.07)', angle: Math.PI }
         ];
 
         const satellites = [
@@ -574,85 +588,112 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { threshold: 0.01 });
         canvasObserver.observe(canvas);
 
-        const animateCanvas = () => {
-            if (!isCanvasVisible) return; // Stop rendering completely when canvas is out of view!
+        function animateCanvas() {
+            if (!isCanvasVisible) return;
 
-            ctx.clearRect(0, 0, width, height);
-
-            currentMouseX += (mouseX - currentMouseX) * 0.05;
-            currentMouseY += (mouseY - currentMouseY) * 0.05;
-
-            const parallaxOffsetX = (currentMouseX - width / 2) * 0.04;
-            const parallaxOffsetY = (currentMouseY - height / 2) * 0.04;
-            const activeCenterX = centerX + parallaxOffsetX;
-            const activeCenterY = centerY + parallaxOffsetY;
-
-            tracks.forEach((track) => {
-                track.angle += track.speed;
-
-                ctx.beginPath();
-                ctx.arc(activeCenterX, activeCenterY, track.radius, 0, Math.PI * 2);
-                ctx.strokeStyle = track.color;
-                ctx.lineWidth = 1;
-                ctx.stroke();
-
-                if (orbitLineDensity > 1) {
-                    ctx.beginPath();
-                    ctx.arc(activeCenterX - 60, activeCenterY + 40, track.radius * 0.8, 0, Math.PI * 2);
-                    ctx.strokeStyle = 'rgba(16, 165, 178, 0.005)';
-                    ctx.stroke();
-                }
-            });
-
-            satellites.forEach(sat => {
-                const track = tracks[sat.trackIndex];
-                const angle = track.angle + sat.offsetAngle;
-                const satX = activeCenterX + Math.cos(angle) * track.radius;
-                const satY = activeCenterY + Math.sin(angle) * track.radius;
-
-                ctx.beginPath();
-                ctx.moveTo(activeCenterX, activeCenterY);
-                ctx.lineTo(satX, satY);
-                ctx.strokeStyle = `rgba(${sat.rgb}, 0.025)`;
-                ctx.lineWidth = 0.5;
-                ctx.stroke();
-            });
-
-            satellites.forEach(sat => {
-                const track = tracks[sat.trackIndex];
-                const angle = track.angle + sat.offsetAngle;
-                const satX = activeCenterX + Math.cos(angle) * track.radius;
-                const satY = activeCenterY + Math.sin(angle) * track.radius;
-
-                const time = performance.now() * 0.002;
-                const glowRadius = Math.max(0.1, sat.size + Math.sin(time + sat.offsetAngle) * 3);
-
-                ctx.beginPath();
-                ctx.arc(satX, satY, glowRadius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(${sat.rgb}, ${0.05 + Math.sin(time) * 0.05})`;
-                ctx.fill();
-
-                ctx.beginPath();
-                ctx.arc(satX, satY, sat.size, 0, Math.PI * 2);
-                ctx.fillStyle = sat.color;
-                ctx.fill();
-            });
-
-            // Draw central oracle hub node core as radial multicolor gradient
-            const hubGradient = ctx.createRadialGradient(activeCenterX, activeCenterY, 0, activeCenterX, activeCenterY, 8);
-            hubGradient.addColorStop(0, '#FFFFFF');
-            hubGradient.addColorStop(0.3, '#10A5B2'); // Teal
-            hubGradient.addColorStop(0.7, '#6D28D9'); // Purple
-            hubGradient.addColorStop(1, 'transparent');
-            
-            ctx.beginPath();
-            ctx.arc(activeCenterX, activeCenterY, 8, 0, Math.PI * 2);
-            ctx.fillStyle = hubGradient;
-            ctx.fill();
-
+            // Always schedule next frame first, so errors don't kill the loop
             requestAnimationFrame(animateCanvas);
-        };
 
+            try {
+                // Re-check dimensions (handles late layout)
+                if (width === 0 || height === 0) {
+                    resizeCanvas();
+                    if (width === 0 || height === 0) return;
+                }
+
+                ctx.clearRect(0, 0, width, height);
+
+                // Smooth mouse following
+                if (mouseInitialized) {
+                    currentMouseX += (mouseX - currentMouseX) * 0.05;
+                    currentMouseY += (mouseY - currentMouseY) * 0.05;
+                } else {
+                    currentMouseX = width / 2;
+                    currentMouseY = height / 2;
+                }
+
+                const parallaxOffsetX = (currentMouseX - width / 2) * 0.04;
+                const parallaxOffsetY = (currentMouseY - height / 2) * 0.04;
+                const activeCenterX = centerX + parallaxOffsetX;
+                const activeCenterY = centerY + parallaxOffsetY;
+
+                // Draw orbit tracks
+                tracks.forEach((track) => {
+                    track.angle += track.speed;
+
+                    ctx.beginPath();
+                    ctx.arc(activeCenterX, activeCenterY, track.radius, 0, Math.PI * 2);
+                    ctx.strokeStyle = track.color;
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+
+                    if (orbitLineDensity > 1) {
+                        ctx.beginPath();
+                        ctx.arc(activeCenterX - 60, activeCenterY + 40, track.radius * 0.8, 0, Math.PI * 2);
+                        ctx.strokeStyle = 'rgba(16, 165, 178, 0.03)';
+                        ctx.stroke();
+                    }
+                });
+
+                // Draw connector lines from center to satellites
+                satellites.forEach(sat => {
+                    const track = tracks[sat.trackIndex];
+                    const angle = track.angle + sat.offsetAngle;
+                    const satX = activeCenterX + Math.cos(angle) * track.radius;
+                    const satY = activeCenterY + Math.sin(angle) * track.radius;
+
+                    ctx.beginPath();
+                    ctx.moveTo(activeCenterX, activeCenterY);
+                    ctx.lineTo(satX, satY);
+                    ctx.strokeStyle = 'rgba(' + sat.rgb + ', 0.03)';
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                });
+
+                // Draw satellites with glow
+                const time = performance.now() * 0.002;
+                satellites.forEach(sat => {
+                    const track = tracks[sat.trackIndex];
+                    const angle = track.angle + sat.offsetAngle;
+                    const satX = activeCenterX + Math.cos(angle) * track.radius;
+                    const satY = activeCenterY + Math.sin(angle) * track.radius;
+
+                    const glowRadius = Math.max(1, sat.size + Math.sin(time + sat.offsetAngle) * 2);
+                    const glowAlpha = Math.max(0.02, 0.06 + Math.sin(time) * 0.04);
+
+                    // Outer glow
+                    ctx.beginPath();
+                    ctx.arc(satX, satY, glowRadius, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(' + sat.rgb + ', ' + glowAlpha + ')';
+                    ctx.fill();
+
+                    // Solid core
+                    ctx.beginPath();
+                    ctx.arc(satX, satY, Math.max(1, sat.size), 0, Math.PI * 2);
+                    ctx.fillStyle = sat.color;
+                    ctx.fill();
+                });
+
+                // Central hub gradient
+                const hubGradient = ctx.createRadialGradient(activeCenterX, activeCenterY, 0, activeCenterX, activeCenterY, 8);
+                hubGradient.addColorStop(0, '#FFFFFF');
+                hubGradient.addColorStop(0.3, '#10A5B2');
+                hubGradient.addColorStop(0.7, '#6D28D9');
+                hubGradient.addColorStop(1, 'transparent');
+
+                ctx.beginPath();
+                ctx.arc(activeCenterX, activeCenterY, 8, 0, Math.PI * 2);
+                ctx.fillStyle = hubGradient;
+                ctx.fill();
+
+            } catch (e) {
+                // Silently continue - animation should never crash
+                console.warn('Orbital canvas error:', e);
+            }
+        }
+
+        // Start the animation
         animateCanvas();
     }
 });
+

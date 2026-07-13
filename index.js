@@ -625,7 +625,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const satY = activeCenterY + Math.sin(angle) * track.radius;
 
                 const time = performance.now() * 0.002;
-                const glowRadius = sat.size + Math.sin(time + sat.offsetAngle) * 3;
+                const glowRadius = Math.max(0.1, sat.size + Math.sin(time + sat.offsetAngle) * 3);
 
                 ctx.beginPath();
                 ctx.arc(satX, satY, glowRadius, 0, Math.PI * 2);

@@ -2547,7 +2547,3 @@ section {
     border: 1px solid rgba(236, 72, 153, 0.2);
 }
 
-/* TEMPORARILY HIDE PORTFOLIO SITEWIDE */
-a[href="portfolio.html"] {
-    display: none !important;
-}

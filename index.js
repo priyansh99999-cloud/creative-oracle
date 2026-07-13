@@ -497,8 +497,14 @@ document.addEventListener('DOMContentLoaded', () => {
         let centerX, centerY;
 
         const resizeCanvas = () => {
-            width = canvas.width = canvas.offsetWidth;
-            height = canvas.height = canvas.offsetHeight;
+            const rect = canvas.getBoundingClientRect();
+            width = rect.width;
+            height = rect.height;
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = width * dpr;
+            canvas.height = height * dpr;
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            
             if (window.innerWidth < 992) {
                 centerX = width * 0.5;
                 centerY = height * 0.5;

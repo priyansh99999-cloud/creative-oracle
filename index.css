@@ -437,7 +437,6 @@ section {
     height: 100%;
     pointer-events: none;
     z-index: 1;
-    display: none !important;
 }
 
 .hero-container {

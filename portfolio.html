@@ -2,7 +2,7 @@
 
 <html lang="en">
 <head>
-    <title>Creative Oracle Case Studies | Marketing, Web & AI Automation Work</title>
+    <title>Digital Marketing Portfolio & Case Studies | Creative Oracle</title>
     <meta name="description" content="Explore Creative Oracle's portfolio across performance marketing, social media and website development. Discover selected projects, campaigns and measurable growth results." />
     <meta property="og:title" content="Creative Oracle Case Studies | Marketing, Web & AI Automation Work" />
     <meta property="og:description" content="Explore Creative Oracle's portfolio across performance marketing, social media and website development. Discover selected projects, campaigns and measurable growth results." />
@@ -64,6 +64,104 @@
 <link href="index.css?v=3.0.0" rel="stylesheet"/>
 
     <link rel="icon" type="image/png" href="assets/logo.png?v=1.0.104">
+
+    <style>
+        /* Portfolio V2 Custom Styles */
+        .portfolio-v2 { padding-top: 140px; }
+        
+        /* Hero Section */
+        .hero-minimal { padding: 4rem 0 8rem 0; text-align: center; }
+        .hero-minimal h1 { font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.03em; }
+        .hero-minimal .subtitle { font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 3rem auto; line-height: 1.6; }
+        .hero-stats { display: flex; justify-content: space-between; max-width: 1000px; margin: 6rem auto 0 auto; border-top: 1px solid var(--border-dark); padding-top: 4rem; }
+        .stat-minimal { text-align: left; }
+        .stat-minimal .number { font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; color: var(--text-primary); font-family: var(--font-headings); letter-spacing: -0.02em; margin-bottom: 0.5rem; display: block; }
+        .stat-minimal .label { font-size: 0.9rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+        
+        /* Logo Marquee */
+        .logo-marquee-section { padding: 4rem 0; border-top: 1px solid var(--border-dark); border-bottom: 1px solid var(--border-dark); overflow: hidden; background: var(--bg-primary); }
+        .marquee-header { text-align: center; margin-bottom: 3rem; }
+        .marquee-header h2 { font-size: 1.5rem; color: var(--text-primary); margin-top: 0.5rem; }
+        .marquee-container { display: flex; width: 200%; animation: marquee 40s linear infinite; gap: 2rem; }
+        .marquee-container:hover { animation-play-state: paused; }
+        .logo-pill { padding: 1rem 2rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border-dark); border-radius: 100px; color: var(--text-secondary); font-size: 1.1rem; font-weight: 600; white-space: nowrap; transition: all 0.3s ease; }
+        .logo-pill:hover { background: rgba(255,255,255,0.05); color: var(--text-primary); border-color: var(--text-tertiary); }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        
+        /* Featured Work */
+        .featured-work { padding: 10rem 0; }
+        .section-header-minimal { margin-bottom: 6rem; display: flex; justify-content: space-between; align-items: flex-end; }
+        .section-header-minimal h2 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; }
+        
+        /* Category Filters */
+        .portfolio-filters { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .filter-btn { background: transparent; border: 1px solid var(--border-dark); color: var(--text-secondary); padding: 0.6rem 1.5rem; border-radius: 50px; font-size: 0.9rem; cursor: pointer; transition: all 0.3s; font-family: var(--font-body); }
+        .filter-btn:hover { border-color: var(--text-primary); color: var(--text-primary); }
+        .filter-btn.active { background: var(--text-primary); color: var(--bg-primary); border-color: var(--text-primary); }
+        
+        /* Layout Types */
+        .project-row { display: grid; grid-template-columns: 1fr; gap: 3rem; margin-bottom: 8rem; align-items: center; }
+        @media(min-width: 992px) {
+            .project-row.layout-a { grid-template-columns: 1.5fr 1fr; } /* Image Left */
+            .project-row.layout-b { grid-template-columns: 1fr 1.5fr; } /* Content Left */
+            .project-row.layout-d { grid-template-columns: 1fr 1fr; } /* 50/50 */
+        }
+        
+        /* Project Visuals */
+        .project-visual { position: relative; border-radius: 24px; overflow: hidden; background: var(--bg-secondary); aspect-ratio: 4/3; }
+        .project-visual img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .project-row:hover .project-visual img { transform: scale(1.05); }
+        .project-visual.full-width { aspect-ratio: 21/9; margin-bottom: 3rem; }
+        
+        /* Project Content */
+        .project-content { padding: 2rem 0; }
+        .project-category { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); margin-bottom: 1rem; display: block; font-weight: 700; }
+        .project-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.2; }
+        .project-desc { font-size: 1.1rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 2.5rem; max-width: 90%; }
+        
+        .project-metrics { display: flex; gap: 3rem; margin-bottom: 2.5rem; border-left: 2px solid var(--border-dark); padding-left: 2rem; }
+        .metric { display: flex; flex-direction: column; }
+        .metric-value { font-size: 1.8rem; font-weight: 800; color: var(--text-primary); font-family: var(--font-headings); line-height: 1.2; }
+        .metric-label { font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem; }
+        
+        .project-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-primary); font-weight: 600; text-decoration: none; transition: gap 0.3s; }
+        .project-link:hover { gap: 1rem; }
+        
+        /* Compact Gallery */
+        .compact-gallery { padding: 8rem 0; background: var(--bg-secondary); }
+        .compact-header { margin-bottom: 4rem; }
+        .compact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+        .compact-card { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; transition: transform 0.3s; }
+        .compact-card:hover { transform: translateY(-5px); border-color: var(--border-dark); }
+        .compact-card h4 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .compact-card .cat { font-size: 0.8rem; color: var(--text-tertiary); margin-bottom: 1.5rem; display: block; }
+        .compact-card .result { font-size: 1.1rem; font-weight: 600; color: var(--accent-teal); }
+        
+        /* Testimonials */
+        .testimonials { padding: 8rem 0; }
+        .test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; margin-top: 4rem; }
+        .test-card { border-top: 1px solid var(--border-dark); padding-top: 2rem; }
+        .test-quote { font-size: 1.25rem; line-height: 1.6; color: var(--text-primary); margin-bottom: 2rem; font-style: italic; }
+        .test-author { display: flex; align-items: center; gap: 1rem; }
+        .test-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--bg-secondary); border: 1px solid var(--border-dark); }
+        .test-name { font-weight: 700; font-size: 0.95rem; }
+        .test-role { font-size: 0.85rem; color: var(--text-tertiary); }
+        
+        /* Final CTA */
+        .final-cta { padding: 10rem 0; text-align: center; background: var(--bg-secondary); border-top: 1px solid var(--border); }
+        .final-cta h2 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; }
+        .final-cta p { font-size: 1.15rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 3rem auto; line-height: 1.6; }
+        .cta-group { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+        
+        /* Responsive Overrides */
+        @media(max-width: 768px) {
+            .hero-stats { grid-template-columns: 1fr 1fr; display: grid; gap: 3rem; }
+            .section-header-minimal { flex-direction: column; align-items: flex-start; gap: 2rem; }
+            .project-metrics { flex-direction: column; gap: 1.5rem; }
+            .project-row.layout-b .project-visual { order: -1; } /* Always image first on mobile */
+        }
+    </style>
+    
 </head>
 <body>
 
@@ -166,1144 +264,344 @@
 </div>
 </div>
 <!-- Main Content -->
-<main>
-<!-- Hero Section -->
-<section class="hero-section" id="hero" style="min-height: 60vh; padding: 120px 0 60px 0; display: flex; align-items: center;">
-    <div class="blob-container">
-        <div class="gradient-blob blob-purple"></div>
-        <div class="gradient-blob blob-teal"></div>
-    </div>
-    <canvas class="hero-canvas" id="orbitalCanvas"></canvas>
-    <div class="hero-container section-container">
-        <div class="hero-content">
-            <span class="hero-badge reveal-item">SELECTED WORK</span>
-            <h1 class="hero-title reveal-item" style="font-size: clamp(2rem, 3.5vw, 3rem);">Strategy Is Only Valuable When It <span class="gradient-text">Delivers Results</span></h1>
-            <p class="hero-subtitle reveal-item">From performance marketing and social media to websites and digital experiences, we help brands turn ideas into measurable growth.</p>
-            <div class="hero-actions reveal-item">
-                <a href="#selected-work" class="btn btn-primary btn-magnetic">Explore Our Work</a>
-                <a href="/contact" class="btn btn-secondary btn-magnetic">Book a Free Growth Audit</a>
-            </div>
-        </div>
-    </div>
-</section>
 
-<!-- Results At A Glance (Stats Bar) Section -->
-<section class="section-dark" style="background-color: var(--bg-secondary); padding: 4rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-    <div class="section-container">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; text-align: center;">
-            <div class="stat-card reveal-item">
-                <div class="stat-number" style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; font-family: var(--font-headings); color: var(--accent);">30+</div>
-                <div class="stat-label" style="color: var(--text-secondary); margin-top: 0.5rem; font-weight: 500;">Brands &amp; Projects</div>
-            </div>
-            <div class="stat-card reveal-item">
-                <div class="stat-number" style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; font-family: var(--font-headings); color: var(--accent-teal);">15M+</div>
-                <div class="stat-label" style="color: var(--text-secondary); margin-top: 0.5rem; font-weight: 500;">Combined Reach</div>
-            </div>
-            <div class="stat-card reveal-item">
-                <div class="stat-number" style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; font-family: var(--font-headings); color: var(--accent-orange);">₹65L+</div>
-                <div class="stat-label" style="color: var(--text-secondary); margin-top: 0.5rem; font-weight: 500;">Revenue Generated</div>
-            </div>
-            <div class="stat-card reveal-item">
-                <div class="stat-number" style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; font-family: var(--font-headings); color: var(--accent-pink);">4.31x</div>
-                <div class="stat-label" style="color: var(--text-secondary); margin-top: 0.5rem; font-weight: 500;">Best ROAS</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- SECTION 1: BRANDS LOGO WALL -->
-<section style="padding: 5rem 0; background-color: var(--bg-primary); border-bottom: 1px solid var(--border); overflow: hidden;">
-    <style>
-        @keyframes marquee-scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .brand-pill {
-            display: inline-flex;
-            padding: 0.5rem 1.2rem;
-            border-radius: 50px;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid var(--border-dark);
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            font-weight: 500;
-            white-space: nowrap;
-        }
-        .marquee-container {
-            display: flex;
-            width: fit-content;
-            animation: marquee-scroll 30s linear infinite;
-            gap: 0.75rem;
-        }
-        .marquee-wrapper {
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-            margin-top: 3rem;
-            display: flex;
-            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-        }
-        .marquee-group {
-            display: flex;
-            gap: 0.75rem;
-            padding-right: 0.75rem;
-        }
-    </style>
-    <div class="section-container" style="text-align: center; margin-bottom: 2rem;">
-        <span class="eyebrow reveal-item">TRUSTED BY</span>
-        <h2 class="section-title reveal-item" style="margin-top: 1rem;">Brands We've <span class="gradient-text">Worked With</span></h2>
-    </div>
-
-    <div class="marquee-wrapper reveal-item">
-        <div class="marquee-container">
-            <!-- First Group -->
-            <div class="marquee-group">
-                <span class="brand-pill">Armoro</span>
-                <span class="brand-pill">Canvasify</span>
-                <span class="brand-pill">Din Din</span>
-                <span class="brand-pill">Gliding Owls</span>
-                <span class="brand-pill">Jangid Krishi Engineering</span>
-                <span class="brand-pill">Jepika</span>
-                <span class="brand-pill">Kangana Mehandi</span>
-                <span class="brand-pill">Manthan Dhoop</span>
-                <span class="brand-pill">Medyseva</span>
-                <span class="brand-pill">MiHeSo</span>
-                <span class="brand-pill">Pavitra Vivah</span>
-                <span class="brand-pill">Shape</span>
-                <span class="brand-pill">Shrijika</span>
-                <span class="brand-pill">Shubh Vivahh</span>
-                <span class="brand-pill">Silver Coin Atta</span>
-                <span class="brand-pill">TOTS OF TEANS</span>
-                <span class="brand-pill">Zedblack</span>
-                <span class="brand-pill">Yoda Taco Goa</span>
-                <span class="brand-pill">Obrigado by Craftels</span>
-                <span class="brand-pill">Cave by Craftels</span>
-                <span class="brand-pill">Plus Markets</span>
-                <span class="brand-pill">Facia Facial Bar</span>
-                <span class="brand-pill">Lawflu</span>
-                <span class="brand-pill">Legal Wolf India</span>
-                <span class="brand-pill">SGS Consulting</span>
-                <span class="brand-pill">Presidents</span>
-                <span class="brand-pill">Ardorsavvy</span>
-                <span class="brand-pill">Urban Gabru</span>
-                <span class="brand-pill">Prepleaf</span>
-                <span class="brand-pill">Fortune Detergent</span>
-            </div>
-            <!-- Second Group (Duplicate for seamless loop) -->
-            <div class="marquee-group">
-                <span class="brand-pill">Armoro</span>
-                <span class="brand-pill">Canvasify</span>
-                <span class="brand-pill">Din Din</span>
-                <span class="brand-pill">Gliding Owls</span>
-                <span class="brand-pill">Jangid Krishi Engineering</span>
-                <span class="brand-pill">Jepika</span>
-                <span class="brand-pill">Kangana Mehandi</span>
-                <span class="brand-pill">Manthan Dhoop</span>
-                <span class="brand-pill">Medyseva</span>
-                <span class="brand-pill">MiHeSo</span>
-                <span class="brand-pill">Pavitra Vivah</span>
-                <span class="brand-pill">Shape</span>
-                <span class="brand-pill">Shrijika</span>
-                <span class="brand-pill">Shubh Vivahh</span>
-                <span class="brand-pill">Silver Coin Atta</span>
-                <span class="brand-pill">TOTS OF TEANS</span>
-                <span class="brand-pill">Zedblack</span>
-                <span class="brand-pill">Yoda Taco Goa</span>
-                <span class="brand-pill">Obrigado by Craftels</span>
-                <span class="brand-pill">Cave by Craftels</span>
-                <span class="brand-pill">Plus Markets</span>
-                <span class="brand-pill">Facia Facial Bar</span>
-                <span class="brand-pill">Lawflu</span>
-                <span class="brand-pill">Legal Wolf India</span>
-                <span class="brand-pill">SGS Consulting</span>
-                <span class="brand-pill">Presidents</span>
-                <span class="brand-pill">Ardorsavvy</span>
-                <span class="brand-pill">Urban Gabru</span>
-                <span class="brand-pill">Prepleaf</span>
-                <span class="brand-pill">Fortune Detergent</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- SECTION 2: PERFORMANCE MARKETING -->
-<section id="selected-work" style="padding: 8rem 0; background-color: var(--bg-primary);">
-    <div class="section-container">
-        <div style="text-align: center; margin-bottom: 4rem;" class="reveal-item">
-            <span class="eyebrow">PERFORMANCE MARKETING</span>
-            <h2 class="section-title" style="margin-top: 1rem; margin-bottom: 1rem;">Campaigns That <span class="gradient-text">Drive Revenue</span></h2>
-            <p style="color: var(--text-secondary); max-width: 700px; margin: 0 auto; font-size: 1.1rem; line-height: 1.6;">Data-led advertising strategies focused on profitable customer acquisition, scaling purchases, and maintaining efficiency.</p>
-        </div>
-
-        <div style="display: flex; flex-direction: column; gap: 3rem;">
-            
-            <!-- Case Study 1: Urban Gabru -->
-            <div class="card-dark reveal-item" style="background-color: var(--bg-secondary); border: 1px solid var(--border); border-radius: 24px; padding: 3rem;">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem; border-bottom: 1px solid var(--border-dark); padding-bottom: 1.5rem;">
-                    <h3 style="font-family: var(--font-headings); font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin: 0;">Urban Gabru</h3>
-                    <div style="color: var(--accent); font-weight: 700; font-size: 1.25rem;">₹18.2L Revenue | 4.04x ROAS</div>
-                </div>
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">₹4.5L</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">Spend</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">₹18.2L</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">Revenue</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">4.04x</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">ROAS</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">2,140</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">Purchases</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">₹210</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">CPA</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">3 mos</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">Duration</div>
-                    </div>
-                </div>
-
-                <div>
-                    <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">What We Did</div>
-                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;">
-                        <span class="brand-pill" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Meta Ads</span>
-                        <span class="brand-pill" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Audience Strategy</span>
-                        <span class="brand-pill" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Creative Testing</span>
-                        <span class="brand-pill" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Retargeting</span>
-                        <span class="brand-pill" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Campaign Optimization</span>
-                        <span class="brand-pill" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Scaling</span>
-                    </div>
-                    <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;">Performance-focused campaigns designed around profitable customer acquisition. Continuous audience, creative and campaign optimization helped scale purchases while maintaining acquisition efficiency.</p>
-                </div>
-            </div>
-
-            <!-- Case Study 2: Ardorsavvy -->
-            <div class="card-dark reveal-item" style="background-color: var(--bg-secondary); border: 1px solid var(--border); border-radius: 24px; padding: 3rem;">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem; border-bottom: 1px solid var(--border-dark); padding-bottom: 1.5rem;">
-                    <h3 style="font-family: var(--font-headings); font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin: 0;">Ardorsavvy</h3>
-                    <div style="color: var(--accent); font-weight: 700; font-size: 1.25rem;">₹13.8L Revenue | 4.31x ROAS</div>
-                </div>
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">₹3.2L</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">Spend</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">₹13.8L</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">Revenue</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">4.31x</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">ROAS</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">1,620</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">Purchases</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">₹198</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">CPA</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">3 mos</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">Duration</div>
-                    </div>
-                </div>
-
-                <div>
-                    <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">What We Did</div>
-                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;">
-                        <span class="brand-pill" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Performance Strategy</span>
-                        <span class="brand-pill" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Meta Ads</span>
-                        <span class="brand-pill" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Creative Testing</span>
-                        <span class="brand-pill" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Retargeting</span>
-                        <span class="brand-pill" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Campaign Optimization</span>
-                    </div>
-                    <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;">A performance-led advertising strategy focused on reaching high-intent audiences, improving campaign efficiency and scaling customer acquisition.</p>
-                </div>
-            </div>
-
-            <!-- Case Study 3: MiHeSo -->
-            <div class="card-dark reveal-item" style="background-color: var(--bg-secondary); border: 1px solid var(--border); border-radius: 24px; padding: 3rem;">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem; border-bottom: 1px solid var(--border-dark); padding-bottom: 1.5rem;">
-                    <h3 style="font-family: var(--font-headings); font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin: 0;">MiHeSo</h3>
-                    <div style="color: var(--accent); font-weight: 700; font-size: 1.25rem;">₹11.6L Revenue | 4.14x ROAS</div>
-                </div>
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">₹2.8L</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">Spend</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">₹11.6L</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">Revenue</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">4.14x</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">ROAS</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">1,340</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">Purchases</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">₹209</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">CPA</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">3 mos</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">Duration</div>
-                    </div>
-                </div>
-
-                <div>
-                    <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">What We Did</div>
-                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;">
-                        <span class="brand-pill" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Meta Ads</span>
-                        <span class="brand-pill" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Social Media</span>
-                        <span class="brand-pill" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Creative Testing</span>
-                        <span class="brand-pill" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Audience Strategy</span>
-                        <span class="brand-pill" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Conversion Optimization</span>
-                    </div>
-                    <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;">An integrated approach combining organic brand communication with paid acquisition to strengthen visibility while driving measurable conversions.</p>
-                </div>
-            </div>
-
-            <!-- Case Study 4: Prepleaf -->
-            <div class="card-dark reveal-item" style="background-color: var(--bg-secondary); border: 1px solid var(--border); border-radius: 24px; padding: 3rem;">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem; border-bottom: 1px solid var(--border-dark); padding-bottom: 1.5rem;">
-                    <h3 style="font-family: var(--font-headings); font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin: 0;">Prepleaf</h3>
-                    <div style="color: var(--accent); font-weight: 700; font-size: 1.25rem;">2,850 Leads | ₹126 CPL</div>
-                </div>
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">₹3.6L</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">Spend</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">2,850</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">Leads</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">₹126</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">CPL</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">420</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">Paid Conversions</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">₹857</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">CPA</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">14.7%</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">Lead-to-Paid</div>
-                    </div>
-                </div>
-
-                <div>
-                    <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">What We Did</div>
-                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;">
-                        <span class="brand-pill" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Lead Generation</span>
-                        <span class="brand-pill" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Audience Testing</span>
-                        <span class="brand-pill" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Funnel Optimization</span>
-                        <span class="brand-pill" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Retargeting</span>
-                        <span class="brand-pill" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Campaign Scaling</span>
-                    </div>
-                    <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;">Performance campaigns designed around efficient lead acquisition and conversion optimization, helping build a consistent pipeline of prospective customers.</p>
-                </div>
-            </div>
-
-            <!-- Case Study 5: Fortune Detergent -->
-            <div class="card-dark reveal-item" style="background-color: var(--bg-secondary); border: 1px solid var(--border); border-radius: 24px; padding: 3rem;">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem; border-bottom: 1px solid var(--border-dark); padding-bottom: 1.5rem;">
-                    <h3 style="font-family: var(--font-headings); font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin: 0;">Fortune Detergent</h3>
-                    <div style="color: var(--accent); font-weight: 700; font-size: 1.25rem;">₹22.4L Revenue | 4.31x ROAS</div>
-                </div>
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">₹5.2L</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">Spend</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">₹22.4L</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">Revenue</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">4.31x</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">ROAS</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">2,680</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">Purchases</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">₹194</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">CPA</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.25rem;">4 mos</div>
-                        <div style="color: var(--text-tertiary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">Duration</div>
-                    </div>
-                </div>
-
-                <div>
-                    <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">What We Did</div>
-                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;">
-                        <span class="brand-pill" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Performance Marketing</span>
-                        <span class="brand-pill" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Audience Strategy</span>
-                        <span class="brand-pill" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Creative Testing</span>
-                        <span class="brand-pill" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Retargeting</span>
-                        <span class="brand-pill" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Optimization</span>
-                    </div>
-                    <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;">A data-led advertising approach focused on expanding digital reach, generating purchases and maintaining efficient customer acquisition.</p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<section class="section-dark" style="padding: 8rem 0; background-color: var(--bg-secondary);">
-  <div class="section-container" style="max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;">
-    <!-- Header -->
-    <div class="reveal-item" style="text-align: center; margin-bottom: 5rem;">
-      <div class="eyebrow" style="color: var(--accent); font-size: 0.875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">SOCIAL MEDIA MARKETING</div>
-      <h2 class="section-title" style="font-family: var(--font-headings); font-size: 3rem; font-weight: 800; color: var(--text-primary); margin-bottom: 1.5rem; line-height: 1.2;">Building Brands People <span class="gradient-text" style="background: linear-gradient(135deg, var(--accent), var(--accent-teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Remember</span></h2>
-      <p style="color: var(--text-secondary); font-family: var(--font-body); font-size: 1.125rem; line-height: 1.6; max-width: 700px; margin: 0 auto;">We create social media systems that combine strategy, creative execution and consistent communication to build visibility, engagement and stronger brand recall.</p>
-    </div>
-
-    <!-- PART A - DETAILED CASE STUDIES -->
-    <div style="display: flex; flex-direction: column; gap: 3rem; margin-bottom: 5rem;">
-      <!-- Project 1: Plus Markets -->
-      <div class="card-dark reveal-item" style="background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 24px; padding: 3rem;">
-        <div style="margin-bottom: 2rem;">
-          <h3 style="font-family: var(--font-headings); font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin: 0 0 0.5rem 0;">Plus Markets</h3>
-          <div style="color: var(--accent-teal); font-weight: 600; font-size: 1.125rem;">2.4M+ Reach | 12K+ Growth | 8.2% Engagement</div>
-        </div>
+    <main class="portfolio-v2">
         
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">6mo</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Duration</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">300+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Content</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">2.4M+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Reach</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">3.8M+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Impressions</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">12K+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Followers</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">8.2%</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Engagement</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">4,500+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Clicks</div>
-          </div>
-        </div>
-
-        <div style="margin-bottom: 1.5rem;">
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-bottom: 0.5rem;">Platforms</div>
-            <div style="color: var(--text-secondary); font-size: 0.95rem;">Instagram, Facebook, LinkedIn, X, TikTok</div>
-        </div>
-
-        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Social Strategy</span>
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Content Planning</span>
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Creative Direction</span>
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Educational Content</span>
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Multi-Platform</span>
-        </div>
-      </div>
-
-      <!-- Project 2: Zedblack -->
-      <div class="card-dark reveal-item" style="background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 24px; padding: 3rem;">
-        <div style="margin-bottom: 2rem;">
-          <h3 style="font-family: var(--font-headings); font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin: 0 0 0.5rem 0;">Zedblack</h3>
-          <div style="color: var(--accent-teal); font-weight: 600; font-size: 1.125rem;">1.8M+ Reach | 1.2M+ Video Views | 9.5K+ Growth</div>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">6mo</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Duration</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">130+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Content</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">1.8M+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Reach</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">2.6M+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Impressions</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">1.2M+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Video Views</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">9.5K+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Followers</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">6.8%</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Engagement</div>
-          </div>
-        </div>
-
-        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Social Strategy</span>
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Content Marketing</span>
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Creative Direction</span>
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Video Content</span>
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Brand Communication</span>
-        </div>
-      </div>
-
-      <!-- Project 3: MiHeSo -->
-      <div class="card-dark reveal-item" style="background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 24px; padding: 3rem;">
-        <div style="margin-bottom: 2rem;">
-          <h3 style="font-family: var(--font-headings); font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin: 0 0 0.5rem 0;">MiHeSo</h3>
-          <div style="color: var(--accent-teal); font-weight: 600; font-size: 1.125rem;">1.4M+ Reach | 7.2K+ Growth | 6.4% Engagement</div>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">6mo</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Duration</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">120+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Content</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">1.4M+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Reach</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">2.1M+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Impressions</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">7.2K+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Followers</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">6.4%</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Engagement</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">410+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Leads</div>
-          </div>
-        </div>
-
-        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Social Strategy</span>
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Content Planning</span>
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Creative Production</span>
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Community Growth</span>
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Performance Integration</span>
-        </div>
-      </div>
-
-      <!-- Project 4: Yoda Taco Goa -->
-      <div class="card-dark reveal-item" style="background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 24px; padding: 3rem;">
-        <div style="margin-bottom: 2rem;">
-          <h3 style="font-family: var(--font-headings); font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin: 0 0 0.5rem 0;">Yoda Taco Goa</h3>
-          <div style="color: var(--accent-teal); font-weight: 600; font-size: 1.125rem;">1.1M+ Reach | 6.2K+ Growth | 7.1% Engagement</div>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">6mo</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Duration</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">100+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Content</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">1.1M+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Reach</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">1.6M+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Impressions</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">6.2K+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Followers</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">7.1%</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Engagement</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">340+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Enquiries</div>
-          </div>
-        </div>
-
-        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Social Strategy</span>
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Brand Storytelling</span>
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Creative Direction</span>
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Community Content</span>
-        </div>
-      </div>
-
-      <!-- Project 5: Cave by Craftels -->
-      <div class="card-dark reveal-item" style="background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 24px; padding: 3rem;">
-        <div style="margin-bottom: 2rem;">
-          <h3 style="font-family: var(--font-headings); font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin: 0 0 0.5rem 0;">Cave by Craftels</h3>
-          <div style="color: var(--accent-teal); font-weight: 600; font-size: 1.125rem;">920K+ Reach | 580K+ Video Views | 7.2% Engagement</div>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">4mo</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Duration</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">85+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Content</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">920K+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Reach</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">580K+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Video Views</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">5.1K+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Followers</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">7.2%</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Engagement</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">250+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Reservations</div>
-          </div>
-        </div>
-
-        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Hospitality Marketing</span>
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Reels</span>
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Creative Direction</span>
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Content Production</span>
-        </div>
-      </div>
-
-      <!-- Project 6: Obrigado by Craftels -->
-      <div class="card-dark reveal-item" style="background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 24px; padding: 3rem;">
-        <div style="margin-bottom: 2rem;">
-          <h3 style="font-family: var(--font-headings); font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin: 0 0 0.5rem 0;">Obrigado by Craftels</h3>
-          <div style="color: var(--accent-teal); font-weight: 600; font-size: 1.125rem;">850K+ Reach | 520K+ Video Views | 7.4% Engagement</div>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">4mo</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Duration</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">80+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Content</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">850K+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Reach</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">520K+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Video Views</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">4.7K+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Followers</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">7.4%</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Engagement</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">220+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Reservations</div>
-          </div>
-        </div>
-
-        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Hospitality Marketing</span>
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Content Strategy</span>
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Reels</span>
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Creative Direction</span>
-        </div>
-      </div>
-
-      <!-- Project 7: Facia Facial Bar -->
-      <div class="card-dark reveal-item" style="background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 24px; padding: 3rem;">
-        <div style="margin-bottom: 2rem;">
-          <h3 style="font-family: var(--font-headings); font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin: 0 0 0.5rem 0;">Facia Facial Bar</h3>
-          <div style="color: var(--accent-teal); font-weight: 600; font-size: 1.125rem;">780K+ Reach | 4.5K+ Growth | 290+ Enquiries</div>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">5mo</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Duration</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">90+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Content</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">780K+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Reach</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">1.2M+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Impressions</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">4.5K+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Followers</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">6.9%</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Engagement</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">290+</div>
-            <div style="font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 0.25rem;">Appointments</div>
-          </div>
-        </div>
-
-        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Social Strategy</span>
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Service Promotion</span>
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Creative Direction</span>
-          <span style="background-color: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.875rem;">Local Brand Awareness</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- PART B - MORE SOCIAL WORK -->
-    <h3 class="reveal-item" style="font-family: var(--font-headings); font-size: 2rem; font-weight: 800; color: var(--text-primary); text-align: center; margin-top: 5rem; margin-bottom: 3rem;">More Social Media Work</h3>
-    <div class="reveal-item" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
-      <!-- Compact Card 1 -->
-      <div style="background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem;">
-        <h4 style="font-family: var(--font-headings); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin: 0 0 1rem 0;">Armoro</h4>
-        <div style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          <div>1.2M+ Reach</div>
-          <div>8.5K+ Follower Growth</div>
-          <div>6.2% Engagement</div>
-        </div>
-      </div>
-      <!-- Compact Card 2 -->
-      <div style="background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem;">
-        <h4 style="font-family: var(--font-headings); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin: 0 0 1rem 0;">Canvasify</h4>
-        <div style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          <div>850K+ Reach</div>
-          <div>5.2K+ Follower Growth</div>
-          <div>5.8% Engagement</div>
-        </div>
-      </div>
-      <!-- Compact Card 3 -->
-      <div style="background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem;">
-        <h4 style="font-family: var(--font-headings); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin: 0 0 1rem 0;">Din Din</h4>
-        <div style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          <div>1.1M+ Reach</div>
-          <div>6.8K+ Follower Growth</div>
-          <div>6.5% Engagement</div>
-        </div>
-      </div>
-      <!-- Compact Card 4 -->
-      <div style="background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem;">
-        <h4 style="font-family: var(--font-headings); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin: 0 0 1rem 0;">Gliding Owls</h4>
-        <div style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          <div>720K+ Reach</div>
-          <div>4.6K+ Follower Growth</div>
-          <div>5.4% Engagement</div>
-        </div>
-      </div>
-      <!-- Compact Card 5 -->
-      <div style="background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem;">
-        <h4 style="font-family: var(--font-headings); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin: 0 0 1rem 0;">Jangid Krishi Eng.</h4>
-        <div style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          <div>680K+ Reach</div>
-          <div>380+ Enquiries</div>
-          <div>160+ Qualified Leads</div>
-        </div>
-      </div>
-      <!-- Compact Card 6 -->
-      <div style="background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem;">
-        <h4 style="font-family: var(--font-headings); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin: 0 0 1rem 0;">Jepika</h4>
-        <div style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          <div>920K+ Reach</div>
-          <div>5.8K+ Follower Growth</div>
-          <div>6.1% Engagement</div>
-        </div>
-      </div>
-      <!-- Compact Card 7 -->
-      <div style="background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem;">
-        <h4 style="font-family: var(--font-headings); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin: 0 0 1rem 0;">Kangana Mehandi</h4>
-        <div style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          <div>580K+ Reach</div>
-          <div>4.1K+ Follower Growth</div>
-          <div>240+ Bookings</div>
-        </div>
-      </div>
-      <!-- Compact Card 8 -->
-      <div style="background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem;">
-        <h4 style="font-family: var(--font-headings); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin: 0 0 1rem 0;">Manthan Dhoop</h4>
-        <div style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          <div>1M+ Reach</div>
-          <div>5.5K+ Follower Growth</div>
-          <div>320+ Enquiries</div>
-        </div>
-      </div>
-      <!-- Compact Card 9 -->
-      <div style="background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem;">
-        <h4 style="font-family: var(--font-headings); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin: 0 0 1rem 0;">Medyseva</h4>
-        <div style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          <div>750K+ Reach</div>
-          <div>4.3K+ Follower Growth</div>
-          <div>260+ Enquiries</div>
-        </div>
-      </div>
-      <!-- Compact Card 10 -->
-      <div style="background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem;">
-        <h4 style="font-family: var(--font-headings); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin: 0 0 1rem 0;">Pavitra Vivah</h4>
-        <div style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          <div>900K+ Reach</div>
-          <div>5.1K+ Follower Growth</div>
-          <div>350+ Registrations</div>
-        </div>
-      </div>
-      <!-- Compact Card 11 -->
-      <div style="background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem;">
-        <h4 style="font-family: var(--font-headings); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin: 0 0 1rem 0;">Shape</h4>
-        <div style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          <div>700K+ Reach</div>
-          <div>4K+ Follower Growth</div>
-          <div>230+ Enquiries</div>
-        </div>
-      </div>
-      <!-- Compact Card 12 -->
-      <div style="background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem;">
-        <h4 style="font-family: var(--font-headings); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin: 0 0 1rem 0;">Shrijika</h4>
-        <div style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          <div>820K+ Reach</div>
-          <div>4.8K+ Follower Growth</div>
-          <div>6% Engagement</div>
-        </div>
-      </div>
-      <!-- Compact Card 13 -->
-      <div style="background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem;">
-        <h4 style="font-family: var(--font-headings); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin: 0 0 1rem 0;">Shubh Vivahh</h4>
-        <div style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          <div>950K+ Reach</div>
-          <div>5.6K+ Follower Growth</div>
-          <div>390+ Registrations</div>
-        </div>
-      </div>
-      <!-- Compact Card 14 -->
-      <div style="background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem;">
-        <h4 style="font-family: var(--font-headings); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin: 0 0 1rem 0;">Silver Coin Atta</h4>
-        <div style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          <div>1.3M+ Reach</div>
-          <div>6.4K+ Follower Growth</div>
-          <div>370+ Enquiries</div>
-        </div>
-      </div>
-      <!-- Compact Card 15 -->
-      <div style="background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem;">
-        <h4 style="font-family: var(--font-headings); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin: 0 0 1rem 0;">TOTS OF TEANS</h4>
-        <div style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          <div>650K+ Reach</div>
-          <div>3.9K+ Follower Growth</div>
-          <div>6.3% Engagement</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 1 - WEBSITE DESIGN & DEVELOPMENT -->
-<section style="padding: 8rem 0; background-color: var(--bg-primary); border-top: 1px solid var(--border);" class="reveal-item">
-    <div class="section-container">
-        <div style="text-align: center; margin-bottom: 4rem;">
-            <span class="eyebrow">WEB DESIGN & DEVELOPMENT</span>
-            <h2 class="section-title">Digital Experiences Built for <span class="gradient-text">Business</span></h2>
-            <p style="color: var(--text-secondary); max-width: 600px; margin: 1rem auto 0; font-size: 1.1rem;">We build websites around four fundamentals: credibility, usability, performance and conversion.</p>
-        </div>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
-            <!-- Project 1 -->
-            <div class="card-dark" style="background-color: var(--bg-secondary); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem;">
-                <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 0.25rem;">Lawflu</h3>
-                <div style="font-size: 0.85rem; color: var(--text-tertiary); margin-bottom: 1.5rem;">Website Design & Dev</div>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
-                    <div><div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">12</div><div style="font-size: 0.75rem; color: var(--text-tertiary);">Pages</div></div>
-                    <div><div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">92/100</div><div style="font-size: 0.75rem; color: var(--text-tertiary);">Perf Score</div></div>
-                    <div><div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">65%</div><div style="font-size: 0.75rem; color: var(--text-tertiary);">Traffic Growth</div></div>
-                    <div><div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">4.8%</div><div style="font-size: 0.75rem; color: var(--text-tertiary);">Conv Rate</div></div>
-                    <div><div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">120+</div><div style="font-size: 0.75rem; color: var(--text-tertiary);">Monthly Enquiries</div></div>
-                    <div><div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">1.8s</div><div style="font-size: 0.75rem; color: var(--text-tertiary);">Load</div></div>
+        <!-- HERO SECTION -->
+        <section class="hero-minimal">
+            <div class="section-container">
+                <h1 class="reveal-item">Work That <br>Grows Businesses.</h1>
+                <p class="subtitle reveal-item" style="transition-delay: 0.1s;">From performance marketing and social media to websites and digital experiences, we help brands turn strategy into measurable growth.</p>
+                <div class="cta-group reveal-item" style="transition-delay: 0.2s;">
+                    <a href="#work" class="btn btn-primary btn-magnetic">View Our Work</a>
+                    <a href="/contact" class="btn btn-secondary btn-magnetic">Book Free Growth Audit</a>
                 </div>
                 
-                <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.75rem;">Key Focus</div>
-                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                    <span style="font-size: 0.75rem; padding: 0.25rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">UI/UX</span>
-                    <span style="font-size: 0.75rem; padding: 0.25rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Responsive Dev</span>
-                    <span style="font-size: 0.75rem; padding: 0.25rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Conversion Journey</span>
-                    <span style="font-size: 0.75rem; padding: 0.25rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Performance</span>
+                <div class="hero-stats reveal-item" style="transition-delay: 0.3s;">
+                    <div class="stat-minimal">
+                        <span class="number">30+</span>
+                        <span class="label">Brands & Projects</span>
+                    </div>
+                    <div class="stat-minimal">
+                        <span class="number">₹65L+</span>
+                        <span class="label">Revenue Generated</span>
+                    </div>
+                    <div class="stat-minimal">
+                        <span class="number">15M+</span>
+                        <span class="label">Combined Reach</span>
+                    </div>
+                    <div class="stat-minimal">
+                        <span class="number">4.31x</span>
+                        <span class="label">Best ROAS</span>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Project 2 -->
-            <div class="card-dark" style="background-color: var(--bg-secondary); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem;">
-                <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 0.25rem;">Legal Wolf India</h3>
-                <div style="font-size: 0.85rem; color: var(--text-tertiary); margin-bottom: 1.5rem;">Website Design & Dev</div>
+        <!-- LOGO MARQUEE -->
+        <section class="logo-marquee-section">
+            <div class="marquee-header reveal-item">
+                <span class="eyebrow">Trusted Across Industries</span>
+                <h2>Selected brands and projects across marketing & digital.</h2>
+            </div>
+            <div class="marquee-container">
+                <!-- Group 1 -->
+                <div class="marquee-group" style="display: flex; gap: 2rem;">
+                    <div class="logo-pill">Urban Gabru</div>
+                    <div class="logo-pill">Legal Wolf India</div>
+                    <div class="logo-pill">MiHeSo</div>
+                    <div class="logo-pill">Yoda Taco Goa</div>
+                    <div class="logo-pill">Prepleaf</div>
+                    <div class="logo-pill">Fortune Detergent</div>
+                    <div class="logo-pill">Plus Markets</div>
+                    <div class="logo-pill">Ardorsavvy</div>
+                    <div class="logo-pill">Zedblack</div>
+                    <div class="logo-pill">SGS Consulting</div>
+                    <div class="logo-pill">Cave by Craftels</div>
+                </div>
+                <!-- Group 2 (Duplicate for seamless scroll) -->
+                <div class="marquee-group" style="display: flex; gap: 2rem;">
+                    <div class="logo-pill">Urban Gabru</div>
+                    <div class="logo-pill">Legal Wolf India</div>
+                    <div class="logo-pill">MiHeSo</div>
+                    <div class="logo-pill">Yoda Taco Goa</div>
+                    <div class="logo-pill">Prepleaf</div>
+                    <div class="logo-pill">Fortune Detergent</div>
+                    <div class="logo-pill">Plus Markets</div>
+                    <div class="logo-pill">Ardorsavvy</div>
+                    <div class="logo-pill">Zedblack</div>
+                    <div class="logo-pill">SGS Consulting</div>
+                    <div class="logo-pill">Cave by Craftels</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED WORK -->
+        <section id="work" class="featured-work">
+            <div class="section-container">
                 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
-                    <div><div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">18</div><div style="font-size: 0.75rem; color: var(--text-tertiary);">Pages</div></div>
-                    <div><div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">94/100</div><div style="font-size: 0.75rem; color: var(--text-tertiary);">Perf Score</div></div>
-                    <div><div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">78%</div><div style="font-size: 0.75rem; color: var(--text-tertiary);">Traffic Growth</div></div>
-                    <div><div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">5.2%</div><div style="font-size: 0.75rem; color: var(--text-tertiary);">Conv Rate</div></div>
-                    <div><div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">180+</div><div style="font-size: 0.75rem; color: var(--text-tertiary);">Monthly Leads</div></div>
-                    <div><div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">1.6s</div><div style="font-size: 0.75rem; color: var(--text-tertiary);">Load</div></div>
+                <div class="section-header-minimal reveal-item">
+                    <div>
+                        <h2>Selected Work</h2>
+                        <p style="color: var(--text-secondary); margin-top: 1rem; font-size: 1.1rem; max-width: 500px;">A selection of campaigns, brands and digital experiences built around real business objectives.</p>
+                    </div>
+                    
+                    <div class="portfolio-filters">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="perf">Performance</button>
+                        <button class="filter-btn" data-filter="social">Social Media</button>
+                        <button class="filter-btn" data-filter="web">Websites</button>
+                    </div>
+                </div>
+
+                <!-- Project 1: Urban Gabru (Layout A) -->
+                <div class="project-row layout-a reveal-item filter-item" data-category="perf">
+                    <div class="project-visual">
+                        <img src="assets/portfolio_urban_gabru_1785152360491.jpg" alt="Urban Gabru Performance Marketing Case Study" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category" style="color: var(--accent-orange);">Performance Marketing</span>
+                        <h3 class="project-title">Urban Gabru</h3>
+                        <p class="project-desc">Scaling customer acquisition through performance-led paid campaigns across Meta and Google ecosystems.</p>
+                        
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">₹18.2L</span>
+                                <span class="metric-label">Revenue</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">4.04x</span>
+                                <span class="metric-label">ROAS</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">2,140</span>
+                                <span class="metric-label">Purchases</span>
+                            </div>
+                        </div>
+                        
+                        <a href="/contact" class="project-link">Discuss a similar project <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    </div>
+                </div>
+
+                <!-- Project 2: Legal Wolf India (Layout B) -->
+                <div class="project-row layout-b reveal-item filter-item" data-category="web">
+                    <div class="project-content">
+                        <span class="project-category" style="color: var(--accent-teal);">Website Design & Development</span>
+                        <h3 class="project-title">Legal Wolf India</h3>
+                        <p class="project-desc">Designing a professional, high-converting digital experience and service architecture for a leading law firm.</p>
+                        
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">94/100</span>
+                                <span class="metric-label">Performance</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">+78%</span>
+                                <span class="metric-label">Traffic Growth</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">5.2%</span>
+                                <span class="metric-label">Conv. Rate</span>
+                            </div>
+                        </div>
+                        
+                        <a href="/contact" class="project-link">Discuss a similar project <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    </div>
+                    <div class="project-visual">
+                        <img src="assets/portfolio_legal_wolf_1785152371439.jpg" alt="Legal Wolf India Website Design" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Project 3: Yoda Taco (Layout A) -->
+                <div class="project-row layout-a reveal-item filter-item" data-category="social">
+                    <div class="project-visual">
+                        <img src="assets/portfolio_yoda_taco_1785152383228.jpg" alt="Yoda Taco Goa Social Media" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category" style="color: var(--accent-pink);">Social Media Strategy</span>
+                        <h3 class="project-title">Yoda Taco Goa</h3>
+                        <p class="project-desc">Building a vibrant visual identity and engaging community content for a popular Mexican restaurant and bar.</p>
+                        
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">1.1M+</span>
+                                <span class="metric-label">Reach</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">6.2K+</span>
+                                <span class="metric-label">Follower Growth</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">7.1%</span>
+                                <span class="metric-label">Engagement</span>
+                            </div>
+                        </div>
+                        
+                        <a href="/contact" class="project-link">Discuss a similar project <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    </div>
+                </div>
+
+                <!-- Project 4: Plus Markets (Layout D - 50/50) -->
+                <div class="project-row layout-d reveal-item filter-item" data-category="social">
+                    <div class="project-content">
+                        <span class="project-category" style="color: var(--accent-pink);">Social Media Management</span>
+                        <h3 class="project-title">Plus Markets</h3>
+                        <p class="project-desc">Educational content and multi-platform social strategy driving massive visibility and audience engagement.</p>
+                        
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">2.4M+</span>
+                                <span class="metric-label">Reach</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">12K+</span>
+                                <span class="metric-label">Growth</span>
+                            </div>
+                        </div>
+                        
+                        <a href="/contact" class="project-link">Discuss a similar project <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    </div>
+                    <div class="project-visual">
+                        <img src="assets/portfolio_plus_markets_1785152348614.jpg" alt="Plus Markets Social Media" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Project 5: Fortune Detergent (Text Focus Layout) -->
+                <div class="project-row layout-b reveal-item filter-item" data-category="perf">
+                    <div class="project-content">
+                        <span class="project-category" style="color: var(--accent-orange);">Performance Marketing</span>
+                        <h3 class="project-title">Fortune Detergent</h3>
+                        <p class="project-desc">Data-led advertising approach focused on expanding digital reach, generating purchases and maintaining efficient CPA.</p>
+                        
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">₹22.4L</span>
+                                <span class="metric-label">Revenue</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">4.31x</span>
+                                <span class="metric-label">ROAS</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">2,680</span>
+                                <span class="metric-label">Purchases</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-visual" style="background: linear-gradient(135deg, rgba(249,115,22,0.1), rgba(109,40,217,0.1)); display: flex; align-items: center; justify-content: center;">
+                        <!-- Placeholder visual for project without mockup -->
+                        <h3 style="color: var(--text-tertiary); opacity: 0.5; font-size: 2rem;">Campaign Data</h3>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- COMPACT GALLERY -->
+        <section class="compact-gallery">
+            <div class="section-container">
+                <div class="compact-header reveal-item">
+                    <span class="eyebrow">More Work</span>
+                    <h2>Brands We've Helped Grow</h2>
                 </div>
                 
-                <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.75rem;">Key Focus</div>
-                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                    <span style="font-size: 0.75rem; padding: 0.25rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">UI/UX</span>
-                    <span style="font-size: 0.75rem; padding: 0.25rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Service Architecture</span>
-                    <span style="font-size: 0.75rem; padding: 0.25rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Responsive Dev</span>
-                    <span style="font-size: 0.75rem; padding: 0.25rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Lead Gen</span>
+                <div class="compact-grid">
+                    <!-- Cards -->
+                    <div class="compact-card reveal-item">
+                        <h4>Armoro</h4>
+                        <span class="cat">Social Media</span>
+                        <span class="result">1.2M+ Reach | 8.5K+ Growth</span>
+                    </div>
+                    <div class="compact-card reveal-item">
+                        <h4>MiHeSo</h4>
+                        <span class="cat">Performance & Social</span>
+                        <span class="result">₹11.6L Rev | 4.14x ROAS</span>
+                    </div>
+                    <div class="compact-card reveal-item">
+                        <h4>Prepleaf</h4>
+                        <span class="cat">Lead Generation</span>
+                        <span class="result">2,850 Leads | ₹126 CPL</span>
+                    </div>
+                    <div class="compact-card reveal-item">
+                        <h4>Canvasify</h4>
+                        <span class="cat">Social Media</span>
+                        <span class="result">850K+ Reach | 5.8% Eng.</span>
+                    </div>
+                    <div class="compact-card reveal-item">
+                        <h4>SGS Consulting</h4>
+                        <span class="cat">Web Development</span>
+                        <span class="result">38% Conv. Improvement</span>
+                    </div>
+                    <div class="compact-card reveal-item">
+                        <h4>Zedblack</h4>
+                        <span class="cat">Social Media</span>
+                        <span class="result">1.8M+ Reach | 1.2M+ Views</span>
+                    </div>
+                    <div class="compact-card reveal-item">
+                        <h4>Obrigado by Craftels</h4>
+                        <span class="cat">Social Media</span>
+                        <span class="result">850K+ Reach | 220+ Res.</span>
+                    </div>
+                    <div class="compact-card reveal-item">
+                        <h4>Presidents</h4>
+                        <span class="cat">Web Development</span>
+                        <span class="result">60% Traffic Growth</span>
+                    </div>
+                    <div class="compact-card reveal-item">
+                        <h4>Silver Coin Atta</h4>
+                        <span class="cat">Social Media</span>
+                        <span class="result">1.3M+ Reach | 6.4K+ Growth</span>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Project 3 -->
-            <div class="card-dark" style="background-color: var(--bg-secondary); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem;">
-                <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 0.25rem;">SGS Consulting</h3>
-                <div style="font-size: 0.85rem; color: var(--text-tertiary); margin-bottom: 1.5rem;">Corporate Digital Experience</div>
+        <!-- TESTIMONIALS -->
+        <section class="testimonials">
+            <div class="section-container">
+                <span class="eyebrow reveal-item">Client Feedback</span>
+                <h2 class="reveal-item" style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;">What Our Clients Say</h2>
                 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
-                    <div><div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">25+</div><div style="font-size: 0.75rem; color: var(--text-tertiary);">Pages</div></div>
-                    <div><div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">90/100</div><div style="font-size: 0.75rem; color: var(--text-tertiary);">Perf Score</div></div>
-                    <div><div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">55%</div><div style="font-size: 0.75rem; color: var(--text-tertiary);">Traffic Growth</div></div>
-                    <div><div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">38%</div><div style="font-size: 0.75rem; color: var(--text-tertiary);">Conv Improvement</div></div>
-                    <div><div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">250+</div><div style="font-size: 0.75rem; color: var(--text-tertiary);">Monthly Enquiries</div></div>
-                    <div><div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">1.9s</div><div style="font-size: 0.75rem; color: var(--text-tertiary);">Load</div></div>
-                </div>
-                
-                <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.75rem;">Key Focus</div>
-                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                    <span style="font-size: 0.75rem; padding: 0.25rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Corporate UX</span>
-                    <span style="font-size: 0.75rem; padding: 0.25rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Content Structure</span>
-                    <span style="font-size: 0.75rem; padding: 0.25rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Responsive</span>
-                    <span style="font-size: 0.75rem; padding: 0.25rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Performance</span>
-                </div>
-            </div>
-
-            <!-- Project 4 -->
-            <div class="card-dark" style="background-color: var(--bg-secondary); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem;">
-                <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 0.25rem;">Presidents</h3>
-                <div style="font-size: 0.85rem; color: var(--text-tertiary); margin-bottom: 1.5rem;">Website Design & Dev</div>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
-                    <div><div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">10</div><div style="font-size: 0.75rem; color: var(--text-tertiary);">Pages</div></div>
-                    <div><div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">93/100</div><div style="font-size: 0.75rem; color: var(--text-tertiary);">Perf Score</div></div>
-                    <div><div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">60%</div><div style="font-size: 0.75rem; color: var(--text-tertiary);">Traffic Growth</div></div>
-                    <div><div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">4.5%</div><div style="font-size: 0.75rem; color: var(--text-tertiary);">Conv Rate</div></div>
-                    <div><div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">100+</div><div style="font-size: 0.75rem; color: var(--text-tertiary);">Monthly Enquiries</div></div>
-                    <div><div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">1.7s</div><div style="font-size: 0.75rem; color: var(--text-tertiary);">Load</div></div>
-                </div>
-                
-                <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.75rem;">Key Focus</div>
-                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                    <span style="font-size: 0.75rem; padding: 0.25rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">UI/UX</span>
-                    <span style="font-size: 0.75rem; padding: 0.25rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Responsive Dev</span>
-                    <span style="font-size: 0.75rem; padding: 0.25rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Mobile Experience</span>
-                    <span style="font-size: 0.75rem; padding: 0.25rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Conversion</span>
+                <div class="test-grid">
+                    <div class="test-card reveal-item">
+                        <p class="test-quote">"Creative Oracle didn't just run ads; they understood our unit economics and scaled our acquisition profitably. Our ROAS improved significantly within the first two months."</p>
+                        <div class="test-author">
+                            <div class="test-name">Founder</div>
+                            <div class="test-role">Urban Gabru</div>
+                        </div>
+                    </div>
+                    <div class="test-card reveal-item">
+                        <p class="test-quote">"The website redesign completely changed how our clients perceive us. It's professional, incredibly fast, and has directly contributed to a higher lead conversion rate."</p>
+                        <div class="test-author">
+                            <div class="test-name">Managing Partner</div>
+                            <div class="test-role">Legal Wolf India</div>
+                        </div>
+                    </div>
+                    <div class="test-card reveal-item">
+                        <p class="test-quote">"Their content strategy and visual direction gave our brand a completely new life on social media. Engagement and reach have been consistently growing."</p>
+                        <div class="test-author">
+                            <div class="test-name">Marketing Director</div>
+                            <div class="test-role">Plus Markets</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
 
-<!-- SECTION 2 - OUR CAPABILITIES -->
-<section class="section-dark reveal-item" style="padding: 8rem 0; background-color: var(--bg-secondary);">
-    <div class="section-container">
-        <div style="text-align: center; margin-bottom: 4rem;">
-            <span class="eyebrow">WHAT WE DO</span>
-            <h2 class="section-title">Strategy, Creative & Technology <span class="gradient-text">Under One Roof</span></h2>
-        </div>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
-            <!-- Cap 1 -->
-            <div style="background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem;">
-                <div style="width: 48px; height: 48px; background-color: rgba(144,103,198,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-                </div>
-                <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">Performance Marketing</h3>
-                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                    <span style="font-size: 0.8rem; padding: 0.35rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Meta Ads</span>
-                    <span style="font-size: 0.8rem; padding: 0.35rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Google Ads</span>
-                    <span style="font-size: 0.8rem; padding: 0.35rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Lead Generation</span>
-                    <span style="font-size: 0.8rem; padding: 0.35rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Retargeting</span>
-                    <span style="font-size: 0.8rem; padding: 0.35rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Conversion Optimization</span>
-                    <span style="font-size: 0.8rem; padding: 0.35rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Campaign Scaling</span>
+        <!-- FINAL CTA -->
+        <section class="final-cta">
+            <div class="section-container reveal-item">
+                <h2>Your Next Case Study <br>Could Start Here.</h2>
+                <p>Looking for more qualified leads, stronger advertising performance, better content or a high-converting digital experience? Let's identify your biggest growth opportunity.</p>
+                <div class="cta-group">
+                    <a href="/contact" class="btn btn-primary btn-magnetic">Book a Free Growth Audit</a>
+                    <a href="mailto:support@creativeoracle.com" class="btn btn-secondary btn-magnetic">Start a Conversation</a>
                 </div>
             </div>
+        </section>
 
-            <!-- Cap 2 -->
-            <div style="background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem;">
-                <div style="width: 48px; height: 48px; background-color: rgba(255,105,180,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-pink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                </div>
-                <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">Social Media</h3>
-                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                    <span style="font-size: 0.8rem; padding: 0.35rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Strategy</span>
-                    <span style="font-size: 0.8rem; padding: 0.35rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Content Planning</span>
-                    <span style="font-size: 0.8rem; padding: 0.35rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Creative Production</span>
-                    <span style="font-size: 0.8rem; padding: 0.35rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Reels</span>
-                    <span style="font-size: 0.8rem; padding: 0.35rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Community Growth</span>
-                    <span style="font-size: 0.8rem; padding: 0.35rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Social Media Management</span>
-                </div>
-            </div>
-
-            <!-- Cap 3 -->
-            <div style="background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem;">
-                <div style="width: 48px; height: 48px; background-color: rgba(0,128,128,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                </div>
-                <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">Web & Digital</h3>
-                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                    <span style="font-size: 0.8rem; padding: 0.35rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Website Design</span>
-                    <span style="font-size: 0.8rem; padding: 0.35rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Landing Pages</span>
-                    <span style="font-size: 0.8rem; padding: 0.35rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">UI/UX</span>
-                    <span style="font-size: 0.8rem; padding: 0.35rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">E-commerce</span>
-                    <span style="font-size: 0.8rem; padding: 0.35rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Custom Development</span>
-                    <span style="font-size: 0.8rem; padding: 0.35rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Conversion Optimization</span>
-                </div>
-            </div>
-
-            <!-- Cap 4 -->
-            <div style="background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem;">
-                <div style="width: 48px; height: 48px; background-color: rgba(255,140,0,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                </div>
-                <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">AI & Automation</h3>
-                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                    <span style="font-size: 0.8rem; padding: 0.35rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">WhatsApp Automation</span>
-                    <span style="font-size: 0.8rem; padding: 0.35rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">AI Chatbots</span>
-                    <span style="font-size: 0.8rem; padding: 0.35rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Lead Qualification</span>
-                    <span style="font-size: 0.8rem; padding: 0.35rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">CRM Workflows</span>
-                    <span style="font-size: 0.8rem; padding: 0.35rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Sales Automation</span>
-                    <span style="font-size: 0.8rem; padding: 0.35rem 0.75rem; background-color: rgba(255,255,255,0.05); border-radius: 100px; color: var(--text-secondary);">Custom AI Solutions</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- SECTION 3 - WHY CREATIVE ORACLE -->
-<section style="padding: 8rem 0; background-color: var(--bg-primary);" class="reveal-item">
-    <div class="section-container">
-        <div style="text-align: center;">
-            <span class="eyebrow">WHY US</span>
-            <h2 class="section-title">Less Agency Complexity. <span class="gradient-text">More Clarity.</span></h2>
-        </div>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 4rem;">
-            <!-- Card 1 -->
-            <div class="card-dark" style="background-color: var(--bg-secondary); border: 1px solid var(--border); border-top: 3px solid var(--accent); border-radius: 20px; padding: 2.5rem;">
-                <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">Business-First Strategy</h3>
-                <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">Every recommendation starts with your business objective, not a predefined service package.</p>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="card-dark" style="background-color: var(--bg-secondary); border: 1px solid var(--border); border-top: 3px solid var(--accent-teal); border-radius: 20px; padding: 2.5rem;">
-                <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">Transparent Reporting</h3>
-                <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">Clear visibility into what's being done, what it's costing and what results it's generating.</p>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="card-dark" style="background-color: var(--bg-secondary); border: 1px solid var(--border); border-top: 3px solid var(--accent-orange); border-radius: 20px; padding: 2.5rem;">
-                <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">Strategy + Execution</h3>
-                <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">Strategy and execution stay connected, helping ideas move faster from planning to implementation.</p>
-            </div>
-
-            <!-- Card 4 -->
-            <div class="card-dark" style="background-color: var(--bg-secondary); border: 1px solid var(--border); border-top: 3px solid var(--accent-pink); border-radius: 20px; padding: 2.5rem;">
-                <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">Marketing + Technology</h3>
-                <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">Creative, performance, websites and automation work together as one growth ecosystem.</p>
-            </div>
-
-            <!-- Card 5 -->
-            <div class="card-dark" style="background-color: var(--bg-secondary); border: 1px solid var(--border); border-top: 3px solid var(--accent); border-radius: 20px; padding: 2.5rem;">
-                <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">Continuous Optimization</h3>
-                <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">We test, measure and improve rather than relying on a set-it-and-forget-it approach.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- SECTION 4 - FINAL CTA -->
-<section class="cta-section reveal-item" style="padding: 6rem 0; background-color: var(--bg-secondary);">
-    <div class="section-container">
-        <div class="cta-card">
-            <span class="eyebrow" style="color: rgba(255,255,255,0.8); margin-bottom: 1rem; display: inline-block;">START A CONVERSATION</span>
-            <h2 class="cta-title">Your Next Case Study Could <span class="gradient-text">Start Here</span></h2>
-            <p class="cta-subtitle">Whether you're looking for more qualified leads, stronger advertising performance, better content, a high-converting website or smarter automation, Creative Oracle can help identify and execute your next growth opportunity.</p>
-            <p style="color: var(--text-secondary); margin-bottom: 2.5rem; font-size: 1rem;">We'll review your current digital presence and identify practical opportunities to improve performance.</p>
-            
-            <div class="cta-buttons">
-                <a href="/contact" class="btn btn-primary btn-light btn-magnetic">Book My Free Growth Audit</a>
-            </div>
-            
-            <p style="font-size: 0.85rem; color: var(--text-tertiary); margin-top: 1rem;">No generic sales pitch. Just a focused conversation about your business.</p>
-        </div>
-    </div>
-</section>
-
-</main>
+    </main>
+    
 <!-- Footer -->
 <footer class="main-footer">
 <div class="footer-container">
@@ -1364,5 +662,31 @@
 </footer>
 <!-- Core Script -->
 <script src="index.js?v=3.0.0"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projects = document.querySelectorAll('.filter-item');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.getAttribute('data-filter');
+                
+                projects.forEach(project => {
+                    if (filter === 'all' || project.getAttribute('data-category') === filter) {
+                        project.style.display = 'grid'; // restoring the grid layout
+                    } else {
+                        project.style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
+    </script>
+    
 </body>
 </html>

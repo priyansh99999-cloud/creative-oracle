@@ -512,7 +512,9 @@ document.addEventListener('DOMContentLoaded', () => {
             canvas.height = height * dpr;
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-            if (window.innerWidth < 992) {
+            const pageName = window.location.pathname.split('/').pop().replace('.html', '');
+            
+            if (window.innerWidth < 992 || pageName === 'portfolio') {
                 centerX = width * 0.5;
                 centerY = height * 0.5;
             } else {

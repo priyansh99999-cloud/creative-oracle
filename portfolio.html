@@ -268,8 +268,16 @@
     <main class="portfolio-v2">
         
         <!-- HERO SECTION -->
-        <section class="hero-minimal">
-            <div class="section-container">
+        <section class="hero-minimal" id="hero" style="position: relative; overflow: hidden;">
+            <!-- Background Mesh Blobs -->
+            <div class="blob-container">
+                <div class="gradient-blob blob-purple"></div>
+                <div class="gradient-blob blob-teal"></div>
+            </div>
+            <!-- Mathematical Orbital Canvas -->
+            <canvas class="hero-canvas" id="orbitalCanvas"></canvas>
+            
+            <div class="section-container" style="position: relative; z-index: 2;">
                 <h1 class="reveal-item">Work That <br>Grows Businesses.</h1>
                 <p class="subtitle reveal-item" style="transition-delay: 0.1s;">From performance marketing and social media to websites and digital experiences, we help brands turn strategy into measurable growth.</p>
                 <div class="cta-group reveal-item" style="transition-delay: 0.2s;">

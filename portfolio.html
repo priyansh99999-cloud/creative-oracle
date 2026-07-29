@@ -84,7 +84,8 @@
         .marquee-header h2 { font-size: 1.5rem; color: var(--text-primary); margin-top: 0.5rem; }
         .marquee-container { display: flex; width: 200%; animation: marquee 40s linear infinite; gap: 2rem; }
         .marquee-container:hover { animation-play-state: paused; }
-        .logo-pill { padding: 1rem 2rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border-dark); border-radius: 100px; color: var(--text-secondary); font-size: 1.1rem; font-weight: 600; white-space: nowrap; transition: all 0.3s ease; }
+        .logo-pill { display: flex; align-items: center; gap: 0.75rem; padding: 1rem 2rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border-dark); border-radius: 100px; color: var(--text-secondary); font-size: 1.1rem; font-weight: 600; white-space: nowrap; transition: all 0.3s ease; }
+        .logo-pill img { height: 28px; width: auto; border-radius: 4px; object-fit: contain; }
         .logo-pill:hover { background: rgba(255,255,255,0.05); color: var(--text-primary); border-color: var(--text-tertiary); }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         
@@ -315,7 +316,7 @@
             <div class="marquee-container">
                 <!-- Group 1 -->
                 <div class="marquee-group" style="display: flex; gap: 2rem;">
-                    <div class="logo-pill">Urban Gabru</div>
+                    <div class="logo-pill"><img src="assets/logos/urban-gabru.jpg" alt="Urban Gabru">Urban Gabru</div>
                     <div class="logo-pill">Legal Wolf India</div>
                     <div class="logo-pill">MiHeSo</div>
                     <div class="logo-pill">Yoda Taco Goa</div>
@@ -325,11 +326,13 @@
                     <div class="logo-pill">Ardorsavvy</div>
                     <div class="logo-pill">Zedblack</div>
                     <div class="logo-pill">SGS Consulting</div>
-                    <div class="logo-pill">Cave by Craftels</div>
+                    <div class="logo-pill"><img src="assets/logos/cave.jpg" alt="Cave by Craftels">Cave by Craftels</div>
+                    <div class="logo-pill"><img src="assets/logos/silver-coin.jpg" alt="Silver Coin">Silver Coin Atta</div>
+                    <div class="logo-pill"><img src="assets/logos/obrigado.jpg" alt="Obrigado">Obrigado by Craftels</div>
                 </div>
                 <!-- Group 2 (Duplicate for seamless scroll) -->
                 <div class="marquee-group" style="display: flex; gap: 2rem;">
-                    <div class="logo-pill">Urban Gabru</div>
+                    <div class="logo-pill"><img src="assets/logos/urban-gabru.jpg" alt="Urban Gabru">Urban Gabru</div>
                     <div class="logo-pill">Legal Wolf India</div>
                     <div class="logo-pill">MiHeSo</div>
                     <div class="logo-pill">Yoda Taco Goa</div>
@@ -339,7 +342,9 @@
                     <div class="logo-pill">Ardorsavvy</div>
                     <div class="logo-pill">Zedblack</div>
                     <div class="logo-pill">SGS Consulting</div>
-                    <div class="logo-pill">Cave by Craftels</div>
+                    <div class="logo-pill"><img src="assets/logos/cave.jpg" alt="Cave by Craftels">Cave by Craftels</div>
+                    <div class="logo-pill"><img src="assets/logos/silver-coin.jpg" alt="Silver Coin">Silver Coin Atta</div>
+                    <div class="logo-pill"><img src="assets/logos/obrigado.jpg" alt="Obrigado">Obrigado by Craftels</div>
                 </div>
             </div>
         </section>

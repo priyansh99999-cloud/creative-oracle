@@ -82,12 +82,12 @@
         .logo-marquee-section { padding: 4rem 0; border-top: 1px solid var(--border-dark); border-bottom: 1px solid var(--border-dark); overflow: hidden; background: var(--bg-primary); }
         .marquee-header { text-align: center; margin-bottom: 3rem; }
         .marquee-header h2 { font-size: 1.5rem; color: var(--text-primary); margin-top: 0.5rem; }
-        .marquee-container { display: flex; width: 200%; animation: marquee 40s linear infinite; gap: 2rem; }
+        .marquee-container { display: flex; width: max-content; animation: marquee 40s linear infinite; gap: 2rem; }
         .marquee-container:hover { animation-play-state: paused; }
-        .logo-pill { display: flex; align-items: center; gap: 0.75rem; padding: 1rem 2rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border-dark); border-radius: 100px; color: var(--text-secondary); font-size: 1.1rem; font-weight: 600; white-space: nowrap; transition: all 0.3s ease; }
-        .logo-pill img { height: 28px; width: auto; border-radius: 4px; object-fit: contain; }
-        .logo-pill:hover { background: rgba(255,255,255,0.05); color: var(--text-primary); border-color: var(--text-tertiary); }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .logo-pill { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; padding: 1.5rem 2.5rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border-dark); border-radius: 20px; color: var(--text-secondary); font-size: 1.1rem; font-weight: 600; white-space: nowrap; transition: all 0.3s ease; min-width: 160px; }
+        .logo-pill img { height: 48px; width: auto; max-width: 120px; border-radius: 4px; object-fit: contain; }
+        .logo-pill:hover { background: rgba(255,255,255,0.05); color: var(--text-primary); border-color: var(--text-tertiary); transform: translateY(-5px); }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 1rem)); } }
         
         /* Featured Work */
         .featured-work { padding: 10rem 0; }

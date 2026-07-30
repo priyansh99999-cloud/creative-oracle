@@ -473,7 +473,8 @@ section {
     font-size: clamp(3rem, 6vw, 5.5rem);
     letter-spacing: -0.04em;
     line-height: 1.05;
-    margin-bottom: 2rem;
+    max-width: 900px;
+    margin: 0 auto 2rem auto;
 }
 
 .hero-subtitle {

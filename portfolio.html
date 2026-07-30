@@ -79,19 +79,19 @@
         .stat-minimal .label { font-size: 0.9rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
         
         /* Logo Marquee */
-        .logo-marquee-section { padding: 6rem 0; overflow: hidden; background: #0a0e17; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .logo-marquee-section { padding: 6rem 0; overflow: hidden; background: var(--bg-primary); border-top: 1px solid var(--border-dark); border-bottom: 1px solid var(--border-dark); }
         .marquee-header { text-align: center; margin-bottom: 4rem; }
-        .marquee-header .eyebrow { color: #8b5cf6; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.85rem; }
-        .marquee-header h2 { font-size: clamp(2rem, 4vw, 3rem); color: #ffffff; margin-top: 1rem; font-weight: 700; }
+        .marquee-header .eyebrow { color: var(--text-tertiary); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.85rem; }
+        .marquee-header h2 { font-size: clamp(2rem, 4vw, 3rem); color: var(--text-primary); margin-top: 1rem; font-weight: 700; }
         .marquee-wrapper { display: flex; flex-direction: column; gap: 1.5rem; }
         .marquee-container { display: flex; width: max-content; gap: 1.5rem; }
         .marquee-container.left { animation: marqueeLeft 40s linear infinite; }
         .marquee-container.right { animation: marqueeRight 40s linear infinite; }
         .marquee-container:hover { animation-play-state: paused; }
         .marquee-group { display: flex; gap: 1.5rem; }
-        .logo-pill { display: flex; align-items: center; gap: 1.25rem; padding: 1.2rem 2rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; color: rgba(255,255,255,0.85); font-size: 0.9rem; font-weight: 500; letter-spacing: 0.02em; white-space: nowrap; transition: all 0.3s ease; }
+        .logo-pill { display: flex; align-items: center; gap: 1.25rem; padding: 1.2rem 2rem; background: var(--bg-secondary); border: 1px solid var(--border-dark); border-radius: 16px; color: var(--text-primary); font-size: 0.9rem; font-weight: 600; letter-spacing: 0.02em; white-space: nowrap; transition: all 0.3s ease; }
         .logo-pill img { height: 56px; width: auto; max-width: 160px; border-radius: 4px; object-fit: contain; }
-        .logo-pill:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .logo-pill:hover { background: #ffffff; border-color: rgba(0,0,0,0.15); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
         @keyframes marqueeLeft { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 0.75rem)); } }
         @keyframes marqueeRight { 0% { transform: translateX(calc(-50% - 0.75rem)); } 100% { transform: translateX(0); } }
         

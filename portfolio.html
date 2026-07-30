@@ -79,15 +79,21 @@
         .stat-minimal .label { font-size: 0.9rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
         
         /* Logo Marquee */
-        .logo-marquee-section { padding: 4rem 0; border-top: 1px solid var(--border-dark); border-bottom: 1px solid var(--border-dark); overflow: hidden; background: var(--bg-primary); }
-        .marquee-header { text-align: center; margin-bottom: 3rem; }
-        .marquee-header h2 { font-size: 1.5rem; color: var(--text-primary); margin-top: 0.5rem; }
-        .marquee-container { display: flex; width: max-content; animation: marquee 40s linear infinite; gap: 2rem; }
+        .logo-marquee-section { padding: 6rem 0; overflow: hidden; background: #0a0e17; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .marquee-header { text-align: center; margin-bottom: 4rem; }
+        .marquee-header .eyebrow { color: #8b5cf6; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.85rem; }
+        .marquee-header h2 { font-size: clamp(2rem, 4vw, 3rem); color: #ffffff; margin-top: 1rem; font-weight: 700; }
+        .marquee-wrapper { display: flex; flex-direction: column; gap: 1.5rem; }
+        .marquee-container { display: flex; width: max-content; gap: 1.5rem; }
+        .marquee-container.left { animation: marqueeLeft 40s linear infinite; }
+        .marquee-container.right { animation: marqueeRight 40s linear infinite; }
         .marquee-container:hover { animation-play-state: paused; }
-        .logo-pill { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; padding: 1.5rem 2.5rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border-dark); border-radius: 20px; color: var(--text-secondary); font-size: 1.1rem; font-weight: 600; white-space: nowrap; transition: all 0.3s ease; min-width: 160px; }
-        .logo-pill img { height: 48px; width: auto; max-width: 120px; border-radius: 4px; object-fit: contain; }
-        .logo-pill:hover { background: rgba(255,255,255,0.05); color: var(--text-primary); border-color: var(--text-tertiary); transform: translateY(-5px); }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 1rem)); } }
+        .marquee-group { display: flex; gap: 1.5rem; }
+        .logo-pill { display: flex; align-items: center; gap: 1rem; padding: 1.2rem 2rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; color: #ffffff; font-size: 1.1rem; font-weight: 500; white-space: nowrap; transition: all 0.3s ease; }
+        .logo-pill img { height: 32px; width: auto; max-width: 120px; border-radius: 4px; object-fit: contain; }
+        .logo-pill:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        @keyframes marqueeLeft { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 0.75rem)); } }
+        @keyframes marqueeRight { 0% { transform: translateX(calc(-50% - 0.75rem)); } 100% { transform: translateX(0); } }
         
         /* Featured Work */
         .featured-work { padding: 10rem 0; }
@@ -313,42 +319,55 @@
                 <span class="eyebrow">Trusted Across Industries</span>
                 <h2>Selected brands and projects across marketing & digital.</h2>
             </div>
-            <div class="marquee-container">
-                    <div class="logo-pill"><img src="assets/logos/Urban Gabru.jpeg" alt="Urban Gabru">Urban Gabru</div>
-                    <div class="logo-pill">Legal Wolf India</div>
-                    <div class="logo-pill"><img src="assets/logos/MeHiSo.webp" alt="MiHeSo">MiHeSo</div>
-                    <div class="logo-pill"><img src="assets/logos/Yoda Taco Goa.png" alt="Yoda Taco Goa">Yoda Taco Goa</div>
-                    <div class="logo-pill"><img src="assets/logos/Pref.webp" alt="Prepleaf">Prepleaf</div>
-                    <div class="logo-pill">Fortune Detergent</div>
-                    <div class="logo-pill"><img src="assets/logos/Plus Markets.png" alt="Plus Markets">Plus Markets</div>
-                    <div class="logo-pill"><img src="assets/logos/ardorsavvy_logo.jpeg" alt="Ardorsavvy">Ardorsavvy</div>
-                    <div class="logo-pill"><img src="assets/logos/Zed-Black-Logo1_1300x.webp" alt="Zedblack">Zedblack</div>
-                    <div class="logo-pill"><img src="assets/logos/SGS Consulting.png" alt="SGS Consulting">SGS Consulting</div>
-                    <div class="logo-pill"><img src="assets/logos/Craftels by Craftels.avif" alt="Cave by Craftels">Cave by Craftels</div>
-                    <div class="logo-pill"><img src="assets/logos/Silver coin Atta.jpeg" alt="Silver Coin">Silver Coin Atta</div>
-                    <div class="logo-pill"><img src="assets/logos/Obrigado by Craftels.png" alt="Obrigado">Obrigado by Craftels</div>
-                    <div class="logo-pill"><img src="assets/logos/Armoro.webp" alt="Armoro">Armoro</div>
-                    <div class="logo-pill"><img src="assets/logos/Canvasify.png" alt="Canvasify">Canvasify</div>
-                    <div class="logo-pill"><img src="assets/logos/DIn Din.png" alt="Din Din">Din Din</div>
+            <div class="marquee-wrapper">
+                <!-- Row 1: Scrolling Left -->
+                <div class="marquee-container left">
+                    <div class="marquee-group">
+                        <div class="logo-pill"><img src="assets/logos/Urban Gabru.jpeg" alt="Urban Gabru">Urban Gabru</div>
+                        <div class="logo-pill">Legal Wolf India</div>
+                        <div class="logo-pill"><img src="assets/logos/MeHiSo.webp" alt="MiHeSo">MiHeSo</div>
+                        <div class="logo-pill"><img src="assets/logos/Yoda Taco Goa.png" alt="Yoda Taco Goa">Yoda Taco Goa</div>
+                        <div class="logo-pill"><img src="assets/logos/Pref.webp" alt="Prepleaf">Prepleaf</div>
+                        <div class="logo-pill">Fortune Detergent</div>
+                        <div class="logo-pill"><img src="assets/logos/Plus Markets.png" alt="Plus Markets">Plus Markets</div>
+                        <div class="logo-pill"><img src="assets/logos/ardorsavvy_logo.jpeg" alt="Ardorsavvy">Ardorsavvy</div>
+                    </div>
+                    <!-- Duplicate Group for Seamless Scroll -->
+                    <div class="marquee-group">
+                        <div class="logo-pill"><img src="assets/logos/Urban Gabru.jpeg" alt="Urban Gabru">Urban Gabru</div>
+                        <div class="logo-pill">Legal Wolf India</div>
+                        <div class="logo-pill"><img src="assets/logos/MeHiSo.webp" alt="MiHeSo">MiHeSo</div>
+                        <div class="logo-pill"><img src="assets/logos/Yoda Taco Goa.png" alt="Yoda Taco Goa">Yoda Taco Goa</div>
+                        <div class="logo-pill"><img src="assets/logos/Pref.webp" alt="Prepleaf">Prepleaf</div>
+                        <div class="logo-pill">Fortune Detergent</div>
+                        <div class="logo-pill"><img src="assets/logos/Plus Markets.png" alt="Plus Markets">Plus Markets</div>
+                        <div class="logo-pill"><img src="assets/logos/ardorsavvy_logo.jpeg" alt="Ardorsavvy">Ardorsavvy</div>
+                    </div>
                 </div>
-                <!-- Group 2 (Duplicate for seamless scroll) -->
-                <div class="marquee-group" style="display: flex; gap: 2rem;">
-                    <div class="logo-pill"><img src="assets/logos/Urban Gabru.jpeg" alt="Urban Gabru">Urban Gabru</div>
-                    <div class="logo-pill">Legal Wolf India</div>
-                    <div class="logo-pill"><img src="assets/logos/MeHiSo.webp" alt="MiHeSo">MiHeSo</div>
-                    <div class="logo-pill"><img src="assets/logos/Yoda Taco Goa.png" alt="Yoda Taco Goa">Yoda Taco Goa</div>
-                    <div class="logo-pill"><img src="assets/logos/Pref.webp" alt="Prepleaf">Prepleaf</div>
-                    <div class="logo-pill">Fortune Detergent</div>
-                    <div class="logo-pill"><img src="assets/logos/Plus Markets.png" alt="Plus Markets">Plus Markets</div>
-                    <div class="logo-pill"><img src="assets/logos/ardorsavvy_logo.jpeg" alt="Ardorsavvy">Ardorsavvy</div>
-                    <div class="logo-pill"><img src="assets/logos/Zed-Black-Logo1_1300x.webp" alt="Zedblack">Zedblack</div>
-                    <div class="logo-pill"><img src="assets/logos/SGS Consulting.png" alt="SGS Consulting">SGS Consulting</div>
-                    <div class="logo-pill"><img src="assets/logos/Craftels by Craftels.avif" alt="Cave by Craftels">Cave by Craftels</div>
-                    <div class="logo-pill"><img src="assets/logos/Silver coin Atta.jpeg" alt="Silver Coin">Silver Coin Atta</div>
-                    <div class="logo-pill"><img src="assets/logos/Obrigado by Craftels.png" alt="Obrigado">Obrigado by Craftels</div>
-                    <div class="logo-pill"><img src="assets/logos/Armoro.webp" alt="Armoro">Armoro</div>
-                    <div class="logo-pill"><img src="assets/logos/Canvasify.png" alt="Canvasify">Canvasify</div>
-                    <div class="logo-pill"><img src="assets/logos/DIn Din.png" alt="Din Din">Din Din</div>
+
+                <!-- Row 2: Scrolling Right -->
+                <div class="marquee-container right">
+                    <div class="marquee-group">
+                        <div class="logo-pill"><img src="assets/logos/Zed-Black-Logo1_1300x.webp" alt="Zedblack">Zedblack</div>
+                        <div class="logo-pill"><img src="assets/logos/SGS Consulting.png" alt="SGS Consulting">SGS Consulting</div>
+                        <div class="logo-pill"><img src="assets/logos/Craftels by Craftels.avif" alt="Cave by Craftels">Cave by Craftels</div>
+                        <div class="logo-pill"><img src="assets/logos/Silver coin Atta.jpeg" alt="Silver Coin">Silver Coin Atta</div>
+                        <div class="logo-pill"><img src="assets/logos/Obrigado by Craftels.png" alt="Obrigado">Obrigado by Craftels</div>
+                        <div class="logo-pill"><img src="assets/logos/Armoro.webp" alt="Armoro">Armoro</div>
+                        <div class="logo-pill"><img src="assets/logos/Canvasify.png" alt="Canvasify">Canvasify</div>
+                        <div class="logo-pill"><img src="assets/logos/DIn Din.png" alt="Din Din">Din Din</div>
+                    </div>
+                    <!-- Duplicate Group for Seamless Scroll -->
+                    <div class="marquee-group">
+                        <div class="logo-pill"><img src="assets/logos/Zed-Black-Logo1_1300x.webp" alt="Zedblack">Zedblack</div>
+                        <div class="logo-pill"><img src="assets/logos/SGS Consulting.png" alt="SGS Consulting">SGS Consulting</div>
+                        <div class="logo-pill"><img src="assets/logos/Craftels by Craftels.avif" alt="Cave by Craftels">Cave by Craftels</div>
+                        <div class="logo-pill"><img src="assets/logos/Silver coin Atta.jpeg" alt="Silver Coin">Silver Coin Atta</div>
+                        <div class="logo-pill"><img src="assets/logos/Obrigado by Craftels.png" alt="Obrigado">Obrigado by Craftels</div>
+                        <div class="logo-pill"><img src="assets/logos/Armoro.webp" alt="Armoro">Armoro</div>
+                        <div class="logo-pill"><img src="assets/logos/Canvasify.png" alt="Canvasify">Canvasify</div>
+                        <div class="logo-pill"><img src="assets/logos/DIn Din.png" alt="Din Din">Din Din</div>
+                    </div>
                 </div>
             </div>
         </section>

@@ -1,0 +1,89 @@
+
+/* ==========================================================================
+   Global Responsive Alignment Fixes (Tablet & Mobile)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    /* Stack all multi-column grids that use inline styles */
+    .about-grid, 
+    .founder-grid,
+    .split-grid,
+    [style*="grid-template-columns: 2fr 1fr"],
+    [style*="grid-template-columns: 1fr 2fr"],
+    [style*="grid-template-columns: 1fr 1.2fr"],
+    [style*="grid-template-columns: 1.2fr 1fr"],
+    [style*="grid-template-columns: 1fr 1.3fr"],
+    [style*="grid-template-columns: 1.3fr 1fr"],
+    [style*="grid-template-columns: repeat(2, 1fr)"] {
+        grid-template-columns: 1fr !important;
+        gap: 3rem !important;
+    }
+
+    /* Adjust placeholder heights for mobile */
+    [style*="min-height: 400px"],
+    [style*="min-height: 50vh"] {
+        min-height: 250px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Typography Scaling */
+    .hero-title {
+        font-size: clamp(2.2rem, 8vw, 3rem) !important;
+    }
+    h1, h2 {
+        line-height: 1.2 !important;
+    }
+    .section-title {
+        font-size: clamp(2rem, 6vw, 2.5rem) !important;
+    }
+    
+    /* Global Padding Reductions */
+    section {
+        padding: 4rem 0 !important;
+    }
+    .hero-section {
+        padding: 120px 0 3rem 0 !important;
+    }
+    .section-container {
+        padding: 0 1.5rem !important;
+    }
+
+    /* Proof Bar Adjustments */
+    .hero-proof-bar {
+        gap: 0.5rem !important;
+        margin-top: 2rem !important;
+    }
+    .proof-card {
+        min-width: 120px !important;
+        padding: 1rem !important;
+        flex: 1 1 45% !important; /* Forces 2 per row on small screens */
+    }
+    .proof-card div:first-of-type {
+        font-size: 1.5rem !important;
+    }
+    
+    /* Result Cards scaling */
+    .result-card {
+        padding: 1.5rem !important;
+    }
+    
+    /* Footer stacking */
+    .footer-container {
+        flex-direction: column !important;
+        gap: 3rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Stack buttons on tiny screens */
+    .hero-actions, .cta-group, [style*="gap: 1.5rem"] {
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+    .btn {
+        width: 100% !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+}

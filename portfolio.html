@@ -115,8 +115,8 @@
         }
         
         /* Project Visuals */
-        .project-visual { position: relative; border-radius: 24px; overflow: hidden; }
-        .project-visual img { width: 100%; height: auto; display: block; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .project-visual { position: relative; border-radius: 24px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .project-visual img { width: 100%; max-height: 600px; object-fit: contain; display: block; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
         .project-row:hover .project-visual img { transform: scale(1.05); }
         .project-visual.full-width { aspect-ratio: 21/9; margin-bottom: 3rem; }
         

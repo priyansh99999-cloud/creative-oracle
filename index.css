@@ -235,6 +235,7 @@ section {
     width: auto;
     object-fit: contain;
     transition: var(--transition-medium);
+    mix-blend-mode: multiply;
 }
 
 .main-header.scrolled .brand-logo {

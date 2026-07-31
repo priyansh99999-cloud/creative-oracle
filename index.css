@@ -586,8 +586,9 @@ section {
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
+    align-items: stretch;
 }
 
 .service-card {
@@ -2591,6 +2592,11 @@ section {
         font-size: clamp(2rem, 6vw, 2.5rem) !important;
     }
     
+    /* Services Grid Responsive */
+    .services-grid {
+        grid-template-columns: 1fr !important;
+    }
+
     /* Global Padding Reductions */
     section {
         padding: 4rem 0 !important;

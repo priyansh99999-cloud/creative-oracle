@@ -24,32 +24,32 @@
     <url>
         <loc>https://creativeoracle.in/blog-ai-chatbots-respond-faster.html</loc>
         <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://creativeoracle.in/blog-google-vs-meta-ads.html</loc>
         <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://creativeoracle.in/blog-landing-page-convert-better.html</loc>
         <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://creativeoracle.in/blog-seo-basics-local-businesses.html</loc>
         <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://creativeoracle.in/blog-small-business-websites-dont-convert.html</loc>
         <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://creativeoracle.in/blog-track-leads-properly.html</loc>
         <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://creativeoracle.in/blog.html</loc>
@@ -59,17 +59,17 @@
     <url>
         <loc>https://creativeoracle.in/case-study-ai-automation.html</loc>
         <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://creativeoracle.in/case-study-plus-markets.html</loc>
         <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://creativeoracle.in/case-study-yoda-taco.html</loc>
         <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://creativeoracle.in/cold-email.html</loc>
@@ -119,7 +119,7 @@
     <url>
         <loc>https://creativeoracle.in/privacy-policy.html</loc>
         <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.5</priority>
     </url>
     <url>
         <loc>https://creativeoracle.in/process.html</loc>
@@ -149,7 +149,7 @@
     <url>
         <loc>https://creativeoracle.in/terms-conditions.html</loc>
         <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.5</priority>
     </url>
     <url>
         <loc>https://creativeoracle.in/ui-ux-design.html</loc>
@@ -171,4 +171,5 @@
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
+
 </urlset>

@@ -10,14 +10,14 @@
     --text-secondary: #4A4A4A;
     --text-tertiary: #767676;
     
-    --accent: #6D28D9;
-    --accent-hover: #8B5CF6;
-    --accent-rgb: 109, 40, 217;
-    --accent-light: rgba(109, 40, 217, 0.05);
+    --accent: #D41920;
+    --accent-hover: #E84450;
+    --accent-rgb: 212, 25, 32;
+    --accent-light: rgba(212, 25, 32, 0.05);
     
-    --accent-teal: #10A5B2;
+    --accent-teal: #1A3CFF;
     --accent-orange: #F7A072;
-    --accent-blue: #14719B;
+    --accent-blue: #1A3CFF;
     --accent-pink: #EC4899;
     
     --border: #ECECEC;
@@ -140,7 +140,7 @@ p {
 
 .btn-primary:hover {
     background: linear-gradient(135deg, var(--accent-hover) 0%, var(--accent-orange) 100%);
-    box-shadow: 0 10px 25px rgba(109, 40, 217, 0.18);
+    box-shadow: 0 10px 25px rgba(212, 25, 32, 0.18);
     transform: translateY(-2px);
 }
 
@@ -282,7 +282,7 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(109, 40, 217, 0.08) 0%, rgba(16, 165, 178, 0.08) 100%);
+    background: linear-gradient(135deg, rgba(212, 25, 32, 0.08) 0%, rgba(26, 60, 255, 0.08) 100%);
     border-radius: 30px;
     opacity: 0;
     transform: scale(0.9);
@@ -458,7 +458,7 @@ section {
     display: inline-flex;
     align-items: center;
     background-color: var(--accent-light);
-    border: 1px solid rgba(109, 40, 217, 0.15);
+    border: 1px solid rgba(212, 25, 32, 0.15);
     color: var(--accent);
     padding: 0.5rem 1.2rem;
     border-radius: 30px;
@@ -609,12 +609,12 @@ section {
 
 /* Color-coded card borders and glows */
 .service-card:nth-child(3n+1):hover {
-    border-color: rgba(109, 40, 217, 0.35);
-    box-shadow: 0 20px 40px rgba(109, 40, 217, 0.08);
+    border-color: rgba(212, 25, 32, 0.35);
+    box-shadow: 0 20px 40px rgba(212, 25, 32, 0.08);
 }
 .service-card:nth-child(3n+2):hover {
-    border-color: rgba(16, 165, 178, 0.35);
-    box-shadow: 0 20px 40px rgba(16, 165, 178, 0.08);
+    border-color: rgba(26, 60, 255, 0.35);
+    box-shadow: 0 20px 40px rgba(26, 60, 255, 0.08);
 }
 .service-card:nth-child(3n+3):hover {
     border-color: rgba(247, 160, 114, 0.35);
@@ -640,13 +640,13 @@ section {
     background: var(--accent);
     color: #FFFFFF;
     border-color: var(--accent);
-    box-shadow: 0 8px 20px rgba(109, 40, 217, 0.25);
+    box-shadow: 0 8px 20px rgba(212, 25, 32, 0.25);
 }
 .service-card:nth-child(3n+2):hover .service-icon-wrapper {
     background: var(--accent-teal);
     color: #FFFFFF;
     border-color: var(--accent-teal);
-    box-shadow: 0 8px 20px rgba(16, 165, 178, 0.25);
+    box-shadow: 0 8px 20px rgba(26, 60, 255, 0.25);
 }
 .service-card:nth-child(3n+3):hover .service-icon-wrapper {
     background: var(--accent-orange);
@@ -776,7 +776,7 @@ section {
     background-color: var(--accent);
     color: #FFFFFF;
     border-color: var(--accent);
-    box-shadow: 0 8px 20px rgba(109, 40, 217, 0.15);
+    box-shadow: 0 8px 20px rgba(212, 25, 32, 0.15);
 }
 
 .portfolio-grid {
@@ -868,7 +868,7 @@ section {
 .portfolio-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
-    border-color: rgba(109, 40, 217, 0.15);
+    border-color: rgba(212, 25, 32, 0.15);
 }
 
 .portfolio-item:hover .portfolio-img {
@@ -960,7 +960,7 @@ section {
 .timeline-item.active .timeline-dot {
     border-color: var(--accent);
     background-color: var(--accent);
-    box-shadow: 0 0 0 6px rgba(109, 40, 217, 0.15);
+    box-shadow: 0 0 0 6px rgba(212, 25, 32, 0.15);
 }
 
 .timeline-num {
@@ -984,7 +984,7 @@ section {
 }
 
 .timeline-item.active .timeline-content {
-    border-color: rgba(109, 40, 217, 0.2);
+    border-color: rgba(212, 25, 32, 0.2);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
 }
 
@@ -1030,7 +1030,7 @@ section {
     font-size: 8rem;
     font-weight: 800;
     line-height: 1;
-    color: rgba(109, 40, 217, 0.05);
+    color: rgba(212, 25, 32, 0.05);
     pointer-events: none;
 }
 
@@ -1065,7 +1065,7 @@ section {
 }
 
 .testimonial-card:hover {
-    border-color: rgba(109, 40, 217, 0.2);
+    border-color: rgba(212, 25, 32, 0.2);
     background-color: #FFFFFF;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.02);
     transform: translateY(-5px);
@@ -1195,7 +1195,7 @@ section {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(109, 40, 217, 0.08) 0%, transparent 60%);
+    background: radial-gradient(circle, rgba(212, 25, 32, 0.08) 0%, transparent 60%);
     pointer-events: none;
 }
 
@@ -1432,7 +1432,7 @@ section {
 .modal-form input:focus, .modal-form select:focus, .modal-form textarea:focus {
     border-color: var(--accent);
     background-color: #FFFFFF;
-    box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.08);
+    box-shadow: 0 0 0 4px rgba(212, 25, 32, 0.08);
 }
 
 .modal-form textarea {
@@ -1724,7 +1724,7 @@ section {
 .faq-search-input:focus {
     border-color: var(--accent);
     background-color: #FFFFFF;
-    box-shadow: 0 10px 30px rgba(109, 40, 217, 0.05);
+    box-shadow: 0 10px 30px rgba(212, 25, 32, 0.05);
 }
 
 .faq-search-icon {
@@ -1898,7 +1898,7 @@ section {
 
 .team-card:hover {
     transform: translateY(-8px);
-    border-color: rgba(16, 165, 178, 0.3);
+    border-color: rgba(26, 60, 255, 0.3);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
 }
 
@@ -1906,8 +1906,8 @@ section {
     width: 100%;
     height: 320px;
     border-radius: 12px;
-    background: linear-gradient(135deg, rgba(109, 40, 217, 0.03) 0%, rgba(16, 165, 178, 0.03) 100%);
-    border: 1px dashed rgba(16, 165, 178, 0.2);
+    background: linear-gradient(135deg, rgba(212, 25, 32, 0.03) 0%, rgba(26, 60, 255, 0.03) 100%);
+    border: 1px dashed rgba(26, 60, 255, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1921,7 +1921,7 @@ section {
     position: absolute;
     width: 150px;
     height: 150px;
-    background: radial-gradient(circle, rgba(16, 165, 178, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(26, 60, 255, 0.1) 0%, transparent 70%);
     border-radius: 50%;
     filter: blur(10px);
     animation: pulseBlob 4s infinite alternate ease-in-out;
@@ -1934,7 +1934,7 @@ section {
 
 .team-placeholder-icon {
     font-size: 3rem;
-    color: rgba(16, 165, 178, 0.2);
+    color: rgba(26, 60, 255, 0.2);
     z-index: 2;
 }
 
@@ -2088,7 +2088,7 @@ section {
 
 .megamenu-item:hover {
     color: var(--accent);
-    background-color: rgba(109, 40, 217, 0.04);
+    background-color: rgba(212, 25, 32, 0.04);
     transform: translateX(4px);
 }
 
@@ -2128,7 +2128,7 @@ section {
 .result-item-card:hover {
     transform: translateY(-4px);
     border-color: var(--accent) !important;
-    box-shadow: 0 12px 30px rgba(109, 40, 217, 0.05);
+    box-shadow: 0 12px 30px rgba(212, 25, 32, 0.05);
 }
 
 .industry-badge {
@@ -2149,7 +2149,7 @@ section {
     color: white !important;
     border-color: var(--accent);
     transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(109, 40, 217, 0.16);
+    box-shadow: 0 8px 24px rgba(212, 25, 32, 0.16);
 }
 
 
@@ -2172,7 +2172,7 @@ section {
 .blog-card-hover:hover {
     transform: translateY(-5px);
     border-color: var(--accent) !important;
-    box-shadow: 0 15px 35px rgba(109, 40, 217, 0.08) !important;
+    box-shadow: 0 15px 35px rgba(212, 25, 32, 0.08) !important;
 }
 
 /* ============================================================
@@ -2212,7 +2212,7 @@ section {
 
 /* --- Accent Card Variant --- */
 .card-accent {
-    background: linear-gradient(145deg, #6D28D9 0%, #8B5CF6 100%) !important;
+    background: linear-gradient(145deg, #D41920 0%, #E84450 100%) !important;
     border: none !important;
     position: relative;
     overflow: hidden;
@@ -2227,7 +2227,7 @@ section {
     color: rgba(255,255,255,0.8) !important;
 }
 .card-accent:hover {
-    box-shadow: 0 20px 50px rgba(109, 40, 217, 0.3);
+    box-shadow: 0 20px 50px rgba(212, 25, 32, 0.3);
     transform: translateY(-6px);
 }
 .card-accent .service-icon-wrapper {
@@ -2238,14 +2238,14 @@ section {
 
 /* --- Teal Accent Card --- */
 .card-teal {
-    background: linear-gradient(145deg, #0e7490 0%, #10A5B2 100%) !important;
+    background: linear-gradient(145deg, #0F2EB3 0%, #1A3CFF 100%) !important;
     border: none !important;
     position: relative;
     overflow: hidden;
 }
 .card-teal h2, .card-teal h3, .card-teal h4, .card-teal strong { color: #ffffff !important; }
 .card-teal p, .card-teal li { color: rgba(255,255,255,0.8) !important; }
-.card-teal:hover { box-shadow: 0 20px 50px rgba(16, 165, 178, 0.3); transform: translateY(-6px); }
+.card-teal:hover { box-shadow: 0 20px 50px rgba(26, 60, 255, 0.3); transform: translateY(-6px); }
 .card-teal .service-icon-wrapper { background: rgba(255,255,255,0.18) !important; border-color: transparent !important; color: #fff !important; }
 
 /* --- Orange Accent Card --- */
@@ -2322,7 +2322,7 @@ section {
 
 /* --- Creative Testimonials --- */
 .testimonial-card.card-dark::before {
-    color: rgba(109, 40, 217, 0.15) !important;
+    color: rgba(212, 25, 32, 0.15) !important;
 }
 .testimonial-card.card-accent::before {
     color: rgba(255,255,255,0.1) !important;
@@ -2366,7 +2366,7 @@ section {
     color: #ffffff !important;
 }
 .table-dark th {
-    background: rgba(109, 40, 217, 0.15) !important;
+    background: rgba(212, 25, 32, 0.15) !important;
     color: #ffffff !important;
     border-color: rgba(255,255,255,0.08) !important;
 }
@@ -2381,7 +2381,7 @@ section {
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.blog-card-creative.card-dark .blog-category-badge { background: rgba(109, 40, 217, 0.25) !important; color: #a78bfa !important; }
+.blog-card-creative.card-dark .blog-category-badge { background: rgba(212, 25, 32, 0.25) !important; color: #a78bfa !important; }
 .blog-card-creative.card-dark h3 a { color: #ffffff !important; }
 .blog-card-creative.card-dark .blog-card-footer { border-top-color: rgba(255,255,255,0.08) !important; color: rgba(255,255,255,0.5) !important; }
 .blog-card-creative.card-dark .blog-card-footer a { color: var(--accent-teal) !important; }
@@ -2415,7 +2415,7 @@ section {
 }
 
 /* --- Addon Cards Creative --- */
-.addon-creative.card-dark .addon-icon { background: rgba(109, 40, 217, 0.2) !important; color: #a78bfa !important; }
+.addon-creative.card-dark .addon-icon { background: rgba(212, 25, 32, 0.2) !important; color: #a78bfa !important; }
 .addon-creative.card-dark .addon-price { color: var(--accent-teal) !important; }
 
 /* --- Services Page Creative (alternating dark sections) --- */
@@ -2437,7 +2437,7 @@ section {
 
 /* --- Timeline Creative for process.html --- */
 .section-dark .timeline-wrapper { position: relative; }
-.section-dark .timeline-dot { background: var(--accent) !important; box-shadow: 0 0 0 6px rgba(109, 40, 217, 0.2), 0 0 20px rgba(109, 40, 217, 0.3) !important; }
+.section-dark .timeline-dot { background: var(--accent) !important; box-shadow: 0 0 0 6px rgba(212, 25, 32, 0.2), 0 0 20px rgba(212, 25, 32, 0.3) !important; }
 .section-dark .timeline-num { color: rgba(255,255,255,0.5) !important; }
 .section-dark .timeline-content h3 { color: #ffffff !important; }
 .section-dark .timeline-content p { color: rgba(255,255,255,0.55) !important; }
@@ -2462,8 +2462,8 @@ section {
 
 /* --- Pricing notice in dark mode --- */
 .section-dark .pricing-notice {
-    background: rgba(109, 40, 217, 0.08) !important;
-    border-color: rgba(109, 40, 217, 0.2) !important;
+    background: rgba(212, 25, 32, 0.08) !important;
+    border-color: rgba(212, 25, 32, 0.2) !important;
     color: rgba(255,255,255,0.7) !important;
 }
 
@@ -2512,7 +2512,7 @@ section {
     background: var(--accent) !important;
     color: #ffffff !important;
     border-color: var(--accent) !important;
-    box-shadow: 0 8px 24px rgba(109, 40, 217, 0.25) !important;
+    box-shadow: 0 8px 24px rgba(212, 25, 32, 0.25) !important;
 }
 
 /* Sidebar Icon Wrapper */
@@ -2528,15 +2528,15 @@ section {
 }
 
 .sidebar-icon-wrapper.accent-purple {
-    background-color: rgba(109, 40, 217, 0.1);
+    background-color: rgba(212, 25, 32, 0.1);
     color: var(--accent);
-    border: 1px solid rgba(109, 40, 217, 0.2);
+    border: 1px solid rgba(212, 25, 32, 0.2);
 }
 
 .sidebar-icon-wrapper.accent-teal {
-    background-color: rgba(16, 165, 178, 0.1);
+    background-color: rgba(26, 60, 255, 0.1);
     color: var(--accent-teal);
-    border: 1px solid rgba(16, 165, 178, 0.2);
+    border: 1px solid rgba(26, 60, 255, 0.2);
 }
 
 .sidebar-icon-wrapper.accent-orange {

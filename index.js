@@ -14,7 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const curtain = document.createElement('div');
     curtain.className = 'transition-curtain';
     
-    const preloaderSeen = sessionStorage.getItem('oracle_preloader_seen');
+    let preloaderSeen = false;
+    try {
+        preloaderSeen = sessionStorage.getItem('oracle_preloader_seen');
+    } catch(e) {
+        console.warn('sessionStorage restricted');
+    }
     
     if (preloaderSeen) {
         // If already seen in this session, use regular curtain transition on load
@@ -33,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         curtain.style.transform = 'translateY(-100%)';
         document.body.appendChild(curtain);
         
-        sessionStorage.setItem('oracle_preloader_seen', 'true');
+        try { sessionStorage.setItem('oracle_preloader_seen', 'true'); } catch(e) {}
         
         const loaderOverlay = document.createElement('div');
         loaderOverlay.className = 'site-preloader';

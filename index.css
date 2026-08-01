@@ -2838,3 +2838,12 @@ section {
     pointer-events: none;
     z-index: 0;
 }
+
+/* ==========================================================================
+   Failsafe / JS Fallback
+   ========================================================================== */
+.no-js .reveal-item,
+body:not(.js-loaded) .reveal-item {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}

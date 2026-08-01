@@ -699,3 +699,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+
+// Mark JS as loaded for CSS fallbacks
+document.body.classList.add('js-loaded');
+

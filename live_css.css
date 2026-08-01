@@ -2176,7 +2176,7 @@ section {
 }
 
 /* ============================================================
-   CREATIVE DESIGN SYSTEM â€” Global Utility Classes
+   CREATIVE DESIGN SYSTEM — Global Utility Classes
    Applied site-wide for premium visual treatment.
    ============================================================ */
 
@@ -2840,19 +2840,11 @@ section {
 }
 
 /* ==========================================================================
-   Failsafe / JS Fallback (Bulletproof)
+   Failsafe / JS Fallback
    ========================================================================== */
-.reveal-item {
-    animation: revealFailsafe 0.5s ease-out forwards 1.5s;
-}
-@keyframes revealFailsafe {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-.reveal-item.active {
+.no-js .reveal-item,
+body:not(.js-loaded) .reveal-item {
     opacity: 1 !important;
     transform: translateY(0) !important;
-    animation: none !important;
 }
+

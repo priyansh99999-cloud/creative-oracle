@@ -2271,6 +2271,30 @@ section {
 }
 .section-dark .section-title, .section-dark h2, .section-dark h3, .section-dark h4 { color: #ffffff !important; }
 .section-dark p, .section-dark .section-subtitle, .section-dark li { color: rgba(255,255,255,0.65) !important; }
+
+/* Fix for white cards inside dark sections */
+.section-dark .result-card,
+.section-dark [style*="var(--bg-primary)"] {
+    --text-primary: #111111 !important;
+    --text-secondary: #4A4A4A !important;
+    --text-tertiary: #6B7280 !important;
+    --border-dark: rgba(0, 0, 0, 0.1) !important;
+}
+.section-dark .result-card h2, 
+.section-dark .result-card h3, 
+.section-dark .result-card h4,
+.section-dark [style*="var(--bg-primary)"] h2,
+.section-dark [style*="var(--bg-primary)"] h3,
+.section-dark [style*="var(--bg-primary)"] h4 {
+    color: var(--text-primary) !important;
+}
+.section-dark .result-card p, 
+.section-dark .result-card li,
+.section-dark [style*="var(--bg-primary)"] p,
+.section-dark [style*="var(--bg-primary)"] li {
+    color: var(--text-secondary) !important;
+}
+
 .section-dark .eyebrow { color: rgba(255,255,255,0.5) !important; border-color: rgba(255,255,255,0.15) !important; }
 .section-dark .industry-badge { background: rgba(255,255,255,0.06) !important; border-color: rgba(255,255,255,0.1) !important; color: rgba(255,255,255,0.7) !important; }
 .section-dark .industry-badge:hover { background: var(--accent) !important; color: #ffffff !important; border-color: var(--accent) !important; }

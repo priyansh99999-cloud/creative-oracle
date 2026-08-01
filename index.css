@@ -2261,6 +2261,11 @@ section {
 
 /* --- Section Dark Background --- */
 .section-dark {
+    --text-primary: #ffffff !important;
+    --text-secondary: rgba(255, 255, 255, 0.75) !important;
+    --text-tertiary: rgba(255, 255, 255, 0.5) !important;
+    --border: rgba(255, 255, 255, 0.1) !important;
+    --border-dark: rgba(255, 255, 255, 0.15) !important;
     background: linear-gradient(145deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%) !important;
     border-bottom: 1px solid rgba(255,255,255,0.06) !important;
 }

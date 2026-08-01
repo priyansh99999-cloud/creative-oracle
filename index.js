@@ -732,7 +732,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 
                 // Show success state inline
-                contactForm.innerHTML = 
+                contactForm.innerHTML = `
                     <div style="text-align: center; padding: 3rem 1rem;">
                         <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" style="margin-bottom: 1.5rem; display: inline-block;">
                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
@@ -741,7 +741,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <h3 style="color: var(--text-primary); margin-bottom: 1rem; font-size: 1.5rem;">Audit Request Received!</h3>
                         <p style="color: var(--text-secondary); line-height: 1.6;">Thank you for your interest. Our strategists will review your details and contact you within 24 hours.</p>
                     </div>
-                ;
+                `;
             } catch (error) {
                 console.error('Error submitting form:', error);
                 submitBtn.innerText = 'Error - Try Again';

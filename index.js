@@ -702,8 +702,55 @@ document.addEventListener('DOMContentLoaded', () => {
         // Start the animation
         animateCanvas();
     }
-});
+    // ==========================================================================
+    // 8. Contact Form Submission Logic
+    // ==========================================================================
+    const contactForm = document.getElementById('contactBriefForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const originalBtnText = submitBtn.innerText;
+            submitBtn.innerText = 'Sending...';
+            submitBtn.disabled = true;
+            
+            // IMPORTANT: The user must replace this URL with their Google Apps Script Web App URL
+            const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+            
+            const formData = new FormData(contactForm);
+            
+            try {
+                if (GOOGLE_SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE') {
+                    throw new Error("Google Apps Script URL is not configured yet.");
+                }
 
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors'
+                });
+                
+                // Show success state inline
+                contactForm.innerHTML = 
+                    <div style="text-align: center; padding: 3rem 1rem;">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" style="margin-bottom: 1.5rem; display: inline-block;">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        <h3 style="color: var(--text-primary); margin-bottom: 1rem; font-size: 1.5rem;">Audit Request Received!</h3>
+                        <p style="color: var(--text-secondary); line-height: 1.6;">Thank you for your interest. Our strategists will review your details and contact you within 24 hours.</p>
+                    </div>
+                ;
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                submitBtn.innerText = 'Error - Try Again';
+                submitBtn.disabled = false;
+                alert('There was an issue sending your request (ensure you have updated the GOOGLE_SCRIPT_URL in index.js). Please try again or contact us via WhatsApp.');
+            }
+        });
+    }
+});
 
 // Mark JS as loaded for CSS fallbacks
 document.body.classList.add('js-loaded');

@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<style>
+:root {
+  --text-primary: #ff0000;
+}
+.section-dark {
+  --text-primary: #0000ff !important;
+}
+</style>
+</head>
+<body>
+  <div style="color: var(--text-primary)">Root text (should be red)</div>
+  <div class="section-dark">
+    <div style="color: var(--text-primary)">Dark section text (should be blue)</div>
+  </div>
+</body>
+</html>

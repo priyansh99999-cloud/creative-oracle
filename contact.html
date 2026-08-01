@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en">
 <head><!-- Google Tag Manager --><!-- Google tag (gtag.js) -->
@@ -377,40 +377,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </footer>
 <!-- Core Script -->
 <script src="index.js?v=5.5.0"></script>
-<script>
-  const form = document.getElementById('contactBriefForm');
-  const submitBtn = document.getElementById('submitBtn');
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbxtICBBbQoqVDaknzE05sR5IrqwohimueM1MmpxA-QNDeFyVnjK-eKTxGtyT74N4BxbKg/exec';
 
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    if(scriptURL === '<YOUR_GOOGLE_SCRIPT_URL>') {
-      alert('Google Script URL not configured yet.');
-      return;
-    }
-    
-    // Change button state to loading
-    const originalText = submitBtn.innerText;
-    submitBtn.innerText = 'Sending...';
-    submitBtn.disabled = true;
-    submitBtn.style.opacity = '0.7';
-
-    fetch(scriptURL, { method: 'POST', body: new FormData(form), mode: 'no-cors' })
-      .then(response => {
-        alert('Success! Your brief has been received. Our team will reach out in less than 24 hours.');
-        form.reset();
-        submitBtn.innerText = originalText;
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = '1';
-      })
-      .catch(error => {
-        console.error('Error!', error.message);
-        alert('There was an error sending your request. Please try again or message us on WhatsApp.');
-        submitBtn.innerText = originalText;
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = '1';
-      });
-  });
-</script>
 </body>
 </html>

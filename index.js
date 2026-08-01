@@ -718,13 +718,16 @@ document.addEventListener('DOMContentLoaded', () => {
             // The user's live Google Apps Script Web App URL
             const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxCJFzDrLk1fLzGrPLhFZUJGqBHsoASDHu8Ktd0VyG1zjU4yG2a4RDufaR7nW9Jo8hgJQ/exec';
             
-            const formData = new FormData(contactForm);
+                        const formData = new FormData(contactForm);
+            const urlEncodedData = new URLSearchParams(formData).toString();
             
             try {
-
                 await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
-                    body: formData,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: urlEncodedData,
                     mode: 'no-cors'
                 });
                 

@@ -715,15 +715,12 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.innerText = 'Sending...';
             submitBtn.disabled = true;
             
-            // IMPORTANT: The user must replace this URL with their Google Apps Script Web App URL
-            const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+            // The user's live Google Apps Script Web App URL
+            const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxCJFzDrLk1fLzGrPLhFZUJGqBHsoASDHu8Ktd0VyG1zjU4yG2a4RDufaR7nW9Jo8hgJQ/exec';
             
             const formData = new FormData(contactForm);
             
             try {
-                if (GOOGLE_SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE') {
-                    throw new Error("Google Apps Script URL is not configured yet.");
-                }
 
                 await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',

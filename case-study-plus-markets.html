@@ -34,10 +34,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@800&amp;display=swap" rel="stylesheet"/>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@800&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@800&amp;display=swap"></noscript>
 <!-- Stylesheet -->
-<link href="index.css?v=5.7.0" rel="stylesheet"/>
-<link href="assets/logo_cropped.png?v=5.7.0" rel="icon" type="image/png"/>
+<link href="index.css?v=5.8.0" rel="stylesheet"/>
+<link href="assets/logo_cropped.png?v=5.8.0" rel="icon" type="image/png"/>
 <meta content="9WYRPyQeHuSPKQ2U0YLiGxINl3KQ2hJ9nO2FXfdHcIY" name="google-site-verification"/><!-- Microsoft Clarity -->
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -80,7 +80,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <header class="main-header" id="mainHeader">
 <div class="header-container">
 <a aria-label="Creative Oracle Home" class="logo-link" href="/">
-<img alt="Creative Oracle Logo" class="brand-logo" id="brandLogo" loading="lazy" src="assets/logo_cropped.png?v=5.7.0"/>
+<picture><source srcset="assets/logo_cropped.webp?v=5.8.0" type="image/webp"/><img alt="Creative Oracle Logo" class="brand-logo" id="brandLogo" loading="lazy" src="assets/logo_cropped.png?v=5.8.0" width="120" height="40"/ width="120" height="40"/></picture>
 </a>
 <nav aria-label="Main Navigation" class="desktop-nav">
 <ul class="nav-list">
@@ -245,7 +245,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="footer-container">
 <div class="footer-brand-col">
 <a class="footer-logo-link" href="/">
-<img alt="Creative Oracle Logo" class="footer-brand-logo" loading="lazy" src="assets/logo_cropped.png?v=5.7.0"/>
+<picture><source srcset="assets/logo_cropped.webp?v=5.8.0" type="image/webp"/><img alt="Creative Oracle Logo" class="footer-brand-logo" loading="lazy" src="assets/logo_cropped.png?v=5.8.0"/></picture>
 </a>
 <p class="footer-brand-desc">Creative Oracle is a full-service digital marketing agency helping businesses grow through strategy, creativity, performance marketing, and AI-powered solutions.</p>
 <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-tertiary);">Where Strategy Meets Creativity &amp; AI.</p>
@@ -298,6 +298,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </footer>
 <!-- Core Script -->
-<script src="index.js?v=5.7.0"></script>
+<script src="index.js?v=5.8.0" defer></script>
 </body>
 </html>

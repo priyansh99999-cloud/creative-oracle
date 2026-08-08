@@ -1,45 +1,36 @@
-/* ==========================================================================
-   Creative Oracle - Interactive Experience Engine (Multi-Page Edition)
-   ========================================================================== */
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ==========================================================================
-    // 1. Dynamic Element Injection (Cursor & Curtain Transitions)
-    // ==========================================================================
-    
-
-
-    // Inject Transition Curtain overlay
     const curtain = document.createElement('div');
     curtain.className = 'transition-curtain';
-    
+
     let preloaderSeen = false;
     try {
         preloaderSeen = sessionStorage.getItem('oracle_preloader_seen');
     } catch(e) {
         console.warn('sessionStorage restricted');
     }
-    
+
     if (preloaderSeen) {
-        // If already seen in this session, use regular curtain transition on load
+
         curtain.style.transition = 'none';
         curtain.style.transform = 'translateY(0)';
         document.body.appendChild(curtain);
-        
+
         curtain.offsetHeight;
         requestAnimationFrame(() => {
             curtain.style.transition = 'transform 0.6s cubic-bezier(0.85, 0, 0.15, 1)';
             curtain.style.transform = 'translateY(-100%)';
         });
     } else {
-        // First load of session: multilingual greeting loader overlay
+
         curtain.style.transition = 'none';
         curtain.style.transform = 'translateY(-100%)';
         document.body.appendChild(curtain);
-        
+
         try { sessionStorage.setItem('oracle_preloader_seen', 'true'); } catch(e) {}
-        
+
         const loaderOverlay = document.createElement('div');
         loaderOverlay.className = 'site-preloader';
         loaderOverlay.innerHTML = `
@@ -50,29 +41,26 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         document.body.appendChild(loaderOverlay);
         document.body.classList.add('preloader-active');
-        
+
         const loaderWord = document.getElementById('loaderWord');
-        
-        // Target list of international greeting words starting with Namaste and Hello
+
         const greetings = ["Namaste", "Hello", "Bonjour", "Ciao", "Hola", "Konnichiwa", "Olá", "Guten Tag", "Nǐ Hǎo"];
         let wordIndex = 0;
-        
-        // Initially show the first word
+
         setTimeout(() => {
             if (loaderWord) {
                 loaderWord.style.opacity = '1';
                 loaderWord.style.transform = 'translateY(0)';
             }
         }, 50);
-        
-        // Cycle words sequentially (optimized readable speed with 60ms transitions)
+
         const wordInterval = setInterval(() => {
             wordIndex++;
             if (wordIndex < greetings.length) {
                 if (loaderWord) {
                     loaderWord.style.opacity = '0';
                     loaderWord.style.transform = 'translateY(-8px)';
-                    
+
                     setTimeout(() => {
                         loaderWord.textContent = greetings[wordIndex];
                         loaderWord.style.opacity = '1';
@@ -81,8 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } else {
                 clearInterval(wordInterval);
-                
-                // Exit animations
+
                 setTimeout(() => {
                     if (loaderWord) {
                         loaderWord.style.opacity = '0';
@@ -95,17 +82,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         dot.style.transition = 'opacity 0.15s, transform 0.15s';
                     }
                 }, 100);
-                
+
                 setTimeout(() => {
                     loaderOverlay.classList.add('loaded');
                     document.body.classList.remove('preloader-active');
-                    
-                    // Reveal the initial content blocks
+
                     if (typeof initRevealObserver === 'function') {
                         initRevealObserver();
                     }
                 }, 250);
-                
+
                 setTimeout(() => {
                     loaderOverlay.remove();
                 }, 800);
@@ -113,31 +99,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 160);
     }
 
-    // Intercept navigation links for smooth curtain wipes
     document.body.addEventListener('click', (e) => {
         const link = e.target.closest('a');
         if (link && link.href && !link.target && !link.href.includes('#') && link.host === window.location.host) {
             e.preventDefault();
             const destination = link.href;
-            
-            // Snap curtain to bottom of screen instantly
+
             curtain.style.transition = 'none';
             curtain.style.transform = 'translateY(100%)';
-            
-            // Force reflow
+
             curtain.offsetHeight;
-            
-            // Slide up to cover screen
+
             curtain.style.transition = 'transform 0.6s cubic-bezier(0.85, 0, 0.15, 1)';
             curtain.style.transform = 'translateY(0)';
-            
+
             setTimeout(() => {
                 window.location.href = destination;
             }, 600);
         }
     });
 
-    // Handle back-forward cache show
     window.addEventListener('pageshow', (event) => {
         if (event.persisted) {
             curtain.style.transition = 'none';
@@ -145,10 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-
-    // ==========================================================================
-    // 2. Navigation & Header Mechanics
-    // ==========================================================================
     const mainHeader = document.getElementById('mainHeader');
     if (mainHeader) {
         window.addEventListener('scroll', () => {
@@ -160,16 +137,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Full-Screen Hamburger Toggle
     const menuToggle = document.getElementById('menuToggle');
     const menuOverlay = document.getElementById('menuOverlay');
-    
+
     if (menuToggle && menuOverlay) {
         const toggleMenu = () => {
             const isActive = menuOverlay.classList.toggle('active');
             menuToggle.classList.toggle('active');
             document.body.style.overflow = isActive ? 'hidden' : 'auto';
-            
+
             const bars = menuToggle.querySelectorAll('.menu-bar');
             if (isActive) {
                 bars[0].style.transform = 'translateY(8px) rotate(45deg)';
@@ -183,16 +159,12 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         menuToggle.addEventListener('click', toggleMenu);
-        
+
         menuOverlay.querySelectorAll('.menu-nav-link').forEach(link => {
             link.addEventListener('click', toggleMenu);
         });
     }
 
-
-    // ==========================================================================
-    // 3. Lead Capture Modals
-    // ==========================================================================
     const leadModal = document.getElementById('leadModal');
     const modalCloseBtn = document.getElementById('modalCloseBtn');
     const triggerButtons = document.querySelectorAll('.trigger-modal-btn');
@@ -215,10 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-
-    // ==========================================================================
-    // 4. Scroll Reveal Animations (IntersectionObserver)
-    // ==========================================================================
     function initRevealObserver() {
         const revealItems = document.querySelectorAll('.reveal-item');
         if (revealItems.length > 0) {
@@ -238,15 +206,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Trigger immediately if preloader was already seen, otherwise called by preloader exit callback
     if (preloaderSeen) {
         initRevealObserver();
     }
 
-
-    // ==========================================================================
-    // 5. Statistics Numeric Count-ups
-    // ==========================================================================
     const statsSection = document.querySelector('.why-stats');
     const statNumbers = document.querySelectorAll('.stat-number');
     let hasCounted = false;
@@ -261,8 +224,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const updateNumber = (currentTime) => {
                     const elapsed = currentTime - startTime;
                     const progress = Math.min(elapsed / duration, 1);
-                    const easeProgress = 1 - Math.pow(1 - progress, 3); // Cubic out
-                    
+                    const easeProgress = 1 - Math.pow(1 - progress, 3);
+
                     const currentValue = Math.floor(easeProgress * target);
                     stat.textContent = currentValue;
 
@@ -287,10 +250,6 @@ document.addEventListener('DOMContentLoaded', () => {
         statsObserver.observe(statsSection);
     }
 
-
-    // ==========================================================================
-    // 6. Portfolio Category Selector
-    // ==========================================================================
     const filterButtons = document.querySelectorAll('.filter-btn');
     const portfolioItems = document.querySelectorAll('.portfolio-item');
 
@@ -314,10 +273,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-
-    // ==========================================================================
-    // 7. Timeline Scroll Line Mechanics
-    // ==========================================================================
     const processSection = document.getElementById('process');
     const timelineItems = document.querySelectorAll('.timeline-item');
     const timelineFill = document.getElementById('timelineProgressFill');
@@ -326,30 +281,30 @@ document.addEventListener('DOMContentLoaded', () => {
         const updateTimeline = () => {
             const viewportHeight = window.innerHeight;
             const scrollMiddle = window.scrollY + (viewportHeight / 2);
-            
+
             let progress = 0;
             const firstItem = timelineItems[0];
             const lastItem = timelineItems[timelineItems.length - 1];
-            
+
             if (firstItem && lastItem) {
                 const firstRect = firstItem.getBoundingClientRect();
                 const lastRect = lastItem.getBoundingClientRect();
-                
+
                 const startScrollY = firstRect.top + window.scrollY;
                 const endScrollY = lastRect.top + window.scrollY;
                 const timelineLength = endScrollY - startScrollY;
-                
+
                 if (scrollMiddle >= startScrollY) {
                     progress = Math.min((scrollMiddle - startScrollY) / timelineLength, 1) * 100;
                 }
             }
-            
+
             timelineFill.style.height = `${progress}%`;
-            
+
             timelineItems.forEach(item => {
                 const itemRect = item.getBoundingClientRect();
                 const itemMiddle = itemRect.top + window.scrollY;
-                
+
                 if (scrollMiddle >= itemMiddle - 50) {
                     item.classList.add('active');
                 } else {
@@ -363,10 +318,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateTimeline();
     }
 
-
-    // ==========================================================================
-    // 8. FAQ Accordeon Mechanics & Search Engine
-    // ==========================================================================
     const faqTriggers = document.querySelectorAll('.faq-trigger');
     const faqSearchInput = document.getElementById('faqSearch');
     const faqItems = document.querySelectorAll('.faq-item');
@@ -376,19 +327,18 @@ document.addEventListener('DOMContentLoaded', () => {
         faqTriggers.forEach(trigger => {
             trigger.addEventListener('click', () => {
                 const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
-                
+
                 faqTriggers.forEach(other => {
                     if (other !== trigger) {
                         other.setAttribute('aria-expanded', 'false');
                     }
                 });
-                
+
                 trigger.setAttribute('aria-expanded', !isExpanded);
             });
         });
     }
 
-    // Live search accordion elements
     if (faqSearchInput && faqItems.length > 0) {
         faqSearchInput.addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase().trim();
@@ -413,10 +363,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-
-    // ==========================================================================
-    // 9. Magnetic Button Hover Fields
-    // ==========================================================================
     const magneticButtons = document.querySelectorAll('.btn-magnetic');
 
     magneticButtons.forEach(btn => {
@@ -432,14 +378,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-
-    // ==========================================================================
-    // 10. Interactive Growth Scale Calculator
-    // ==========================================================================
     const calcSpend = document.getElementById('calcSpend');
     const calcSpendVal = document.getElementById('calcSpendVal');
     const calcGoal = document.getElementById('calcGoal');
-    
+
     const estCac = document.getElementById('estCac');
     const estGrowth = document.getElementById('estGrowth');
     const estHours = document.getElementById('estHours');
@@ -449,38 +391,34 @@ document.addEventListener('DOMContentLoaded', () => {
             const spend = parseInt(calcSpend.value, 10);
             const goal = calcGoal.value;
 
-            // Formatted Spend Label
             calcSpendVal.textContent = `$${spend.toLocaleString()}`;
 
             let cacReduction = 0;
             let organicGrowth = 0;
             let hoursSaved = 0;
 
-            // Calculate metrics based on sliders and goal selection
             if (goal === 'paid') {
-                cacReduction = 20 + (spend / 100000) * 15; // 20% to 35%
-                organicGrowth = 80 + (spend / 100000) * 100; // 80% to 180%
-                hoursSaved = 15 + Math.floor((spend / 10000) * 4); // 15 to 55 hrs
+                cacReduction = 20 + (spend / 100000) * 15;
+                organicGrowth = 80 + (spend / 100000) * 100;
+                hoursSaved = 15 + Math.floor((spend / 10000) * 4);
             } else if (goal === 'seo') {
-                cacReduction = 15 + (spend / 100000) * 10; // 15% to 25%
-                organicGrowth = 150 + (spend / 100000) * 270; // 150% to 420%
-                hoursSaved = 10 + Math.floor((spend / 10000) * 3); // 10 to 40 hrs
+                cacReduction = 15 + (spend / 100000) * 10;
+                organicGrowth = 150 + (spend / 100000) * 270;
+                hoursSaved = 10 + Math.floor((spend / 10000) * 3);
             } else if (goal === 'automation') {
-                cacReduction = 25 + (spend / 100000) * 20; // 25% to 45%
-                organicGrowth = 50 + (spend / 100000) * 50; // 50% to 100%
-                hoursSaved = 35 + Math.floor((spend / 10000) * 12.5); // 35 to 160 hrs
-            } else { // 'all' - Comprehensive scale
-                cacReduction = 30 + (spend / 100000) * 15; // 30% to 45%
-                organicGrowth = 200 + (spend / 100000) * 220; // 200% to 420%
-                hoursSaved = 40 + Math.floor((spend / 10000) * 12); // 40 to 160 hrs
+                cacReduction = 25 + (spend / 100000) * 20;
+                organicGrowth = 50 + (spend / 100000) * 50;
+                hoursSaved = 35 + Math.floor((spend / 10000) * 12.5);
+            } else {
+                cacReduction = 30 + (spend / 100000) * 15;
+                organicGrowth = 200 + (spend / 100000) * 220;
+                hoursSaved = 40 + Math.floor((spend / 10000) * 12);
             }
 
-            // Cap figures to logical design constraints
             cacReduction = Math.min(Math.round(cacReduction), 50);
             organicGrowth = Math.min(Math.round(organicGrowth), 500);
             hoursSaved = Math.min(Math.round(hoursSaved), 160);
 
-            // Animate metric printouts
             estCac.textContent = `-${cacReduction}%`;
             estGrowth.textContent = `+${organicGrowth}%`;
             estHours.textContent = `${hoursSaved}h`;
@@ -488,13 +426,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         calcSpend.addEventListener('input', updateCalculator);
         calcGoal.addEventListener('change', updateCalculator);
-        updateCalculator(); // Initial calculation on document ready
+        updateCalculator();
     }
 
-
-    // ==========================================================================
-    // 11. Canvas Math Orbit Render Loop (Rewritten for robustness)
-    // ==========================================================================
     const canvas = document.getElementById('orbitalCanvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
@@ -507,7 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const parent = canvas.parentElement;
             const w = parent ? parent.offsetWidth : window.innerWidth;
             const h = parent ? parent.offsetHeight : window.innerHeight;
-            if (w === 0 || h === 0) return; // Skip if not laid out yet
+            if (w === 0 || h === 0) return;
 
             width = w;
             height = h;
@@ -518,7 +452,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
             const pageName = window.location.pathname.split('/').pop().replace('.html', '');
-            
+
             if (window.innerWidth < 992 || pageName === 'portfolio') {
                 centerX = width * 0.5;
                 centerY = height * 0.5;
@@ -528,7 +462,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        // Delay initial resize to ensure layout is complete
         resizeCanvas();
         if (width === 0 || height === 0) {
             setTimeout(resizeCanvas, 100);
@@ -551,7 +484,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         window.addEventListener('resize', resizeCanvas);
 
-        // Page-specific speed tuning
         const pageName = window.location.pathname.split('/').pop().replace('.html', '');
         let rotationScale = 1.0;
         let orbitLineDensity = 1.0;
@@ -598,11 +530,10 @@ document.addEventListener('DOMContentLoaded', () => {
         function animateCanvas() {
             if (!isCanvasVisible) return;
 
-            // Always schedule next frame first, so errors don't kill the loop
             requestAnimationFrame(animateCanvas);
 
             try {
-                // Re-check dimensions (handles late layout)
+
                 if (width === 0 || height === 0) {
                     resizeCanvas();
                     if (width === 0 || height === 0) return;
@@ -610,7 +541,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 ctx.clearRect(0, 0, width, height);
 
-                // Smooth mouse following
                 if (mouseInitialized) {
                     currentMouseX += (mouseX - currentMouseX) * 0.05;
                     currentMouseY += (mouseY - currentMouseY) * 0.05;
@@ -624,7 +554,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const activeCenterX = centerX + parallaxOffsetX;
                 const activeCenterY = centerY + parallaxOffsetY;
 
-                // Draw orbit tracks
                 tracks.forEach((track) => {
                     track.angle += track.speed;
 
@@ -642,7 +571,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
 
-                // Draw connector lines from center to satellites
                 satellites.forEach(sat => {
                     const track = tracks[sat.trackIndex];
                     const angle = track.angle + sat.offsetAngle;
@@ -657,7 +585,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     ctx.stroke();
                 });
 
-                // Draw satellites with glow
                 const time = performance.now() * 0.002;
                 satellites.forEach(sat => {
                     const track = tracks[sat.trackIndex];
@@ -668,20 +595,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     const glowRadius = Math.max(1, sat.size + Math.sin(time + sat.offsetAngle) * 2);
                     const glowAlpha = Math.max(0.02, 0.06 + Math.sin(time) * 0.04);
 
-                    // Outer glow
                     ctx.beginPath();
                     ctx.arc(satX, satY, glowRadius, 0, Math.PI * 2);
                     ctx.fillStyle = 'rgba(' + sat.rgb + ', ' + glowAlpha + ')';
                     ctx.fill();
 
-                    // Solid core
                     ctx.beginPath();
                     ctx.arc(satX, satY, Math.max(1, sat.size), 0, Math.PI * 2);
                     ctx.fillStyle = sat.color;
                     ctx.fill();
                 });
 
-                // Central hub gradient
                 const hubGradient = ctx.createRadialGradient(activeCenterX, activeCenterY, 0, activeCenterX, activeCenterY, 8);
                 hubGradient.addColorStop(0, '#FFFFFF');
                 hubGradient.addColorStop(0.3, '#10A5B2');
@@ -694,33 +618,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctx.fill();
 
             } catch (e) {
-                // Silently continue - animation should never crash
+
                 console.warn('Orbital canvas error:', e);
             }
         }
 
-        // Start the animation
         animateCanvas();
     }
-    // ==========================================================================
-    // 8. Contact Form Submission Logic
-    // ==========================================================================
+
     const contactForm = document.getElementById('contactBriefForm');
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
             const submitBtn = document.getElementById('submitBtn');
             const originalBtnText = submitBtn.innerText;
             submitBtn.innerText = 'Sending...';
             submitBtn.disabled = true;
-            
-            // The user's live Google Apps Script Web App URL
+
             const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxCJFzDrLk1fLzGrPLhFZUJGqBHsoASDHu8Ktd0VyG1zjU4yG2a4RDufaR7nW9Jo8hgJQ/exec';
-            
+
                         const formData = new FormData(contactForm);
             const urlEncodedData = new URLSearchParams(formData).toString();
-            
+
             try {
                 await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
@@ -730,8 +650,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: urlEncodedData,
                     mode: 'no-cors'
                 });
-                
-                // Show success state inline
+
                 contactForm.innerHTML = `
                     <div style="text-align: center; padding: 3rem 1rem;">
                         <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" style="margin-bottom: 1.5rem; display: inline-block;">
@@ -752,6 +671,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Mark JS as loaded for CSS fallbacks
 document.body.classList.add('js-loaded');
 

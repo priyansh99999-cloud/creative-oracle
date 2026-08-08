@@ -133,14 +133,14 @@ p {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-teal) 100%);
+    background: #D41920;
     color: #FFFFFF;
     border: none;
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, var(--accent-hover) 0%, var(--accent-orange) 100%);
-    box-shadow: 0 10px 25px rgba(212, 25, 32, 0.18);
+    background: #b5151b;
+    box-shadow: 0 10px 30px rgba(212, 25, 32, 0.35);
     transform: translateY(-2px);
 }
 
@@ -1754,7 +1754,7 @@ section {
 
 /* Gradient Text & Mesh Blobs */
 .gradient-text {
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-teal) 50%, var(--accent-orange) 100%);
+    background: linear-gradient(135deg, #D41920 0%, #1A3CFF 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

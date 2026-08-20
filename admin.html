@@ -520,11 +520,15 @@
 
     <!-- Posts List -->
     <div class="posts-panel">
-      <div class="posts-panel-header">
-        <span class="posts-panel-title">Published Posts</span>
-        <span class="posts-count" id="posts-count">0</span>
+      <div class="posts-panel-header" style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <span class="posts-panel-title">Published Posts</span>
+          <span class="posts-count" id="posts-count">0</span>
+        </div>
+        <button style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#a78bfa;font-size:0.75rem;padding:0.35rem 0.7rem;border-radius:6px;cursor:pointer;font-weight:600;" onclick="seedDefaultBlogs()">📥 Load Default Blogs</button>
       </div>
       <div class="posts-list" id="posts-list">
+
         <div class="posts-empty">No posts yet.<br/>Write your first blog post! ✍️</div>
       </div>
     </div>
@@ -668,6 +672,85 @@
     }
   };
 
+  const SEED_BLOGS = [
+    {
+      title: "AI Chatbots for Business: Benefits, Costs & Best Platforms in 2026",
+      category: "AI CHATBOTS",
+      excerpt: "A complete guide on how AI website chatbots lower customer support costs, increase lead conversion rates, and the best platforms to use in 2026.",
+      imageUrl: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+      readTime: "6 min read",
+      content: `<h2>The Problem with Static Contact Forms</h2><p>Static contact forms ask visitors to fill in fields and wait up to 24 hours for a reply. High-intent buyers bounce and go to competitors when they don't get immediate answers. Modern AI Chatbots engage visitors instantly, answer objections in real-time, and qualify leads on the spot.</p><h2>Instant Gratification & Context Awareness</h2><p>Powered by Large Language Models (LLMs), modern chatbots understand nuance and context. They read your knowledge base and converse naturally like a senior sales executive.</p><h2>Automated Lead Qualification & Scheduling</h2><p>Smart chatbots qualify visitors by asking key questions (budget, timeline, company size) and instantly book appointments directly to your calendar.</p>`,
+      publishedAt: new Date('2026-07-08T10:00:00Z'),
+      status: 'published'
+    },
+    {
+      title: "AI Automation for Small Businesses: The Complete 2026 Guide",
+      category: "AI AUTOMATION",
+      excerpt: "Discover how small businesses are using AI and workflow automation to save hours every week, streamline client onboarding, and boost operational efficiency.",
+      imageUrl: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80",
+      readTime: "8 min read",
+      content: `<h2>Why Small Businesses Need AI Automation</h2><p>Manual data entry, sending follow-up emails, and syncing CRM data take up to 15 hours a week for small team owners. AI automation handles these repetitive tasks silently in the background.</p><h2>Top Workflow Automation Wins</h2><p>1. Instant lead routing from contact forms directly into WhatsApp and email.<br>2. Automatic invoice generation upon deal closure.<br>3. AI draft response generation for customer support tickets.</p>`,
+      publishedAt: new Date('2026-07-08T09:00:00Z'),
+      status: 'published'
+    },
+    {
+      title: "n8n vs Zapier vs Make: Which Automation Platform Saves You Money in 2026?",
+      category: "AI AUTOMATION",
+      excerpt: "An honest breakdown comparing n8n self-hosting costs against Zapier and Make pricing tiers to find the most cost-effective automation stack for growing teams.",
+      imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+      readTime: "7 min read",
+      content: `<h2>Pricing & Cost Scaling Comparison</h2><p>Zapier gets expensive fast as task volume scales past 10,000 tasks/month. Make offers cheaper tier limits, while self-hosted n8n allows unlimited workflows for a fixed server cost.</p><h2>Customization vs Ease of Use</h2><p>Zapier is easiest for non-technical users. Make provides visual node routing. n8n offers full code flexibility with JavaScript and Python node support.</p>`,
+      publishedAt: new Date('2026-06-29T10:00:00Z'),
+      status: 'published'
+    },
+    {
+      title: "How to Choose the Right Digital Marketing Strategy for Your Business",
+      category: "DIGITAL MARKETING",
+      excerpt: "A complete walkthrough on analyzing your target audience channels, defining operational growth metrics, and allocating ad budgets effectively.",
+      imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+      readTime: "6 min read",
+      content: `<h2>Understanding Your Channel Fit</h2><p>B2B services thrive on Search Ads, LinkedIn, and Cold Outreach. B2C ecommerce brands scale faster on Meta Ads, Instagram Reels, and influencer partnerships.</p><h2>Tracking Core Unit Economics</h2><p>Focus on Customer Acquisition Cost (CAC), Return on Ad Spend (ROAS), and Customer Lifetime Value (LTV) rather than superficial vanity impressions.</p>`,
+      publishedAt: new Date('2026-05-14T10:00:00Z'),
+      status: 'published'
+    },
+    {
+      title: "SEO vs Google Ads: Which Is Right for Your Business?",
+      category: "GOOGLE ADS",
+      excerpt: "Compare short-term sales velocity from search PPC against long-term compounding returns of SEO authority to optimize your overall acquisition mix.",
+      imageUrl: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=800&q=80",
+      readTime: "5 min read",
+      content: `<h2>Google Ads for Speed</h2><p>Google Search Ads deliver instant targeted traffic within 24 hours of campaign launch, making them ideal for immediate lead requirements and product launches.</p><h2>SEO for Sustainable Authority</h2><p>SEO builds long-term organic authority that compounds over months, lowering your average acquisition costs over time.</p>`,
+      publishedAt: new Date('2026-04-20T10:00:00Z'),
+      status: 'published'
+    },
+    {
+      title: "SEO Basics for Local Businesses in India: The Complete Guide",
+      category: "LOCAL SEO",
+      excerpt: "Discover how to optimize your Google Business Profile, build local citations, and capture high-intent ready-to-buy customers in your city.",
+      imageUrl: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80",
+      readTime: "8 min read",
+      content: `<h2>Optimizing Your Google Business Profile</h2><p>Complete your NAP (Name, Address, Phone), select relevant primary categories, upload high-quality photos weekly, and collect verified customer reviews.</p><h2>Local Citation Building</h2><p>Ensure consistent business directory listings across JustDial, Sulekha, Indiamart, and local Indian directories to build geo-relevance signals.</p>`,
+      publishedAt: new Date('2026-03-12T10:00:00Z'),
+      status: 'published'
+    }
+  ];
+
+  window.seedDefaultBlogs = async function() {
+    showToast('⏳ Importing 6 default blogs into database...', 'success');
+    try {
+      for (const blog of SEED_BLOGS) {
+        await addDoc(collection(db, 'blogs'), {
+          ...blog,
+          publishedAt: serverTimestamp()
+        });
+      }
+      showToast('✅ 6 Default blogs imported into Admin!', 'success');
+      loadPosts();
+    } catch (err) {
+      showToast('❌ Seed error: ' + err.message, 'error');
+    }
+  };
+
   // ── Load all posts ──
   async function loadPosts() {
     const listEl = document.getElementById('posts-list');
@@ -679,7 +762,11 @@
       const snapshot = await getDocs(q);
 
       if (snapshot.empty) {
-        listEl.innerHTML = '<div class="posts-empty">No posts yet.<br/>Write your first blog post! ✍️</div>';
+        listEl.innerHTML = `
+          <div class="posts-empty" style="padding: 1.5rem 0;">
+            No posts in database yet.<br/><br/>
+            <button class="btn-primary" style="padding:0.6rem 1.2rem; font-size:0.85rem; cursor:pointer;" onclick="seedDefaultBlogs()">📥 Auto-Import 6 Existing Blogs</button>
+          </div>`;
         countEl.textContent = '0';
         return;
       }
@@ -689,7 +776,7 @@
       snapshot.forEach(docSnap => {
         const post = docSnap.data();
         const id = docSnap.id;
-        const date = post.publishedAt ? post.publishedAt.toDate().toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric'}) : 'Unpublished';
+        const date = post.publishedAt && post.publishedAt.toDate ? post.publishedAt.toDate().toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric'}) : 'Recent';
         const item = document.createElement('div');
         item.className = 'post-item';
         item.innerHTML = `
@@ -725,21 +812,22 @@
       document.getElementById('editing-post-id').value = id;
       document.getElementById('post-title').value = post.title || '';
       document.getElementById('post-excerpt').value = post.excerpt || '';
-      document.getElementById('post-image').value = post.imageUrl || '';
+      document.getElementById('post-image').value = post.imageUrl || post.coverImage || '';
       document.getElementById('post-readtime').value = post.readTime || '';
-      document.getElementById('post-category').value = post.category || 'MARKETING INSIGHTS';
+      document.getElementById('post-category').value = post.category || 'AI CHATBOTS';
       quill.root.innerHTML = post.content || '';
-      if (post.imageUrl) previewImage(post.imageUrl);
+      if (post.imageUrl || post.coverImage) previewImage(post.imageUrl || post.coverImage);
       document.getElementById('url-box').style.display = 'none';
       document.getElementById('publish-btn').style.display = 'none';
       document.getElementById('update-btn').style.display = 'block';
       document.getElementById('form-mode-badge').className = 'mode-badge mode-edit';
-      document.getElementById('form-mode-badge').textContent = 'Editing';
+      document.getElementById('form-mode-badge').textContent = 'Editing Post';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (err) {
       showToast('Error loading post: ' + err.message, 'error');
     }
   };
+
 
   // ── Update ──
   window.updatePost = async function() {

@@ -171,10 +171,70 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             align-items: stretch;
-            margin-bottom: 6rem;
+            margin-bottom: 2rem;
+        }
+
+        /* CO Dominance — flagship card spans full row */
+        .pricing-card.flagship {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0a1a2e 100%);
+            border: 1px solid rgba(212, 25, 32, 0.25);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(212,25,32,0.1) inset;
+        }
+
+        .pricing-card.flagship .plan-header {
+            grid-column: 1 / -1;
+            margin-bottom: 0;
+            display: flex;
+            align-items: baseline;
+            gap: 2rem;
+            flex-wrap: wrap;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding-bottom: 1.5rem;
+        }
+
+        .pricing-card.flagship .price-block {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .pricing-card.flagship .plan-btn {
+            grid-column: 3;
+            align-self: end;
+        }
+
+        .pricing-card.flagship .plan-ideal {
+            background-color: rgba(212,25,32,0.15);
+            border: 1px solid rgba(212,25,32,0.3);
+        }
+
+        .pricing-card.flagship:not(.featured):hover {
+            border-color: rgba(212,25,32,0.5);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.5), 0 0 50px rgba(212,25,32,0.1);
+        }
+
+        /* Remove unwanted background from /month span inside card-dark */
+        .pricing-card .price-period {
+            background: none !important;
+            background-color: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
+        .pricing-card .price-currency {
+            background: none !important;
+            background-color: transparent !important;
+            border: none !important;
+            padding: 0 !important;
         }
 
         .pricing-card {
@@ -761,28 +821,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 <a class="btn btn-secondary plan-btn btn-magnetic" href="contact.html?type=proposal">Book a Free Strategy Call</a>
 </div>
-<!-- Card 4: CO Dominance -->
-<div class="pricing-card card-dark reveal-item">
+<div class="pricing-card card-dark flagship reveal-item">
 <div class="plan-header">
-<h3 class="plan-name">CO Dominance</h3>
+<div>
+<h3 class="plan-name" style="font-size:1.8rem; margin-bottom:0.3rem;">CO Dominance</h3>
 <p class="plan-desc">Full AI-powered growth system for scaling brands</p>
 </div>
-<div class="price-block">
+<div class="price-block" style="margin-bottom:0; border-bottom:none; padding-bottom:0;">
 <span class="price-currency" id="cod-symbol">$</span>
-<span class="price-value" data-inr="99,999" data-usd="1100" id="cod-price">1100</span>
+<span class="price-value" data-inr="99,999" data-usd="1100" id="cod-price" style="font-size:2.5rem;">1100</span>
 <span class="price-period">/month</span>
 </div>
 <span class="plan-ideal">Ideal for: High-growth companies, Startups</span>
-<ul class="plan-features-list">
+</div>
+<ul class="plan-features-list" style="margin-bottom:0;">
 <li><svg fill="none" height="18" stroke="currentColor" stroke-width="2.5" style="flex-shrink: 0;" viewbox="0 0 24 24" width="18"><circle cx="12" cy="12" fill="currentColor" fill-opacity="0.06" r="10" stroke="currentColor" stroke-opacity="0.15"></circle><polyline points="16 9 11 14 8 11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>Complete Digital Marketing Management</li>
 <li><svg fill="none" height="18" stroke="currentColor" stroke-width="2.5" style="flex-shrink: 0;" viewbox="0 0 24 24" width="18"><circle cx="12" cy="12" fill="currentColor" fill-opacity="0.06" r="10" stroke="currentColor" stroke-opacity="0.15"></circle><polyline points="16 9 11 14 8 11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>AI-driven high-velocity content system</li>
 <li><svg fill="none" height="18" stroke="currentColor" stroke-width="2.5" style="flex-shrink: 0;" viewbox="0 0 24 24" width="18"><circle cx="12" cy="12" fill="currentColor" fill-opacity="0.06" r="10" stroke="currentColor" stroke-opacity="0.15"></circle><polyline points="16 9 11 14 8 11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>Advanced Performance Marketing campaigns</li>
+</ul>
+<ul class="plan-features-list" style="margin-bottom:0;">
 <li><svg fill="none" height="18" stroke="currentColor" stroke-width="2.5" style="flex-shrink: 0;" viewbox="0 0 24 24" width="18"><circle cx="12" cy="12" fill="currentColor" fill-opacity="0.06" r="10" stroke="currentColor" stroke-opacity="0.15"></circle><polyline points="16 9 11 14 8 11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>SEO Authority Building (8-10 blogs/mo)</li>
 <li><svg fill="none" height="18" stroke="currentColor" stroke-width="2.5" style="flex-shrink: 0;" viewbox="0 0 24 24" width="18"><circle cx="12" cy="12" fill="currentColor" fill-opacity="0.06" r="10" stroke="currentColor" stroke-opacity="0.15"></circle><polyline points="16 9 11 14 8 11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>AI Chatbot &amp; CRM workflow automation</li>
 <li><svg fill="none" height="18" stroke="currentColor" stroke-width="2.5" style="flex-shrink: 0;" viewbox="0 0 24 24" width="18"><circle cx="12" cy="12" fill="currentColor" fill-opacity="0.06" r="10" stroke="currentColor" stroke-opacity="0.15"></circle><polyline points="16 9 11 14 8 11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>Full Funnel Strategy &amp; Conversion Optimization</li>
 <li><svg fill="none" height="18" stroke="currentColor" stroke-width="2.5" style="flex-shrink: 0;" viewbox="0 0 24 24" width="18"><circle cx="12" cy="12" fill="currentColor" fill-opacity="0.06" r="10" stroke="currentColor" stroke-opacity="0.15"></circle><polyline points="16 9 11 14 8 11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>Weekly Reporting + Strategic Calls</li>
 </ul>
-<a class="btn btn-secondary plan-btn btn-magnetic" href="contact.html?type=proposal">Book a Free Strategy Call</a>
+<a class="btn btn-primary plan-btn btn-magnetic" href="contact.html?type=proposal" style="align-self:center;">Book a Free Strategy Call</a>
 </div>
 </div>
 </div>

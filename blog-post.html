@@ -96,7 +96,17 @@
     border-radius: 20px;
     margin-bottom: 1rem;
   }
+  .blog-post-hero-img {
+    width: 100%;
+    max-height: 480px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-top: 2rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    border: 1px solid var(--border);
+  }
 </style>
+
 </head>
 <body>
 <header class="main-header" id="mainHeader">
@@ -268,12 +278,14 @@
       }
 
       // Cover image
-      if (post.imageUrl) {
+      const coverImgUrl = post.imageUrl || post.coverImage;
+      if (coverImgUrl) {
         const imgEl = document.getElementById('post-cover-img');
-        imgEl.src = post.imageUrl;
+        imgEl.src = coverImgUrl;
         imgEl.alt = post.title || 'Blog cover';
         document.getElementById('post-image-wrap').style.display = 'block';
       }
+
 
       // Update page meta
       document.getElementById('page-title').textContent = `${post.title} | Creative Oracle Blog`;

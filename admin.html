@@ -488,12 +488,23 @@
         </div>
 
         <div class="form-group">
-          <label class="form-label">Cover Image URL</label>
-          <input type="url" id="post-image" class="form-control" placeholder="Paste image link (Google Drive, Cloudinary, etc.)" oninput="previewImage(this.value)"/>
-          <div class="image-preview-wrap" id="image-preview">
-            <span>Image preview will appear here</span>
+          <label class="form-label">Blog Cover Image (Thumbnail &amp; Header)</label>
+          <div style="display:grid;grid-template-columns: 1fr 1fr;gap:1rem;margin-bottom:0.8rem;">
+            <div>
+              <label for="post-image-file" style="display:flex;align-items:center;justify-content:center;gap:0.5rem;background:rgba(56,189,248,0.12);border:1px dashed rgba(56,189,248,0.4);color:#38bdf8;padding:0.75rem;border-radius:10px;cursor:pointer;font-size:0.88rem;font-weight:600;text-align:center;transition:all 0.2s ease;">
+                📁 Upload Image File
+              </label>
+              <input type="file" id="post-image-file" accept="image/*" style="display:none;" onchange="handleFileUpload(this)"/>
+            </div>
+            <div>
+              <input type="url" id="post-image" class="form-control" placeholder="Or paste image URL..." oninput="previewImage(this.value)" style="height:100%;"/>
+            </div>
+          </div>
+          <div class="image-preview-wrap" id="image-preview" style="position:relative;">
+            <span>Image preview will appear here (Thumbnail &amp; Header)</span>
           </div>
         </div>
+
 
         <div class="form-group">
           <label class="form-label">Content *</label>
@@ -610,9 +621,52 @@
     if (url) {
       wrap.innerHTML = `<img src="${url}" alt="Preview" onerror="this.parentElement.innerHTML='<span>❌ Could not load image</span>'"/>`;
     } else {
-      wrap.innerHTML = '<span>Image preview will appear here</span>';
+      wrap.innerHTML = '<span>Image preview will appear here (Thumbnail &amp; Header)</span>';
     }
   };
+
+  // ── Handle File Upload ──
+  window.handleFileUpload = function(input) {
+    const file = input.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      showToast('Please select a valid image file!', 'error');
+      return;
+    }
+
+    showToast('⏳ Processing image file...', 'success');
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const img = new Image();
+      img.onload = function() {
+        const canvas = document.createElement('canvas');
+        let width = img.width;
+        let height = img.height;
+        const maxW = 1200;
+
+        if (width > maxW) {
+          height = Math.round((height * maxW) / width);
+          width = maxW;
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+
+        const compressedUrl = canvas.toDataURL('image/jpeg', 0.85);
+
+        document.getElementById('post-image').value = compressedUrl;
+        previewImage(compressedUrl);
+        showToast('✅ Image ready!', 'success');
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  };
+
 
   // ── Reset Form ──
   window.resetForm = function() {

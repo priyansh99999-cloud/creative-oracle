@@ -178,20 +178,67 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
 
         .pricing-card {
-            background-color: rgba(255,255,255,0.04);
+            background-color: transparent;
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 24px;
             padding: 3rem 2.2rem;
             display: flex;
             flex-direction: column;
-            transition: var(--transition-smooth);
+            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             position: relative;
+            cursor: pointer;
         }
 
+        /* Hover glow fill effect */
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 23px;
+            background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.04), transparent 65%);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .pricing-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Ensure content stays above the pseudo element */
+        .pricing-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Non-featured hover: lift + accent border glow */
+        .pricing-card:not(.featured):hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 25, 32, 0.5);
+            box-shadow:
+                0 0 0 1px rgba(212, 25, 32, 0.15),
+                0 25px 50px rgba(0,0,0,0.25),
+                0 0 35px rgba(212, 25, 32, 0.07);
+        }
+
+        /* Featured card: solid red gradient, slightly elevated */
         .pricing-card.featured {
-            background-color: var(--accent);
-            border-color: var(--accent);
-            box-shadow: 0 15px 35px rgba(212, 25, 32, 0.25);
+            background: linear-gradient(145deg, #d41920 0%, #a8121a 100%);
+            border-color: rgba(255,255,255,0.15);
+            box-shadow:
+                0 15px 40px rgba(212, 25, 32, 0.35),
+                0 0 0 1px rgba(255,255,255,0.08) inset;
+            transform: scale(1.03);
+        }
+
+        /* Featured hover: bigger lift + deeper glow */
+        .pricing-card.featured:hover {
+            transform: scale(1.03) translateY(-10px);
+            box-shadow:
+                0 30px 60px rgba(212, 25, 32, 0.5),
+                0 0 60px rgba(212, 25, 32, 0.2),
+                0 0 0 1px rgba(255,255,255,0.12) inset;
         }
 
         .pricing-card.featured .plan-name,
@@ -212,13 +259,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             background-color: rgba(255,255,255,0.15);
         }
 
-        .pricing-card.featured::before {
+        /* Featured "Most Popular" badge via ::after to avoid conflict with ::before glow */
+        .pricing-card.featured::after {
             content: "Most Popular";
             position: absolute;
             top: 1.5rem;
             right: 1.5rem;
             background-color: rgba(255,255,255,0.2);
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid rgba(255,255,255,0.35);
             color: #FFFFFF;
             padding: 0.3rem 0.9rem;
             font-size: 0.75rem;
@@ -226,18 +274,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             border-radius: 20px;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-        }
-
-        .pricing-card:not(.featured):hover {
-            transform: translateY(-8px);
-            background-color: rgba(255,255,255,0.08);
-            border-color: rgba(255,255,255,0.2);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-
-        .pricing-card.featured:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px rgba(212, 25, 32, 0.35);
+            z-index: 2;
         }
 
         .plan-header {

@@ -488,22 +488,32 @@
         </div>
 
         <div class="form-group">
-          <label class="form-label">Blog Cover Image (Thumbnail &amp; Header)</label>
-          <div style="display:grid;grid-template-columns: 1fr 1fr;gap:1rem;margin-bottom:0.8rem;">
-            <div>
-              <label for="post-image-file" style="display:flex;align-items:center;justify-content:center;gap:0.5rem;background:rgba(56,189,248,0.12);border:1px dashed rgba(56,189,248,0.4);color:#38bdf8;padding:0.75rem;border-radius:10px;cursor:pointer;font-size:0.88rem;font-weight:600;text-align:center;transition:all 0.2s ease;">
-                📁 Upload Image File
-              </label>
-              <input type="file" id="post-image-file" accept="image/*" style="display:none;" onchange="handleFileUpload(this)"/>
+          <label class="form-label">UPLOAD BLOG IMAGE (Thumbnail &amp; Header) *</label>
+          <div id="image-upload-box" style="border: 2px dashed rgba(56, 189, 248, 0.4); background: rgba(15, 23, 42, 0.7); border-radius: 12px; padding: 2rem 1.5rem; text-align: center; cursor: pointer; transition: all 0.3s ease; position: relative;" onclick="document.getElementById('post-image-file').click()">
+            <input type="file" id="post-image-file" accept="image/*" style="display:none;" onchange="handleFileUpload(this)"/>
+            <input type="hidden" id="post-image"/>
+
+            <div id="upload-prompt">
+              <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📷</div>
+              <p style="color: #38bdf8; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.25rem;">Click to Upload Blog Image</p>
+              <p style="color: var(--text3); font-size: 0.82rem;">Select photo from device (Will appear as Blog Thumbnail &amp; Header Image)</p>
             </div>
-            <div>
-              <input type="url" id="post-image" class="form-control" placeholder="Or paste image URL..." oninput="previewImage(this.value)" style="height:100%;"/>
+
+            <div id="image-preview-container" style="display: none; position: relative; max-width: 450px; margin: 0 auto;">
+              <img id="image-preview-img" src="" alt="Blog Preview" style="width: 100%; height: 220px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2);"/>
+              <button type="button" onclick="event.stopPropagation(); removeUploadedImage();" style="position: absolute; top: -10px; right: -10px; background: #ef4444; color: white; border: none; border-radius: 50%; width: 28px; height: 28px; font-weight: bold; cursor: pointer; font-size: 0.9rem; box-shadow: 0 4px 10px rgba(0,0,0,0.4);">✕</button>
             </div>
           </div>
-          <div class="image-preview-wrap" id="image-preview" style="position:relative;">
-            <span>Image preview will appear here (Thumbnail &amp; Header)</span>
+
+          <div style="margin-top: 0.5rem; text-align: right;">
+            <button type="button" onclick="toggleUrlInput()" style="background: none; border: none; color: var(--text3); font-size: 0.78rem; cursor: pointer; text-decoration: underline;">Or paste an image URL instead</button>
+          </div>
+
+          <div id="url-input-wrap" style="display: none; margin-top: 0.5rem;">
+            <input type="url" id="post-image-url-fallback" class="form-control" placeholder="Paste image URL (Unsplash, Cloudinary, etc.)" oninput="handleUrlFallback(this.value)"/>
           </div>
         </div>
+
 
 
         <div class="form-group">
@@ -625,6 +635,41 @@
     }
   };
 
+  // ── Image Upload & Display Helpers ──
+  window.displayUploadedImage = function(url) {
+    const prompt = document.getElementById('upload-prompt');
+    const previewWrap = document.getElementById('image-preview-container');
+    const previewImg = document.getElementById('image-preview-img');
+    if (url) {
+      if (prompt) prompt.style.display = 'none';
+      if (previewWrap) previewWrap.style.display = 'block';
+      if (previewImg) previewImg.src = url;
+    } else {
+      if (prompt) prompt.style.display = 'block';
+      if (previewWrap) previewWrap.style.display = 'none';
+      if (previewImg) previewImg.src = '';
+    }
+  };
+
+  window.removeUploadedImage = function() {
+    document.getElementById('post-image').value = '';
+    const fileInput = document.getElementById('post-image-file');
+    if (fileInput) fileInput.value = '';
+    const urlInput = document.getElementById('post-image-url-fallback');
+    if (urlInput) urlInput.value = '';
+    displayUploadedImage('');
+  };
+
+  window.toggleUrlInput = function() {
+    const wrap = document.getElementById('url-input-wrap');
+    if (wrap) wrap.style.display = wrap.style.display === 'none' ? 'block' : 'none';
+  };
+
+  window.handleUrlFallback = function(url) {
+    document.getElementById('post-image').value = url;
+    displayUploadedImage(url);
+  };
+
   // ── Handle File Upload ──
   window.handleFileUpload = function(input) {
     const file = input.files[0];
@@ -659,14 +704,13 @@
         const compressedUrl = canvas.toDataURL('image/jpeg', 0.85);
 
         document.getElementById('post-image').value = compressedUrl;
-        previewImage(compressedUrl);
-        showToast('✅ Image ready!', 'success');
+        displayUploadedImage(compressedUrl);
+        showToast('✅ Image uploaded & ready!', 'success');
       };
       img.src = e.target.result;
     };
     reader.readAsDataURL(file);
   };
-
 
   // ── Reset Form ──
   window.resetForm = function() {
@@ -674,16 +718,17 @@
     document.getElementById('post-title').value = '';
     document.getElementById('post-excerpt').value = '';
     document.getElementById('post-image').value = '';
+    removeUploadedImage();
     document.getElementById('post-readtime').value = '';
-    document.getElementById('post-category').value = 'MARKETING INSIGHTS';
+    document.getElementById('post-category').value = 'AI CHATBOTS';
     quill.setContents([]);
-    document.getElementById('image-preview').innerHTML = '<span>Image preview will appear here</span>';
     document.getElementById('url-box').style.display = 'none';
     document.getElementById('publish-btn').style.display = 'block';
     document.getElementById('update-btn').style.display = 'none';
     document.getElementById('form-mode-badge').className = 'mode-badge mode-new';
     document.getElementById('form-mode-badge').textContent = 'New Post';
   };
+
 
   // ── Publish Post ──
   window.publishPost = async function() {
@@ -870,7 +915,8 @@
       document.getElementById('post-readtime').value = post.readTime || '';
       document.getElementById('post-category').value = post.category || 'AI CHATBOTS';
       quill.root.innerHTML = post.content || '';
-      if (post.imageUrl || post.coverImage) previewImage(post.imageUrl || post.coverImage);
+      if (post.imageUrl || post.coverImage) displayUploadedImage(post.imageUrl || post.coverImage);
+
       document.getElementById('url-box').style.display = 'none';
       document.getElementById('publish-btn').style.display = 'none';
       document.getElementById('update-btn').style.display = 'block';

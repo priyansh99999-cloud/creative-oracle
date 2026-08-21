@@ -1,4 +1,29 @@
+# Standard Search Engine Crawlers
 User-agent: *
 Allow: /
 
+# AI & Generative Engine Crawlers (AEO / GEO Optimization)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Sitemap & LLM Manifest Declarations
 Sitemap: https://creativeoracle.in/sitemap.xml
+LLMs-Text: https://creativeoracle.in/llms.txt

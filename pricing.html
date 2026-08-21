@@ -33,7 +33,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@800&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@800&amp;display=swap"></noscript>
 <!-- Stylesheet -->
-<link href="index.css?v=5.8.0" rel="stylesheet"/>
+<link href="index.css?v=2.0.2" rel="stylesheet"/>
 <style>
         /* Custom Pricing Page Styles */
         .pricing-hero {
@@ -554,10 +554,206 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             color: var(--text-secondary);
         }
 
-        @media(max-width: 1024px) {
+        /* Comprehensive Responsive & Mobile Alignment Fixes */
+        @media (max-width: 1024px) {
             .pricing-hero {
                 height: auto;
-                padding: 160px 0 60px 0;
+                padding: 140px 0 50px 0;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .pricing-card.featured:hover {
+                transform: translateY(-6px);
+            }
+
+            /* Flagship (CO Dominance) card layout fix for tablet/mobile */
+            .pricing-card.flagship {
+                grid-column: 1 / -1;
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+                padding: 2.2rem 1.8rem;
+            }
+
+            .pricing-card.flagship .plan-header {
+                grid-column: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                padding-bottom: 1.5rem;
+                width: 100%;
+            }
+
+            .pricing-card.flagship .plan-header > div:first-child {
+                width: 100%;
+            }
+
+            .pricing-card.flagship .price-block {
+                margin-bottom: 0.5rem;
+            }
+
+            .pricing-card.flagship .plan-btn {
+                grid-column: auto;
+                align-self: stretch !important;
+                width: 100%;
+                margin-top: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pricing-hero {
+                padding: 110px 0 35px 0;
+            }
+
+            .pricing-ctrl-bar {
+                gap: 1.25rem;
+                margin-bottom: 2.5rem;
+                width: 100%;
+            }
+
+            .pricing-tabs {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                max-width: 100%;
+                border-radius: 30px;
+                width: 100%;
+            }
+
+            .pricing-tab-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.85rem;
+                flex: 1 1 auto;
+                text-align: center;
+            }
+
+            .currency-selector {
+                padding: 0.35rem 0.85rem;
+            }
+
+            .pricing-card {
+                padding: 2rem 1.4rem;
+                border-radius: 20px;
+            }
+
+            /* Prevent "Most Popular" tag from overlapping card title on mobile */
+            .pricing-card.featured::after {
+                top: 1.2rem;
+                right: 1.2rem;
+                font-size: 0.7rem;
+                padding: 0.25rem 0.75rem;
+            }
+
+            .pricing-card.featured .plan-name {
+                padding-right: 5.5rem;
+            }
+
+            .plan-name {
+                font-size: 1.35rem;
+            }
+
+            .price-value {
+                font-size: 2.5rem;
+            }
+
+            .plan-ideal {
+                display: block;
+                width: 100%;
+                white-space: normal;
+                word-break: break-word;
+                font-size: 0.8rem;
+                padding: 0.5rem 0.75rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .plan-features-list {
+                gap: 0.85rem;
+                margin-bottom: 2rem;
+            }
+
+            .plan-features-list li {
+                font-size: 0.9rem;
+                line-height: 1.4;
+                word-break: break-word;
+            }
+
+            /* Responsive Tables Fix */
+            .table-section {
+                padding: 4rem 0;
+            }
+
+            .table-wrapper {
+                -webkit-overflow-scrolling: touch;
+                margin-top: 1.5rem;
+                border-radius: 12px;
+                overflow-x: auto;
+            }
+
+            .pricing-table {
+                min-width: 620px;
+            }
+
+            .pricing-table th, .pricing-table td {
+                padding: 0.85rem 1rem;
+                font-size: 0.85rem;
+                white-space: normal;
+            }
+
+            .sla-badge {
+                display: inline-block;
+                padding: 0.2rem 0.55rem;
+                font-size: 0.72rem;
+                margin-bottom: 0.25rem;
+            }
+
+            /* Add-ons Grid */
+            .addons-section {
+                padding: 4rem 0;
+            }
+
+            .addons-grid {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+                margin-top: 2rem;
+            }
+
+            .addon-card {
+                padding: 1.5rem 1.2rem;
+                gap: 1rem;
+            }
+
+            .addon-title {
+                font-size: 1.05rem;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .pricing-card {
+                padding: 1.6rem 1.1rem;
+            }
+
+            .price-value {
+                font-size: 2.2rem;
+            }
+
+            .pricing-table {
+                min-width: 540px;
+            }
+
+            .pricing-table th, .pricing-table td {
+                padding: 0.75rem 0.65rem;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -596,7 +792,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       ]
     }
   ]
-}</script></head>
+}</script><link rel="preload" href="assets/logo_cropped.webp?v=2.0.2" as="image" type="image/webp" fetchpriority="high"/>
+<link rel="preload" href="index.css?v=2.0.2" as="style"/>
+<link rel="alternate" type="text/markdown" href="/llms.txt" title="LLM / AI Agent Summary"/>
+</head>
 <body><!-- Google Tag Manager (noscript) -->
 <noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-PVVP6MWF" style="display:none;visibility:hidden" width="0"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
@@ -604,7 +803,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <header class="main-header" id="mainHeader">
 <div class="header-container">
 <a aria-label="Creative Oracle Home" class="logo-link" href="/">
-<picture><source srcset="assets/logo_cropped.webp?v=5.8.0" type="image/webp"/><img alt="Creative Oracle Logo" class="brand-logo" id="brandLogo" loading="lazy" src="assets/logo_cropped.png?v=5.8.0" width="120" height="40"/ width="120" height="40"/></picture>
+<picture><source srcset="assets/logo_cropped.webp?v=5.8.0" type="image/webp" fetchpriority="high"/><img alt="Creative Oracle Logo" class="brand-logo" fetchpriority="high" id="brandLogo" src="assets/logo_cropped.png?v=5.8.0" width="120" height="40"/></picture>
 </a>
 <nav aria-label="Main Navigation" class="desktop-nav">
 <ul class="nav-list">
@@ -1394,7 +1593,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </footer>
 <!-- Core Script -->
-<script src="index.js?v=5.8.0" defer></script>
+<script src="index.js?v=2.0.2" defer></script>
 <!-- Custom Script for Tabs & Currency -->
 <script>
         function switchPricingTab(tabName) {

@@ -1,0 +1,74 @@
+# Creative Oracle | AI-Powered Digital Marketing & Lead Generation Agency
+
+> Creative Oracle is a premier performance marketing and AI automation agency that helps ambitious businesses scale revenue through high-converting digital advertising, Search Engine Optimization (SEO), custom website development, and autonomous AI customer support chatbots.
+
+## About Creative Oracle
+Creative Oracle integrates high-end editorial visual design with data-driven performance marketing and custom AI workflows. Founded to eliminate the gap between aesthetics and ROI, Creative Oracle provides end-to-end digital growth infrastructure for startups, B2B companies, ecommerce brands, and enterprise organizations.
+
+- **Website**: https://creativeoracle.in/
+- **Contact Email**: support@creativeoracle.com
+- **Phone**: +91 79997 35764
+- **Headquarters**: India (Serving Clients Worldwide)
+- **Tagline**: Where Strategy Meets Creativity & AI.
+
+---
+
+## Core Services & Solutions
+
+### 1. Performance Marketing & Digital Advertising
+- **Meta & Google Ads Management**: High-converting ad campaigns across Facebook, Instagram, Google Search, YouTube, and Display with server-side CAPI tracking and ROAS optimization.
+- **B2B Lead Generation**: Qualified prospect targeting, lead magnet design, and automated multi-channel follow-up systems.
+- **Cold Email Outreach**: Automated cold email infrastructure, domain warmup, personalized copy, and lead list enrichment.
+
+### 2. AI & Workflow Automation
+- **AI Website Chatbots**: Custom-trained 24/7 AI chatbots for instant lead capture, FAQ resolution, and appointment scheduling.
+- **WhatsApp AI Automation**: Automated conversational AI workflows for lead nurturing, order updates, and instant customer queries on WhatsApp.
+- **AI Sales & Support Assistants**: Autonomous AI agents that handle inbound support, qualify sales prospects, and sync data directly to CRMs.
+- **Custom Workflow Automation**: Inter-app workflow automation using Zapier, Make, and custom APIs to slash operational overhead.
+
+### 3. SEO & Content Growth
+- **Technical & On-Page SEO**: Math-based search engine optimization, Core Web Vitals performance tuning, semantic content structuring, and Schema.org markup.
+- **Local SEO & Citation Building**: Google Business Profile optimization and local search rank domination.
+- **Answer Engine & Generative Engine Optimization (AEO / GEO)**: AI search engine optimization for ChatGPT, Claude, Perplexity, and Google Gemini.
+
+### 4. Custom Digital Experiences
+- **High-Converting Web Development**: Lightning-fast, mobile-responsive custom websites built with modern UI/UX principles.
+- **SaaS & Web App UI/UX Design**: Bespoke design systems, web application interfaces, and interactive dashboards.
+
+---
+
+## Pricing & Engagement Packages
+
+1. **Starter Growth Plan**
+   - Ideal for local businesses and early-stage startups.
+   - Includes Meta or Google Ads management, basic landing page optimization, and standard lead tracking.
+   - Pricing: $999 / month (₹79,999 / month).
+
+2. **Scale Acceleration Plan (Most Popular)**
+   - Ideal for scaling brands and B2B companies.
+   - Includes full-funnel Meta & Google Ads, custom web landing page, AI website chatbot, SEO optimization, and weekly reporting.
+   - Pricing: $1,999 / month (₹1,59,999 / month).
+
+3. **Enterprise Dominance (Flagship CO Dominance)**
+   - Complete digital marketing & AI transformation suite.
+   - Dedicated growth team, custom AI sales agents, WhatsApp automation, full technical SEO, multi-channel ad management, custom web app development, and 24/7 SLA.
+   - Pricing: $3,999 / month (₹3,19,999 / month).
+
+---
+
+## Key Differentiators & Brand Value
+- **No Vanity Metrics**: Focus on qualified leads, lower Cost Per Acquisition (CPA), and verifiable Return On Ad Spend (ROAS).
+- **Integrated AI & Automation**: Every marketing campaign is backed by automated lead-nurturing workflows to ensure zero lead leakage.
+- **High-End Editorial Aesthetics**: Sleek, modern visual design systems tailored to luxury, B2B, and high-growth brands.
+- **Guaranteed Response Time**: 24/7 dedicated support with rapid turnaround times.
+
+---
+
+## Useful Links & Site Navigation
+- [Home Page](https://creativeoracle.in/)
+- [Solutions & Services](https://creativeoracle.in/services.html)
+- [Pricing Plans](https://creativeoracle.in/pricing.html)
+- [Client Case Studies](https://creativeoracle.in/portfolio.html)
+- [Blog & Resources](https://creativeoracle.in/blog.html)
+- [Frequently Asked Questions](https://creativeoracle.in/faq.html)
+- [Contact & Strategy Booking](https://creativeoracle.in/contact.html)

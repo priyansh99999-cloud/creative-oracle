@@ -18,10 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
         curtain.style.transform = 'translateY(0)';
         document.body.appendChild(curtain);
 
-        curtain.offsetHeight;
         requestAnimationFrame(() => {
-            curtain.style.transition = 'transform 0.6s cubic-bezier(0.85, 0, 0.15, 1)';
-            curtain.style.transform = 'translateY(-100%)';
+            requestAnimationFrame(() => {
+                curtain.style.transition = 'transform 0.6s cubic-bezier(0.85, 0, 0.15, 1)';
+                curtain.style.transform = 'translateY(-100%)';
+            });
         });
     } else {
 
@@ -108,10 +109,12 @@ document.addEventListener('DOMContentLoaded', () => {
             curtain.style.transition = 'none';
             curtain.style.transform = 'translateY(100%)';
 
-            curtain.offsetHeight;
-
-            curtain.style.transition = 'transform 0.6s cubic-bezier(0.85, 0, 0.15, 1)';
-            curtain.style.transform = 'translateY(0)';
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    curtain.style.transition = 'transform 0.6s cubic-bezier(0.85, 0, 0.15, 1)';
+                    curtain.style.transform = 'translateY(0)';
+                });
+            });
 
             setTimeout(() => {
                 window.location.href = destination;
@@ -438,28 +441,30 @@ document.addEventListener('DOMContentLoaded', () => {
         let centerX = 0, centerY = 0;
 
         const resizeCanvas = () => {
-            const parent = canvas.parentElement;
-            const w = parent ? parent.offsetWidth : window.innerWidth;
-            const h = parent ? parent.offsetHeight : window.innerHeight;
-            if (w === 0 || h === 0) return;
+            requestAnimationFrame(() => {
+                const parent = canvas.parentElement;
+                const w = parent ? (parent.clientWidth || parent.offsetWidth) : window.innerWidth;
+                const h = parent ? (parent.clientHeight || parent.offsetHeight) : window.innerHeight;
+                if (w === 0 || h === 0) return;
 
-            width = w;
-            height = h;
+                width = w;
+                height = h;
 
-            const dpr = window.devicePixelRatio || 1;
-            canvas.width = width * dpr;
-            canvas.height = height * dpr;
-            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                const dpr = window.devicePixelRatio || 1;
+                canvas.width = width * dpr;
+                canvas.height = height * dpr;
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-            const pageName = window.location.pathname.split('/').pop().replace('.html', '');
+                const pageName = window.location.pathname.split('/').pop().replace('.html', '');
 
-            if (window.innerWidth < 992 || pageName === 'portfolio') {
-                centerX = width * 0.5;
-                centerY = height * 0.5;
-            } else {
-                centerX = width * 0.68;
-                centerY = height * 0.45;
-            }
+                if (window.innerWidth < 992 || pageName === 'portfolio') {
+                    centerX = width * 0.5;
+                    centerY = height * 0.5;
+                } else {
+                    centerX = width * 0.68;
+                    centerY = height * 0.45;
+                }
+            });
         };
 
         resizeCanvas();

@@ -131,6 +131,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     color: #94a3b8 !important;
     font-weight: 500 !important;
 }
+
+.blog-pill {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.6);
+  font-family: 'Inter', sans-serif;
+  font-size: .8rem;
+  font-weight: 600;
+  padding: .4rem 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all .2s;
+}
+.blog-pill:hover,
+.blog-pill.active {
+  background: #D41920;
+  border-color: #D41920;
+  color: #fff;
+}
+@keyframes pulse {
+  0%,100%{opacity:1} 50%{opacity:.4}
+}
+
 </style>
 
 <link href="assets/logo_cropped.png?v=5.8.0" rel="icon" type="image/png"/>
@@ -299,83 +322,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2 class="section-title text-center">Start with Our Most <span class="gradient-text">Popular Reads</span></h2>
 <p class="body-text text-center" style="max-width: 680px; margin: 1.5rem auto 0 auto; color: var(--text-secondary);">Explore practical guides, industry insights, and step-by-step resources designed to help you grow your business online.</p>
 </div>
-<!-- Articles Grid -->
-<div class="blog-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; margin-top: 4rem;">
 
-<!-- Post 1: AI Chatbots -->
-<a href="/blog-ai-chatbots-respond-faster.html" class="reveal-item co-blog-card">
-  <div class="co-blog-thumb-box">
-    <div class="co-blog-pill">AI Chatbots</div>
-    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="AI Chatbots for Business" class="co-blog-thumb-img" loading="lazy" />
-  </div>
-  <h3 class="co-blog-h3">AI Chatbots for Business: Benefits, Costs &amp; Best Platforms in 2026</h3>
-  <div class="co-blog-footer" style="justify-content: flex-end;">
-    <span class="co-blog-date">July 8, 2026</span>
-  </div>
-</a>
-
-<!-- Post 2: AI Automation for Small Businesses -->
-<a href="/blog-small-business-websites-dont-convert.html" class="reveal-item co-blog-card">
-  <div class="co-blog-thumb-box">
-    <div class="co-blog-pill">AI Automation</div>
-    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80" alt="AI Automation for Small Businesses" class="co-blog-thumb-img" loading="lazy" />
-  </div>
-  <h3 class="co-blog-h3">AI Automation for Small Businesses: The Complete 2026 Guide</h3>
-  <div class="co-blog-footer" style="justify-content: flex-end;">
-    <span class="co-blog-date">July 8, 2026</span>
-  </div>
-</a>
-
-<!-- Post 3: n8n vs Zapier vs Make -->
-<a href="/blog-track-leads-properly.html" class="reveal-item co-blog-card">
-  <div class="co-blog-thumb-box">
-    <div class="co-blog-pill">AI Automation</div>
-    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="n8n vs Zapier vs Make" class="co-blog-thumb-img" loading="lazy" />
-  </div>
-  <h3 class="co-blog-h3">n8n vs Zapier vs Make: Which Automation Platform Actually Saves You Money in 2026?</h3>
-  <div class="co-blog-footer" style="justify-content: flex-end;">
-    <span class="co-blog-date">June 29, 2026</span>
-  </div>
-</a>
-
-<!-- Post 4: Digital Marketing Strategy -->
-<a href="/blog-google-vs-meta-ads.html" class="reveal-item co-blog-card">
-  <div class="co-blog-thumb-box">
-    <div class="co-blog-pill">Digital Marketing</div>
-    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Digital Marketing Strategy" class="co-blog-thumb-img" loading="lazy" />
-  </div>
-  <h3 class="co-blog-h3">How to Choose the Right Digital Marketing Strategy for Your Business</h3>
-  <div class="co-blog-footer" style="justify-content: flex-end;">
-    <span class="co-blog-date">May 14, 2026</span>
-  </div>
-</a>
-
-<!-- Post 5: SEO vs Google Ads -->
-<a href="/blog-landing-page-convert-better.html" class="reveal-item co-blog-card">
-  <div class="co-blog-thumb-box">
-    <div class="co-blog-pill">Google Ads</div>
-    <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=800&q=80" alt="SEO vs Google Ads" class="co-blog-thumb-img" loading="lazy" />
-  </div>
-  <h3 class="co-blog-h3">SEO vs Google Ads: Which Is Right for Your Business?</h3>
-  <div class="co-blog-footer" style="justify-content: flex-end;">
-    <span class="co-blog-date">April 20, 2026</span>
-  </div>
-</a>
-
-<!-- Post 6: Local SEO Basics -->
-<a href="/blog-seo-basics-local-businesses.html" class="reveal-item co-blog-card">
-  <div class="co-blog-thumb-box">
-    <div class="co-blog-pill">Local SEO</div>
-    <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80" alt="Local SEO Basics" class="co-blog-thumb-img" loading="lazy" />
-  </div>
-  <h3 class="co-blog-h3">SEO Basics for Local Businesses in India: The Complete Guide</h3>
-  <div class="co-blog-footer" style="justify-content: flex-end;">
-    <span class="co-blog-date">March 12, 2026</span>
-  </div>
-</a>
-
+<!-- Category Filter Pills -->
+<div id="blog-filter-bar" style="display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin:2.5rem 0 0 0;">
+  <button class="blog-pill active" onclick="filterBlog('ALL',this)">All Posts</button>
+  <button class="blog-pill" onclick="filterBlog('MARKETING INSIGHTS',this)">Marketing</button>
+  <button class="blog-pill" onclick="filterBlog('SEO',this)">SEO</button>
+  <button class="blog-pill" onclick="filterBlog('META ADS',this)">Meta Ads</button>
+  <button class="blog-pill" onclick="filterBlog('GOOGLE ADS',this)">Google Ads</button>
+  <button class="blog-pill" onclick="filterBlog('AI AUTOMATION',this)">AI Automation</button>
+  <button class="blog-pill" onclick="filterBlog('AI CHATBOTS',this)">AI Chatbots</button>
+  <button class="blog-pill" onclick="filterBlog('LEAD GENERATION',this)">Lead Gen</button>
+  <button class="blog-pill" onclick="filterBlog('WEB DESIGN',this)">Web Design</button>
+  <button class="blog-pill" onclick="filterBlog('BRANDING',this)">Branding</button>
 </div>
 
+<!-- Loading state -->
+<div id="blog-loading" style="display:flex;justify-content:center;align-items:center;min-height:300px;margin-top:3rem;">
+  <div style="text-align:center;color:var(--text-secondary);">
+    <div style="font-size:2.5rem;margin-bottom:1rem;animation:pulse 1.5s ease-in-out infinite;">&#9997;&#65039;</div>
+    <p>Loading latest posts&hellip;</p>
+  </div>
+</div>
+
+<!-- Blog Grid — filled dynamically from Firestore -->
+<div class="blog-grid" id="blog-grid" style="display:none; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; margin-top: 4rem;"></div>
+
+<!-- Empty state -->
+<div id="blog-empty" style="display:none;text-align:center;padding:5rem 2rem;color:var(--text-secondary);">
+  <div style="font-size:3rem;margin-bottom:1rem;">&#128203;</div>
+  <h3 style="font-size:1.4rem;margin-bottom:.75rem;color:var(--text-primary);">No posts found</h3>
+  <p style="font-size:.95rem;">Check back soon for new articles, or <a href="/contact" style="color:#D41920;text-decoration:none;">get in touch</a>.</p>
+</div>
 
 </div>
 </section>
@@ -576,65 +554,107 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </div>
 </footer>
-<!-- Dynamic Firebase Blog Fetcher -->
+<!-- Dynamic Firebase Blog Loader — powered by Master Admin -->
 <script type="module">
-  import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js';
+  import { initializeApp }    from 'https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js';
   import { getFirestore, collection, getDocs, query, orderBy } from 'https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js';
 
   const firebaseConfig = {
-    apiKey: "AIzaSyD-Vdf5BJXxPzzjXWDzsZi2mOpc_w8E_Ic",
-    authDomain: "creative-oracle.firebaseapp.com",
-    projectId: "creative-oracle",
-    storageBucket: "creative-oracle.firebasestorage.app",
+    apiKey:            "AIzaSyD-Vdf5BJXxPzzjXWDzsZi2mOpc_w8E_Ic",
+    authDomain:        "creative-oracle.firebaseapp.com",
+    projectId:         "creative-oracle",
+    storageBucket:     "creative-oracle.firebasestorage.app",
     messagingSenderId: "81799914862",
-    appId: "1:81799914862:web:1b7b4fd83560bf20448d7f"
+    appId:             "1:81799914862:web:1b7b4fd83560bf20448d7f"
   };
 
   const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+  const db  = getFirestore(app);
 
-  async function loadAdminBlogs() {
+  const DEFAULT_IMG = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80';
+
+  let allPosts = [];
+
+  function buildCard(post, docId) {
+    const dateStr = post.publishedAt && post.publishedAt.toDate
+      ? post.publishedAt.toDate().toLocaleDateString('en-US', { month:'long', day:'numeric', year:'numeric' })
+      : 'Recent';
+    const img      = post.imageUrl || post.coverImage || DEFAULT_IMG;
+    const category = post.category || 'Insights';
+    const title    = post.title    || 'Untitled Post';
+    const excerpt  = post.excerpt  || '';
+    const readTime = post.readTime || '5 min read';
+
+    const card = document.createElement('a');
+    card.href      = '/blog-post.html?id=' + docId;
+    card.className = 'reveal-item co-blog-card active';
+    card.dataset.category = category.toUpperCase();
+    card.innerHTML = `
+      <div class="co-blog-thumb-box">
+        <div class="co-blog-pill">${category}</div>
+        <img src="${img}" alt="${title}" class="co-blog-thumb-img" loading="lazy"
+          onerror="this.src='${DEFAULT_IMG}'" />
+      </div>
+      <h3 class="co-blog-h3">${title}</h3>
+      ${excerpt ? `<p style="font-size:.88rem;color:var(--text-secondary);line-height:1.6;margin:.5rem 0 .75rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${excerpt}</p>` : ''}
+      <div class="co-blog-footer" style="justify-content:space-between;">
+        <span style="font-size:.75rem;color:rgba(255,255,255,.4);">${readTime}</span>
+        <span class="co-blog-date">${dateStr}</span>
+      </div>`;
+    return card;
+  }
+
+  window.filterBlog = function(cat, btn) {
+    // Update active pill
+    document.querySelectorAll('.blog-pill').forEach(p => p.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+
+    const grid = document.getElementById('blog-grid');
+    const emptyEl = document.getElementById('blog-empty');
+    grid.innerHTML = '';
+
+    const filtered = cat === 'ALL' ? allPosts : allPosts.filter(p => (p.data.category||'').toUpperCase() === cat);
+
+    if (filtered.length === 0) {
+      grid.style.display = 'none';
+      emptyEl.style.display = 'block';
+    } else {
+      emptyEl.style.display = 'none';
+      grid.style.display    = 'grid';
+      filtered.forEach(p => grid.appendChild(buildCard(p.data, p.id)));
+    }
+  };
+
+  async function loadBlogs() {
+    const loadingEl = document.getElementById('blog-loading');
+    const gridEl    = document.getElementById('blog-grid');
+    const emptyEl   = document.getElementById('blog-empty');
+
     try {
-      const q = query(collection(db, 'blogs'), orderBy('publishedAt', 'desc'));
-      const querySnapshot = await getDocs(q);
+      const q    = query(collection(db, 'blogs'), orderBy('publishedAt', 'desc'));
+      const snap = await getDocs(q);
 
-      const grid = document.querySelector('.blog-grid');
-      if (!grid || querySnapshot.empty) return;
+      loadingEl.style.display = 'none';
 
-      querySnapshot.forEach((docSnap) => {
-        const post = docSnap.data();
-        const docId = docSnap.id;
+      if (snap.empty) {
+        emptyEl.style.display = 'block';
+        return;
+      }
 
-        let dateStr = 'Recent';
-        if (post.publishedAt && post.publishedAt.toDate) {
-          dateStr = post.publishedAt.toDate().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-        }
+      allPosts = [];
+      snap.forEach(ds => allPosts.push({ id: ds.id, data: ds.data() }));
 
-        const title = post.title || 'Untitled Post';
-        const category = post.category || 'AI Automation';
-        const coverImg = post.coverImage || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80';
+      gridEl.style.display = 'grid';
+      allPosts.forEach(p => gridEl.appendChild(buildCard(p.data, p.id)));
 
-        const card = document.createElement('a');
-        card.href = `/blog-post.html?id=${docId}`;
-        card.className = 'reveal-item co-blog-card active';
-        card.innerHTML = `
-          <div class="co-blog-thumb-box">
-            <div class="co-blog-pill">${category}</div>
-            <img src="${coverImg}" alt="${title}" class="co-blog-thumb-img" loading="lazy" />
-          </div>
-          <h3 class="co-blog-h3">${title}</h3>
-          <div class="co-blog-footer" style="justify-content: flex-end;">
-            <span class="co-blog-date">${dateStr}</span>
-          </div>
-        `;
-        grid.prepend(card);
-      });
     } catch (err) {
-      console.warn('Firebase blogs fetch:', err);
+      console.warn('Blog fetch error:', err);
+      loadingEl.style.display = 'none';
+      emptyEl.style.display   = 'block';
     }
   }
 
-  window.addEventListener('DOMContentLoaded', loadAdminBlogs);
+  window.addEventListener('DOMContentLoaded', loadBlogs);
 </script>
 
 <!-- Core Script -->

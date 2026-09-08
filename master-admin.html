@@ -1,0 +1,2406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Master Admin | Creative Oracle</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="robots" content="noindex, nofollow"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet"/>
+<link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet"/>
+<style>
+/* ────────────────────────────────────────── */
+/* RESET & ROOT */
+/* ────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red:    #D41920;
+  --red-d:  #b5151b;
+  --blue:   #1A3CFF;
+  --green:  #22c55e;
+  --orange: #f97316;
+  --purple: #a78bfa;
+  --bg:     #0d0d14;
+  --bg2:    #13131f;
+  --bg3:    #1a1a2e;
+  --bg4:    #22223a;
+  --border: rgba(255,255,255,0.08);
+  --text:   #ffffff;
+  --text2:  rgba(255,255,255,0.65);
+  --text3:  rgba(255,255,255,0.38);
+  --sidebar-w: 240px;
+  --header-h: 60px;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── LOGIN ─── */
+#login-screen {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 100vh; padding: 2rem;
+  background: radial-gradient(ellipse at 50% 0%, rgba(212,25,32,.18) 0%, transparent 65%), var(--bg);
+}
+.login-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 22px;
+  padding: 3rem 2.5rem; width: 100%; max-width: 420px; text-align: center;
+}
+.login-logo {
+  width: 54px; height: 54px; background: var(--red); border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; font-weight: 800; margin: 0 auto 1.5rem;
+  font-family: 'Manrope', sans-serif;
+}
+.login-title  { font-size: 1.65rem; font-weight: 700; margin-bottom: .4rem; }
+.login-sub    { color: var(--text3); font-size: .95rem; margin-bottom: 1.75rem; }
+.login-input  {
+  width: 100%; background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 10px; color: var(--text); font-family: 'Inter', sans-serif;
+  font-size: 1rem; padding: .85rem 1.1rem; outline: none;
+  transition: border-color .2s; margin-bottom: .75rem;
+}
+.login-input:focus { border-color: var(--red); }
+.login-btn {
+  width: 100%; background: var(--red); color: #fff; border: none;
+  border-radius: 10px; font-family: 'Manrope', sans-serif;
+  font-size: 1rem; font-weight: 800; padding: .9rem;
+  cursor: pointer; transition: background .2s; letter-spacing: .5px;
+}
+.login-btn:hover { background: var(--red-d); }
+.login-error { color: #ef4444; font-size: .88rem; margin-top: .6rem; display: none; }
+
+/* ─── APP SHELL ─── */
+#app-screen { display: none; }
+
+/* ── HEADER ── */
+.app-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: var(--header-h); background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 1.25rem 0 1.5rem;
+}
+.header-left { display: flex; align-items: center; gap: .75rem; }
+.header-logo {
+  width: 32px; height: 32px; background: var(--red); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .8rem; font-weight: 800; font-family: 'Manrope', sans-serif;
+}
+.header-title { font-size: 1rem; font-weight: 700; }
+.header-badge {
+  font-size: .68rem; font-weight: 700; background: rgba(212,25,32,.14);
+  color: var(--red); border-radius: 6px; padding: .18rem .5rem;
+  text-transform: uppercase; letter-spacing: .5px;
+}
+.hamburger {
+  display: none; background: transparent; border: none; color: var(--text2);
+  cursor: pointer; padding: .3rem; font-size: 1.25rem;
+}
+.logout-btn {
+  background: transparent; border: 1px solid var(--border); color: var(--text2);
+  font-size: .82rem; padding: .4rem .9rem; border-radius: 8px;
+  cursor: pointer; transition: all .2s; font-family: 'Inter', sans-serif;
+}
+.logout-btn:hover { border-color: var(--red); color: var(--red); }
+
+/* ── SIDEBAR ── */
+.sidebar {
+  position: fixed; top: var(--header-h); left: 0; bottom: 0;
+  width: var(--sidebar-w); background: var(--bg2);
+  border-right: 1px solid var(--border);
+  overflow-y: auto; z-index: 150; transition: transform .25s ease;
+}
+.sidebar-section-label {
+  font-size: .68rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .8px; color: var(--text3); padding: 1.25rem 1.25rem .5rem;
+}
+.nav-item {
+  display: flex; align-items: center; gap: .75rem;
+  padding: .65rem 1.25rem; cursor: pointer;
+  font-size: .9rem; font-weight: 500; color: var(--text2);
+  border-left: 3px solid transparent; transition: all .18s;
+}
+.nav-item:hover { background: var(--bg3); color: var(--text); }
+.nav-item.active { background: rgba(212,25,32,.1); color: var(--red); border-left-color: var(--red); font-weight: 600; }
+.nav-icon { font-size: 1.05rem; width: 20px; text-align: center; }
+.sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .5rem 0; }
+
+/* ── MAIN ── */
+.main-content {
+  margin-left: var(--sidebar-w); margin-top: var(--header-h);
+  padding: 2rem; min-height: calc(100vh - var(--header-h));
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+.page-title { font-size: 1.5rem; font-weight: 700; margin-bottom: .35rem; }
+.page-sub   { color: var(--text3); font-size: .9rem; margin-bottom: 2rem; }
+
+/* ─── DASHBOARD ─── */
+.stats-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.25rem; margin-bottom: 2rem;
+}
+.stat-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 16px;
+  padding: 1.5rem 1.25rem; display: flex; flex-direction: column; gap: .5rem;
+}
+.stat-icon  { font-size: 1.6rem; }
+.stat-value { font-size: 2rem; font-weight: 800; font-family: 'Manrope', sans-serif; }
+.stat-label { font-size: .82rem; color: var(--text3); font-weight: 500; }
+.stat-card.red    { border-color: rgba(212,25,32,.35); }
+.stat-card.blue   { border-color: rgba(26,60,255,.35); }
+.stat-card.green  { border-color: rgba(34,197,94,.35); }
+.stat-card.purple { border-color: rgba(167,139,250,.35); }
+.stat-card.orange { border-color: rgba(249,115,22,.35); }
+
+.quick-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-bottom: 2rem; }
+.quick-btn {
+  display: flex; align-items: center; gap: .5rem;
+  background: var(--bg2); border: 1px solid var(--border);
+  color: var(--text2); font-size: .85rem; font-family: 'Inter', sans-serif;
+  padding: .55rem 1rem; border-radius: 10px; cursor: pointer;
+  transition: all .18s; font-weight: 500;
+}
+.quick-btn:hover { border-color: var(--red); color: var(--red); background: rgba(212,25,32,.06); }
+
+.recent-table-wrap { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+.rtw-header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); }
+.rtw-title  { font-size: .95rem; font-weight: 600; }
+table.data-table { width: 100%; border-collapse: collapse; }
+table.data-table th {
+  text-align: left; font-size: .75rem; font-weight: 600; color: var(--text3);
+  text-transform: uppercase; letter-spacing: .5px;
+  padding: .75rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--bg3);
+}
+table.data-table td { padding: .85rem 1.5rem; font-size: .88rem; color: var(--text2); border-bottom: 1px solid var(--border); }
+table.data-table tr:last-child td { border-bottom: none; }
+table.data-table tr:hover td { background: var(--bg3); }
+
+/* ─── PANELS ─── */
+.section-grid { display: grid; grid-template-columns: 1fr 380px; gap: 1.5rem; align-items: start; }
+.panel { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+.panel-header { padding: 1.1rem 1.4rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+.panel-title  { font-size: .95rem; font-weight: 600; }
+.panel-body   { padding: 1.4rem; }
+
+/* Form */
+.form-group { margin-bottom: 1.25rem; }
+.form-label {
+  display: block; font-size: .78rem; font-weight: 600; color: var(--text3);
+  margin-bottom: .45rem; text-transform: uppercase; letter-spacing: .4px;
+}
+.form-control {
+  width: 100%; background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 10px; color: var(--text); font-family: 'Inter', sans-serif;
+  font-size: .95rem; padding: .7rem .95rem; transition: border-color .2s; outline: none;
+}
+.form-control:focus { border-color: var(--red); }
+.form-control::placeholder { color: var(--text3); }
+select.form-control option { background: var(--bg3); }
+textarea.form-control { resize: vertical; min-height: 90px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+  font-family: 'Inter', sans-serif; font-size: .88rem; font-weight: 600;
+  padding: .6rem 1.2rem; border-radius: 10px; cursor: pointer; transition: all .2s;
+  border: 1px solid transparent;
+}
+.btn-primary   { background: var(--red); color: #fff; }
+.btn-primary:hover { background: var(--red-d); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(212,25,32,.3); }
+.btn-secondary { background: transparent; border-color: var(--border); color: var(--text2); }
+.btn-secondary:hover { border-color: var(--red); color: var(--red); }
+.btn-success   { background: transparent; border-color: var(--green); color: var(--green); }
+.btn-success:hover { background: var(--green); color: #fff; }
+.btn-danger    { background: transparent; border-color: #ef4444; color: #ef4444; }
+.btn-danger:hover  { background: #ef4444; color: #fff; }
+.btn-sm  { font-size: .75rem; padding: .28rem .65rem; border-radius: 7px; }
+.btn-full { width: 100%; }
+.btn:disabled { opacity:.5; cursor:not-allowed; transform:none !important; box-shadow:none !important; }
+
+.publish-btn {
+  width: 100%; background: var(--red); color: #fff; border: none;
+  border-radius: 12px; font-family: 'Manrope', sans-serif;
+  font-size: 1rem; font-weight: 800; padding: .95rem;
+  cursor: pointer; transition: all .2s; margin-top: .25rem;
+}
+.publish-btn:hover { background: var(--red-d); transform: translateY(-1px); box-shadow: 0 8px 25px rgba(212,25,32,.35); }
+.publish-btn:disabled { opacity:.55; cursor:not-allowed; transform:none; box-shadow:none; }
+
+/* Item list */
+.item-list { max-height: 74vh; overflow-y: auto; }
+.item-card { padding: 1rem 1.4rem; border-bottom: 1px solid var(--border); transition: background .15s; }
+.item-card:last-child { border-bottom: none; }
+.item-card:hover { background: var(--bg3); }
+.item-card-title { font-size: .92rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: .25rem; }
+.item-card-meta  { font-size: .78rem; color: var(--text3); display: flex; align-items: center; justify-content: space-between; gap: .5rem; margin-bottom: .45rem; }
+.item-badge      { font-size: .7rem; font-weight: 700; padding: .15rem .5rem; border-radius: 6px; background: rgba(212,25,32,.12); color: var(--red); white-space: nowrap; }
+.item-actions    { display: flex; gap: .4rem; flex-wrap: wrap; }
+.items-empty     { padding: 3rem 1.5rem; text-align: center; color: var(--text3); font-size: .9rem; }
+.count-badge     { background: var(--red); color: #fff; font-size: .72rem; font-weight: 700; padding: .18rem .55rem; border-radius: 20px; }
+
+/* Upload */
+.upload-zone {
+  border: 2px dashed rgba(56,189,248,.35); background: rgba(15,23,42,.7);
+  border-radius: 12px; padding: 1.75rem 1.25rem; text-align: center; cursor: pointer; transition: all .25s;
+}
+.upload-zone:hover { border-color: rgba(56,189,248,.7); }
+.upload-icon { font-size: 2rem; margin-bottom: .4rem; }
+.upload-text { color: #38bdf8; font-weight: 700; font-size: .95rem; margin-bottom: .2rem; }
+.upload-sub  { color: var(--text3); font-size: .78rem; }
+.img-preview { width: 100%; max-height: 180px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); }
+.img-preview-wrap { position: relative; }
+.img-remove-btn { position: absolute; top: -9px; right: -9px; background: #ef4444; color: #fff; border: none; border-radius: 50%; width: 26px; height: 26px; cursor: pointer; font-size: .85rem; font-weight: 700; }
+
+/* Quill */
+.quill-wrap { border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+.ql-toolbar.ql-snow   { background: var(--bg3); border: none; border-bottom: 1px solid var(--border); }
+.ql-container.ql-snow { background: var(--bg3); border: none; min-height: 260px; font-family: 'Inter', sans-serif; }
+.ql-editor { color: var(--text); min-height: 260px; }
+.ql-editor.ql-blank::before { color: var(--text3); font-style: normal; }
+.ql-snow .ql-stroke { stroke: var(--text2); }
+.ql-snow .ql-fill   { fill:   var(--text2); }
+.ql-snow .ql-picker  { color:  var(--text2); }
+.ql-snow .ql-picker-options { background: var(--bg3); border-color: var(--border); }
+
+/* Stars */
+.star-row { display: flex; gap: .25rem; }
+.star { font-size: 1.25rem; cursor: pointer; color: var(--text3); transition: color .15s; }
+.star.active { color: var(--orange); }
+
+/* Mode badge */
+.mode-badge { display: inline-block; font-size: .7rem; font-weight: 700; padding: .18rem .55rem; border-radius: 6px; text-transform: uppercase; letter-spacing: .4px; }
+.mode-new   { background: rgba(212,25,32,.15); color: var(--red); }
+.mode-edit  { background: rgba(26,60,255,.15);  color: var(--blue); }
+
+/* URL box */
+.url-box { background: rgba(34,197,94,.07); border: 1px solid rgba(34,197,94,.3); border-radius: 10px; padding: 1rem; margin-top: 1rem; display: none; }
+.url-box p { font-size: .78rem; color: var(--text3); margin-bottom: .35rem; }
+.url-box a { color: var(--green); font-size: .88rem; word-break: break-all; text-decoration: none; font-weight: 500; }
+
+/* Lead status */
+.lead-status-new  { color: var(--orange); font-weight: 600; }
+.lead-status-read { color: var(--text3); }
+
+/* Toast */
+.toast {
+  position: fixed; bottom: 2rem; right: 2rem;
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: .9rem 1.4rem; font-size: .92rem;
+  transform: translateY(100px); opacity: 0;
+  transition: all .35s cubic-bezier(.34,1.56,.64,1); z-index: 9999; max-width: 360px;
+}
+.toast.show   { transform: translateY(0); opacity: 1; }
+.toast.success{ border-color: var(--green); color: var(--green); }
+.toast.error  { border-color: #ef4444; color: #ef4444; }
+
+/* Sidebar overlay */
+.sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 140; }
+
+/* Settings */
+.settings-group { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 1.5rem; }
+.settings-group-title { font-size: .82rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--text3); padding: 1rem 1.4rem; border-bottom: 1px solid var(--border); background: var(--bg3); }
+.settings-body { padding: 1.4rem; }
+
+/* Responsive */
+@media(max-width:960px){ .section-grid{ grid-template-columns:1fr; } }
+@media(max-width:768px){
+  :root{ --sidebar-w: 0px; }
+  .sidebar { transform: translateX(-240px); width: 240px; }
+  .sidebar.open { transform: translateX(0); }
+  .sidebar-overlay.open { display: block; }
+  .main-content { margin-left: 0; }
+  .hamburger { display: flex; }
+  .stats-grid { grid-template-columns: repeat(2,1fr); }
+}
+@media(max-width:420px){ .stats-grid { grid-template-columns: 1fr; } .form-row { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- ─── LOGIN ─── -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">CO</div>
+    <h1 class="login-title">Master Admin</h1>
+    <p class="login-sub">Creative Oracle control panel — authorised access only</p>
+    <input type="password" id="pw-input" class="login-input" placeholder="Enter admin password" onkeydown="if(event.key==='Enter') doLogin()"/>
+    <button class="login-btn" onclick="doLogin()">Login &#x2192;</button>
+    <p class="login-error" id="login-err">&#10060; Incorrect password. Try again.</p>
+  </div>
+</div>
+
+<!-- ─── APP ─── -->
+<div id="app-screen">
+
+  <header class="app-header">
+    <div class="header-left">
+      <button class="hamburger" onclick="toggleSidebar()">&#9776;</button>
+      <div class="header-logo">CO</div>
+      <span class="header-title">Creative Oracle</span>
+      <span class="header-badge">Master Admin</span>
+    </div>
+    <div class="header-right">
+      <span id="current-time" style="font-size:.8rem;color:var(--text3);"></span>
+      <button class="logout-btn" onclick="doLogout()">Logout</button>
+    </div>
+  </header>
+
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-section-label">Overview</div>
+    <div class="nav-item active" data-tab="dashboard" onclick="switchTab('dashboard',this)">
+      <span class="nav-icon">&#128202;</span> Dashboard
+    </div>
+    <hr class="sidebar-divider"/>
+    <div class="sidebar-section-label">Content</div>
+    <div class="nav-item" data-tab="blog" onclick="switchTab('blog',this)">
+      <span class="nav-icon">&#9997;&#65039;</span> Blog Manager
+    </div>
+    <div class="nav-item" data-tab="testimonials" onclick="switchTab('testimonials',this)">
+      <span class="nav-icon">&#128172;</span> Testimonials
+    </div>
+    <div class="nav-item" data-tab="portfolio" onclick="switchTab('portfolio',this)">
+      <span class="nav-icon">&#128444;&#65039;</span> Portfolio
+    </div>
+    <div class="nav-item" data-tab="services" onclick="switchTab('services',this)">
+      <span class="nav-icon">&#127919;</span> Services
+    </div>
+    <hr class="sidebar-divider"/>
+    <div class="sidebar-section-label">CRM</div>
+    <div class="nav-item" data-tab="leads" onclick="switchTab('leads',this)">
+      <span class="nav-icon">&#128233;</span> Lead Inbox
+    </div>
+    <hr class="sidebar-divider"/>
+    <div class="sidebar-section-label">System</div>
+    <div class="nav-item" data-tab="settings" onclick="switchTab('settings',this)">
+      <span class="nav-icon">&#9881;&#65039;</span> Settings
+    </div>
+    <hr class="sidebar-divider"/>
+    <div class="sidebar-section-label">Growth</div>
+    <div class="nav-item" data-tab="seo" onclick="switchTab('seo',this)">
+      <span class="nav-icon">&#128269;</span> SEO Manager
+    </div>
+    <div class="nav-item" data-tab="analytics" onclick="switchTab('analytics',this)">
+      <span class="nav-icon">&#128200;</span> Analytics
+    </div>
+    <div class="nav-item" data-tab="calendly" onclick="switchTab('calendly',this)">
+      <span class="nav-icon">&#128197;</span> Calendly
+    </div>
+  </nav>
+
+  <main class="main-content">
+
+    <!-- DASHBOARD -->
+    <section class="tab-panel active" id="tab-dashboard">
+      <h1 class="page-title">Dashboard</h1>
+      <p class="page-sub">Live overview of your Creative Oracle website content.</p>
+      <div class="stats-grid">
+        <div class="stat-card red">
+          <span class="stat-icon">&#9997;&#65039;</span>
+          <span class="stat-value" id="stat-blogs">&#8212;</span>
+          <span class="stat-label">Blog Posts</span>
+        </div>
+        <div class="stat-card purple">
+          <span class="stat-icon">&#128172;</span>
+          <span class="stat-value" id="stat-testimonials">&#8212;</span>
+          <span class="stat-label">Testimonials</span>
+        </div>
+        <div class="stat-card blue">
+          <span class="stat-icon">&#128444;&#65039;</span>
+          <span class="stat-value" id="stat-portfolio">&#8212;</span>
+          <span class="stat-label">Portfolio Items</span>
+        </div>
+        <div class="stat-card green">
+          <span class="stat-icon">&#128233;</span>
+          <span class="stat-value" id="stat-leads">&#8212;</span>
+          <span class="stat-label">Total Leads</span>
+        </div>
+        <div class="stat-card orange">
+          <span class="stat-icon">&#128276;</span>
+          <span class="stat-value" id="stat-new-leads">&#8212;</span>
+          <span class="stat-label">New Leads</span>
+        </div>
+      </div>
+      <div class="quick-actions">
+        <button class="quick-btn" onclick="switchTab('blog',document.querySelector('[data-tab=blog]'))">&#9997;&#65039; Write Blog Post</button>
+        <button class="quick-btn" onclick="switchTab('testimonials',document.querySelector('[data-tab=testimonials]'))">&#128172; Add Testimonial</button>
+        <button class="quick-btn" onclick="switchTab('portfolio',document.querySelector('[data-tab=portfolio]'))">&#128444;&#65039; Add Project</button>
+        <button class="quick-btn" onclick="switchTab('leads',document.querySelector('[data-tab=leads]'))">&#128233; View Leads</button>
+      </div>
+      <div class="recent-table-wrap">
+        <div class="rtw-header">
+          <span class="rtw-title">Recent Blog Posts</span>
+          <button class="btn btn-secondary btn-sm" onclick="switchTab('blog',document.querySelector('[data-tab=blog]'))">View All &#8594;</button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="data-table">
+            <thead><tr><th>Title</th><th>Category</th><th>Published</th></tr></thead>
+            <tbody id="dash-blogs-table"><tr><td colspan="3" style="text-align:center;color:var(--text3)">Loading...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG -->
+    <section class="tab-panel" id="tab-blog">
+      <h1 class="page-title">Blog Manager</h1>
+      <p class="page-sub">Create, edit, and manage all blog posts.</p>
+      <div class="section-grid">
+        <div class="panel">
+          <div class="panel-header">
+            <span class="panel-title">
+              <span id="blog-mode-badge" class="mode-badge mode-new">New Post</span>
+              &nbsp;Write Blog Post
+            </span>
+            <button class="btn btn-secondary btn-sm" onclick="resetBlogForm()">&#10005; Clear</button>
+          </div>
+          <div class="panel-body">
+            <input type="hidden" id="editing-blog-id"/>
+            <div class="form-group">
+              <label class="form-label">Blog Title *</label>
+              <input type="text" id="blog-title" class="form-control" placeholder="e.g. 5 SEO Strategies That Actually Work in 2026"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">One-line Summary (SEO)</label>
+              <input type="text" id="blog-excerpt" class="form-control" placeholder="Short description shown on blog listing page..."/>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Category</label>
+                <select id="blog-category" class="form-control">
+                  <option value="MARKETING INSIGHTS">Marketing Insights</option>
+                  <option value="SEO">SEO</option>
+                  <option value="META ADS">Meta Ads</option>
+                  <option value="GOOGLE ADS">Google Ads</option>
+                  <option value="AI AUTOMATION">AI Automation</option>
+                  <option value="LEAD GENERATION">Lead Generation</option>
+                  <option value="WEB DESIGN">Web Design</option>
+                  <option value="BRANDING">Branding</option>
+                  <option value="AI CHATBOTS">AI Chatbots</option>
+                  <option value="DIGITAL MARKETING">Digital Marketing</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Read Time</label>
+                <input type="text" id="blog-readtime" class="form-control" placeholder="e.g. 5 min read"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Blog Image (Thumbnail &amp; Header)</label>
+              <div id="blog-upload-zone" class="upload-zone" onclick="document.getElementById('blog-img-file').click()">
+                <input type="file" id="blog-img-file" accept="image/*" style="display:none;" onchange="handleBlogImg(this)"/>
+                <input type="hidden" id="blog-image-val"/>
+                <div id="blog-upload-prompt">
+                  <div class="upload-icon">&#128247;</div>
+                  <p class="upload-text">Click to Upload Blog Image</p>
+                  <p class="upload-sub">Appears as thumbnail &amp; header</p>
+                </div>
+                <div id="blog-img-preview-wrap" class="img-preview-wrap" style="display:none;">
+                  <img id="blog-img-preview" src="" alt="Preview" class="img-preview"/>
+                  <button type="button" class="img-remove-btn" onclick="event.stopPropagation();removeBlogImg()">&#10005;</button>
+                </div>
+              </div>
+              <div style="margin-top:.4rem;text-align:right;">
+                <button type="button" onclick="toggleBlogUrlInput()" style="background:none;border:none;color:var(--text3);font-size:.75rem;cursor:pointer;text-decoration:underline;">Or paste URL instead</button>
+              </div>
+              <div id="blog-url-input-wrap" style="display:none;margin-top:.4rem;">
+                <input type="url" id="blog-img-url" class="form-control" placeholder="Paste image URL (Unsplash, Cloudinary...)" oninput="setBlogImgUrl(this.value)"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Content *</label>
+              <div class="quill-wrap">
+                <div id="blog-quill"></div>
+              </div>
+            </div>
+            <div class="url-box" id="blog-url-box">
+              <p>&#10003; Published! Live at:</p>
+              <a id="blog-url-link" href="#" target="_blank"></a>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:.6rem;margin-top:1.25rem;">
+              <button class="publish-btn" id="blog-publish-btn" onclick="publishBlog()">&#128640; Publish Blog Post</button>
+              <button class="btn btn-secondary btn-full" id="blog-update-btn" onclick="updateBlog()" style="display:none;">&#128190; Save Changes</button>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-header">
+            <div style="display:flex;align-items:center;gap:.6rem;">
+              <span class="panel-title">Published Posts</span>
+              <span class="count-badge" id="blog-count">0</span>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="seedDefaultBlogs()" style="color:var(--purple);border-color:var(--purple);">&#128229; Seed Blogs</button>
+          </div>
+          <div class="item-list" id="blog-list">
+            <div class="items-empty">No posts yet. Write your first post! &#9997;&#65039;</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="tab-panel" id="tab-testimonials">
+      <h1 class="page-title">Testimonials</h1>
+      <p class="page-sub">Manage client testimonials shown on the website.</p>
+      <div class="section-grid">
+        <div class="panel">
+          <div class="panel-header">
+            <span class="panel-title"><span id="testi-mode-badge" class="mode-badge mode-new">Add Testimonial</span></span>
+            <button class="btn btn-secondary btn-sm" onclick="resetTestiForm()">&#10005; Clear</button>
+          </div>
+          <div class="panel-body">
+            <input type="hidden" id="editing-testi-id"/>
+            <div class="form-group">
+              <label class="form-label">Client Name *</label>
+              <input type="text" id="testi-name" class="form-control" placeholder="e.g. Rahul Sharma"/>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Company / Role</label>
+                <input type="text" id="testi-company" class="form-control" placeholder="e.g. Founder, XYZ Pvt. Ltd."/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Avatar URL (optional)</label>
+                <input type="url" id="testi-avatar" class="form-control" placeholder="https://..."/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Rating</label>
+              <div class="star-row" id="star-row">
+                <span class="star active" onclick="setRating(1)">&#9733;</span>
+                <span class="star active" onclick="setRating(2)">&#9733;</span>
+                <span class="star active" onclick="setRating(3)">&#9733;</span>
+                <span class="star active" onclick="setRating(4)">&#9733;</span>
+                <span class="star active" onclick="setRating(5)">&#9733;</span>
+              </div>
+              <input type="hidden" id="testi-rating" value="5"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Testimonial Text *</label>
+              <textarea id="testi-text" class="form-control" rows="5" placeholder="What did the client say?..."></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Service Tag</label>
+              <select id="testi-tag" class="form-control">
+                <option value="">&#8212; None &#8212;</option>
+                <option value="Meta Ads">Meta Ads</option>
+                <option value="Google Ads">Google Ads</option>
+                <option value="SEO">SEO</option>
+                <option value="Web Design">Web Design</option>
+                <option value="AI Automation">AI Automation</option>
+                <option value="Lead Generation">Lead Generation</option>
+                <option value="Branding">Branding</option>
+              </select>
+            </div>
+            <button class="publish-btn" id="testi-save-btn" onclick="saveTesti()">&#128172; Add Testimonial</button>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-header">
+            <div style="display:flex;align-items:center;gap:.6rem;">
+              <span class="panel-title">Testimonials</span>
+              <span class="count-badge" id="testi-count">0</span>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="seedTestimonials()" style="color:var(--purple);border-color:var(--purple);">&#128229; Seed</button>
+          </div>
+          <div class="item-list" id="testi-list">
+            <div class="items-empty">No testimonials yet.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section class="tab-panel" id="tab-portfolio">
+      <h1 class="page-title">Portfolio</h1>
+      <p class="page-sub">Manage portfolio / case study projects.</p>
+      <div class="section-grid">
+        <div class="panel">
+          <div class="panel-header">
+            <span class="panel-title"><span id="port-mode-badge" class="mode-badge mode-new">Add Project</span></span>
+            <button class="btn btn-secondary btn-sm" onclick="resetPortForm()">&#10005; Clear</button>
+          </div>
+          <div class="panel-body">
+            <input type="hidden" id="editing-port-id"/>
+            <div class="form-group">
+              <label class="form-label">Project Title *</label>
+              <input type="text" id="port-title" class="form-control" placeholder="e.g. Urban Gabru &#8212; Meta Ads Campaign"/>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Category</label>
+                <select id="port-category" class="form-control">
+                  <option value="Web Design">Web Design</option>
+                  <option value="SEO">SEO</option>
+                  <option value="Meta Ads">Meta Ads</option>
+                  <option value="Google Ads">Google Ads</option>
+                  <option value="Branding">Branding</option>
+                  <option value="AI Automation">AI Automation</option>
+                  <option value="Lead Generation">Lead Generation</option>
+                  <option value="Social Media">Social Media</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Client Name</label>
+                <input type="text" id="port-client" class="form-control" placeholder="e.g. Urban Gabru"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Short Description</label>
+              <textarea id="port-desc" class="form-control" rows="3" placeholder="Brief description of the project and results..."></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Key Result / Metric</label>
+              <input type="text" id="port-result" class="form-control" placeholder="e.g. 4.2x ROAS, 320% more leads"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Project Image</label>
+              <div class="upload-zone" onclick="document.getElementById('port-img-file').click()">
+                <input type="file" id="port-img-file" accept="image/*" style="display:none;" onchange="handlePortImg(this)"/>
+                <input type="hidden" id="port-image-val"/>
+                <div id="port-upload-prompt">
+                  <div class="upload-icon">&#128444;&#65039;</div>
+                  <p class="upload-text">Click to Upload Project Image</p>
+                </div>
+                <div id="port-img-preview-wrap" class="img-preview-wrap" style="display:none;">
+                  <img id="port-img-preview" src="" alt="Preview" class="img-preview"/>
+                  <button type="button" class="img-remove-btn" onclick="event.stopPropagation();removePortImg()">&#10005;</button>
+                </div>
+              </div>
+              <input type="url" id="port-img-url" class="form-control" placeholder="Or paste image URL..." oninput="setPortImgUrl(this.value)" style="margin-top:.5rem;"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Case Study URL (optional)</label>
+              <input type="url" id="port-link" class="form-control" placeholder="https://creativeoracle.in/case-study-..."/>
+            </div>
+            <button class="publish-btn" id="port-save-btn" onclick="savePort()" style="margin-top:.5rem;">&#128444;&#65039; Save Project</button>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-header">
+            <div style="display:flex;align-items:center;gap:.6rem;">
+              <span class="panel-title">Projects</span>
+              <span class="count-badge" id="port-count">0</span>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="seedPortfolio()" style="color:var(--purple);border-color:var(--purple);">&#128229; Seed</button>
+          </div>
+          <div class="item-list" id="port-list">
+            <div class="items-empty">No projects yet.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="tab-panel" id="tab-services">
+      <h1 class="page-title">Services</h1>
+      <p class="page-sub">Manage the service cards shown across the site.</p>
+      <div class="section-grid">
+        <div class="panel">
+          <div class="panel-header">
+            <span class="panel-title"><span id="svc-mode-badge" class="mode-badge mode-new">Add Service</span></span>
+            <button class="btn btn-secondary btn-sm" onclick="resetSvcForm()">&#10005; Clear</button>
+          </div>
+          <div class="panel-body">
+            <input type="hidden" id="editing-svc-id"/>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Service Name *</label>
+                <input type="text" id="svc-title" class="form-control" placeholder="e.g. Meta Ads Management"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Icon (emoji)</label>
+                <input type="text" id="svc-icon" class="form-control" placeholder="e.g. &#128640;"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Short Description</label>
+              <textarea id="svc-desc" class="form-control" rows="3" placeholder="What does this service do?..."></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Key Features (one per line)</label>
+              <textarea id="svc-features" class="form-control" rows="4" placeholder="Data-driven targeting&#10;Creative A/B testing&#10;Weekly reporting..."></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Starting Price</label>
+                <input type="text" id="svc-price" class="form-control" placeholder="e.g. Rs 15,000 / mo"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">CTA Link</label>
+                <input type="text" id="svc-link" class="form-control" placeholder="/contact"/>
+              </div>
+            </div>
+            <button class="publish-btn" id="svc-save-btn" onclick="saveSvc()" style="margin-top:.5rem;">&#127919; Save Service</button>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-header">
+            <div style="display:flex;align-items:center;gap:.6rem;">
+              <span class="panel-title">Services</span>
+              <span class="count-badge" id="svc-count">0</span>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="seedServices()" style="color:var(--purple);border-color:var(--purple);">&#128229; Seed</button>
+          </div>
+          <div class="item-list" id="svc-list">
+            <div class="items-empty">No services yet. Click Seed to import defaults.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEADS -->
+    <section class="tab-panel" id="tab-leads">
+      <h1 class="page-title">Lead Inbox</h1>
+      <p class="page-sub">All contact form submissions from the website.</p>
+      <div class="panel">
+        <div class="panel-header">
+          <div style="display:flex;align-items:center;gap:.6rem;">
+            <span class="panel-title">Leads</span>
+            <span class="count-badge" id="leads-count">0</span>
+          </div>
+          <div style="display:flex;gap:.5rem;align-items:center;">
+            <select id="lead-filter" class="form-control" style="width:auto;font-size:.8rem;padding:.35rem .7rem;" onchange="loadLeads()">
+              <option value="all">All</option>
+              <option value="new">New Only</option>
+              <option value="read">Read Only</option>
+            </select>
+            <button class="btn btn-secondary btn-sm" onclick="loadLeads()">&#128260; Refresh</button>
+          </div>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="data-table">
+            <thead><tr><th>Name</th><th>Email / Phone</th><th>Service Interest</th><th>Message</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="leads-table">
+              <tr><td colspan="7" style="text-align:center;color:var(--text3);padding:3rem;">No leads yet. Wire your contact form to Firestore collection <code>leads</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section class="tab-panel" id="tab-settings">
+      <h1 class="page-title">Settings</h1>
+      <p class="page-sub">Site-wide configuration stored in Firestore.</p>
+
+      <div class="settings-group">
+        <div class="settings-group-title">&#128274; Admin Password</div>
+        <div class="settings-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">New Password</label>
+              <input type="password" id="new-pw" class="form-control" placeholder="Enter new password"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Confirm Password</label>
+              <input type="password" id="confirm-pw" class="form-control" placeholder="Re-enter new password"/>
+            </div>
+          </div>
+          <button class="btn btn-primary" onclick="changePassword()">&#128274; Update Password</button>
+          <p style="font-size:.78rem;color:var(--text3);margin-top:.6rem;">Password is stored in Firestore. Log out and back in to test the new password.</p>
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <div class="settings-group-title">&#128222; Contact Information</div>
+        <div class="settings-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Phone</label>
+              <input type="text" id="set-phone" class="form-control" placeholder="+91 98765 43210"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" id="set-email" class="form-control" placeholder="hello@creativeoracle.in"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Address</label>
+            <input type="text" id="set-address" class="form-control" placeholder="City, State, India"/>
+          </div>
+          <button class="btn btn-primary" onclick="saveSettings()">&#128190; Save Contact Info</button>
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <div class="settings-group-title">&#128279; Social Media Links</div>
+        <div class="settings-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Instagram</label>
+              <input type="url" id="set-instagram" class="form-control" placeholder="https://instagram.com/..."/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Facebook</label>
+              <input type="url" id="set-facebook" class="form-control" placeholder="https://facebook.com/..."/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">LinkedIn</label>
+              <input type="url" id="set-linkedin" class="form-control" placeholder="https://linkedin.com/..."/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">WhatsApp Number</label>
+              <input type="text" id="set-whatsapp" class="form-control" placeholder="919876543210"/>
+            </div>
+          </div>
+          <button class="btn btn-primary" onclick="saveSettings()">&#128190; Save Social Links</button>
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <div class="settings-group-title">&#127760; Site Meta</div>
+        <div class="settings-body">
+          <div class="form-group">
+            <label class="form-label">Default Meta Description</label>
+            <textarea id="set-meta-desc" class="form-control" rows="3" placeholder="Creative Oracle is a premier performance digital marketing agency..."></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">GA4 Measurement ID</label>
+              <input type="text" id="set-ga4" class="form-control" placeholder="G-XXXXXXXXXX"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">GTM Container ID</label>
+              <input type="text" id="set-gtm" class="form-control" placeholder="GTM-XXXXXXX"/>
+            </div>
+          </div>
+          <button class="btn btn-primary" onclick="saveSettings()">&#128190; Save Meta Settings</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════ SEO MANAGER ════════ -->
+    <section class="tab-panel" id="tab-seo">
+      <h1 class="page-title">SEO Manager</h1>
+      <p class="page-sub">Edit meta tags, preview Google snippets, and audit each page's SEO.</p>
+
+      <div class="section-grid">
+        <!-- Editor -->
+        <div class="panel">
+          <div class="panel-header">
+            <span class="panel-title"><span id="seo-mode-badge" class="mode-badge mode-new">Edit Page SEO</span></span>
+            <button class="btn btn-secondary btn-sm" onclick="resetSeoForm()">&#10005; Clear</button>
+          </div>
+          <div class="panel-body">
+            <input type="hidden" id="editing-seo-slug"/>
+
+            <div class="form-group">
+              <label class="form-label">Select Page</label>
+              <select id="seo-page-select" class="form-control" onchange="onSeoPageSelect(this.value)">
+                <option value="">&#8212; Choose a page &#8212;</option>
+                <option value="home">Home (index.html)</option>
+                <option value="about">About</option>
+                <option value="services">Services</option>
+                <option value="blog">Blog</option>
+                <option value="contact">Contact</option>
+                <option value="portfolio">Portfolio</option>
+                <option value="pricing">Pricing</option>
+                <option value="seo">SEO Service Page</option>
+                <option value="web-development">Web Development</option>
+                <option value="ads-management">Ads Management</option>
+                <option value="lead-generation">Lead Generation</option>
+                <option value="social-media">Social Media</option>
+                <option value="ai-chatbots">AI Chatbots</option>
+                <option value="workflow-automation">Workflow Automation</option>
+                <option value="custom-ai-solutions">Custom AI Solutions</option>
+                <option value="ecommerce-solutions">E-Commerce Solutions</option>
+                <option value="cold-email">Cold Email</option>
+                <option value="faq">FAQ</option>
+                <option value="privacy-policy">Privacy Policy</option>
+                <option value="terms-conditions">Terms &amp; Conditions</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                Meta Title *
+                <span id="seo-title-count" style="float:right;color:var(--text3);font-weight:400;">0 / 60</span>
+              </label>
+              <input type="text" id="seo-title" class="form-control" maxlength="70"
+                placeholder="e.g. Creative Oracle | Premier Digital Marketing Agency"
+                oninput="updateSeoCounters()"/>
+              <div id="seo-title-bar" style="height:4px;background:var(--bg3);border-radius:2px;margin-top:.4rem;overflow:hidden;">
+                <div id="seo-title-fill" style="height:100%;background:var(--green);width:0%;transition:width .2s,background .2s;border-radius:2px;"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                Meta Description *
+                <span id="seo-desc-count" style="float:right;color:var(--text3);font-weight:400;">0 / 160</span>
+              </label>
+              <textarea id="seo-desc" class="form-control" rows="3" maxlength="180"
+                placeholder="e.g. Creative Oracle is a premier performance digital marketing agency..."
+                oninput="updateSeoCounters()"></textarea>
+              <div id="seo-desc-bar" style="height:4px;background:var(--bg3);border-radius:2px;margin-top:.4rem;overflow:hidden;">
+                <div id="seo-desc-fill" style="height:100%;background:var(--green);width:0%;transition:width .2s,background .2s;border-radius:2px;"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Keywords (comma-separated)</label>
+              <input type="text" id="seo-keywords" class="form-control" placeholder="digital marketing agency, SEO services, Meta Ads India"/>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Canonical URL</label>
+                <input type="url" id="seo-canonical" class="form-control" placeholder="https://creativeoracle.in/"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Robots</label>
+                <select id="seo-robots" class="form-control">
+                  <option value="index, follow">index, follow (default)</option>
+                  <option value="noindex, nofollow">noindex, nofollow (hide from Google)</option>
+                  <option value="index, nofollow">index, nofollow</option>
+                  <option value="noindex, follow">noindex, follow</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">OG / Social Title</label>
+              <input type="text" id="seo-og-title" class="form-control" placeholder="Defaults to meta title if left blank"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">OG / Social Description</label>
+              <textarea id="seo-og-desc" class="form-control" rows="2" placeholder="Defaults to meta description if left blank"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">OG Image URL</label>
+              <input type="url" id="seo-og-image" class="form-control" placeholder="https://creativeoracle.in/assets/logo_cropped.png"/>
+            </div>
+
+            <!-- Google Snippet Preview -->
+            <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:1.25rem;margin-bottom:1.25rem;">
+              <div style="font-size:.78rem;color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-bottom:.75rem;">&#128269; Google Snippet Preview</div>
+              <div style="font-size:.8rem;color:var(--green);margin-bottom:.2rem;" id="seo-preview-url">https://creativeoracle.in/</div>
+              <div style="font-size:1.1rem;color:#4e90f0;margin-bottom:.25rem;font-weight:500;line-height:1.3;" id="seo-preview-title">Your page title will appear here</div>
+              <div style="font-size:.85rem;color:var(--text2);line-height:1.5;" id="seo-preview-desc">Your meta description will appear here. Make it compelling to improve click-through rates.</div>
+            </div>
+
+            <!-- SEO Checklist -->
+            <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:1.25rem;margin-bottom:1.25rem;">
+              <div style="font-size:.78rem;color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-bottom:.75rem;">&#9989; SEO Checklist</div>
+              <div id="seo-checklist" style="display:flex;flex-direction:column;gap:.4rem;font-size:.85rem;"></div>
+            </div>
+
+            <button class="publish-btn" id="seo-save-btn" onclick="saveSeo()">&#128190; Save SEO Settings</button>
+
+            <!-- Generated Code -->
+            <div id="seo-code-wrap" style="display:none;margin-top:1.25rem;">
+              <div style="font-size:.78rem;color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-bottom:.5rem;">&#128203; Generated Meta Tags (copy into your HTML &lt;head&gt;)</div>
+              <textarea id="seo-generated-code" class="form-control" rows="10" readonly style="font-family:monospace;font-size:.78rem;"></textarea>
+              <button class="btn btn-secondary btn-full" style="margin-top:.5rem;" onclick="copySeoCode()">&#128203; Copy to Clipboard</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pages list -->
+        <div class="panel">
+          <div class="panel-header">
+            <div style="display:flex;align-items:center;gap:.6rem;">
+              <span class="panel-title">Pages SEO Status</span>
+              <span class="count-badge" id="seo-count">0</span>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="loadSeoList()">&#128260; Refresh</button>
+          </div>
+          <div class="item-list" id="seo-list">
+            <div class="items-empty">Select a page and save its SEO settings.</div>
+          </div>
+
+          <!-- Quick SEO Tips -->
+          <div style="padding:1.25rem;border-top:1px solid var(--border);">
+            <div style="font-size:.78rem;color:var(--text3);font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:.75rem;">&#128161; Quick SEO Tips</div>
+            <div style="font-size:.8rem;color:var(--text2);display:flex;flex-direction:column;gap:.5rem;">
+              <div>&#10003; Title: 50&#8211;60 chars, include primary keyword</div>
+              <div>&#10003; Description: 140&#8211;160 chars, include CTA</div>
+              <div>&#10003; Every page needs a unique title &amp; description</div>
+              <div>&#10003; Use HTTPS canonical URLs</div>
+              <div>&#10003; OG image: 1200x630px recommended</div>
+              <div>&#10003; Submit sitemap to Google Search Console</div>
+            </div>
+            <div style="margin-top:1rem;display:flex;flex-direction:column;gap:.4rem;">
+              <a href="https://search.google.com/search-console" target="_blank" class="btn btn-secondary btn-sm" style="text-decoration:none;text-align:center;">&#128269; Google Search Console</a>
+              <a href="https://pagespeed.web.dev/" target="_blank" class="btn btn-secondary btn-sm" style="text-decoration:none;text-align:center;">&#9889; PageSpeed Insights</a>
+              <a href="https://www.google.com/webmasters/tools/richresults" target="_blank" class="btn btn-secondary btn-sm" style="text-decoration:none;text-align:center;">&#128196; Rich Results Test</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════ ANALYTICS ════════ -->
+    <section class="tab-panel" id="tab-analytics">
+      <h1 class="page-title">Analytics</h1>
+      <p class="page-sub">View your website performance at a glance.</p>
+
+      <!-- Quick links -->
+      <div class="stats-grid" style="margin-bottom:1.5rem;">
+        <a href="https://analytics.google.com/analytics/web/#/p" target="_blank" style="text-decoration:none;">
+          <div class="stat-card blue" style="cursor:pointer;transition:transform .18s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform=''">
+            <span class="stat-icon">&#128202;</span>
+            <span class="stat-value" style="font-size:1.1rem;">GA4</span>
+            <span class="stat-label">Google Analytics 4</span>
+          </div>
+        </a>
+        <a href="https://search.google.com/search-console" target="_blank" style="text-decoration:none;">
+          <div class="stat-card green" style="cursor:pointer;transition:transform .18s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform=''">
+            <span class="stat-icon">&#128269;</span>
+            <span class="stat-value" style="font-size:1.1rem;">GSC</span>
+            <span class="stat-label">Search Console</span>
+          </div>
+        </a>
+        <a href="https://clarity.microsoft.com/" target="_blank" style="text-decoration:none;">
+          <div class="stat-card purple" style="cursor:pointer;transition:transform .18s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform=''">
+            <span class="stat-icon">&#128065;</span>
+            <span class="stat-value" style="font-size:1.1rem;">Clarity</span>
+            <span class="stat-label">Microsoft Clarity</span>
+          </div>
+        </a>
+        <a href="https://tagmanager.google.com/" target="_blank" style="text-decoration:none;">
+          <div class="stat-card orange" style="cursor:pointer;transition:transform .18s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform=''">
+            <span class="stat-icon">&#127991;</span>
+            <span class="stat-value" style="font-size:1.1rem;">GTM</span>
+            <span class="stat-label">Tag Manager</span>
+          </div>
+        </a>
+        <a href="https://pagespeed.web.dev/analysis/https-creativeoracle-in" target="_blank" style="text-decoration:none;">
+          <div class="stat-card red" style="cursor:pointer;transition:transform .18s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform=''">
+            <span class="stat-icon">&#9889;</span>
+            <span class="stat-value" style="font-size:1.1rem;">Speed</span>
+            <span class="stat-label">PageSpeed Insights</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Embed dashboard -->
+      <div class="panel" style="margin-bottom:1.5rem;">
+        <div class="panel-header">
+          <span class="panel-title">&#128200; Embedded Analytics Dashboard</span>
+          <div style="display:flex;gap:.5rem;align-items:center;">
+            <button class="btn btn-secondary btn-sm" onclick="saveAnalyticsEmbed()">&#128190; Save</button>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="form-group">
+            <label class="form-label">Looker Studio / GA4 Embed URL</label>
+            <input type="url" id="analytics-embed-url" class="form-control"
+              placeholder="Paste your Looker Studio embed URL or Google Analytics embed link..."/>
+            <p style="font-size:.78rem;color:var(--text3);margin-top:.4rem;">
+              &#128161; In Looker Studio: Share &#8594; Embed Report &#8594; copy the src URL from the &lt;iframe&gt; code.
+            </p>
+          </div>
+          <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:1rem;">
+            <button class="btn btn-primary" onclick="loadAnalyticsEmbed()">&#128200; Load Dashboard</button>
+            <a href="https://lookerstudio.google.com/" target="_blank" class="btn btn-secondary" style="text-decoration:none;">&#43; Create Looker Studio Report</a>
+          </div>
+
+          <div id="analytics-embed-container" style="display:none;border-radius:12px;overflow:hidden;border:1px solid var(--border);">
+            <iframe id="analytics-iframe" src="" width="100%" height="600" frameborder="0" allowfullscreen
+              style="display:block;border:none;"></iframe>
+          </div>
+          <div id="analytics-embed-placeholder" style="background:var(--bg3);border:2px dashed var(--border);border-radius:12px;padding:3rem;text-align:center;color:var(--text3);">
+            <div style="font-size:2.5rem;margin-bottom:.75rem;">&#128200;</div>
+            <p style="font-weight:600;color:var(--text2);margin-bottom:.4rem;">Paste your Looker Studio embed URL above</p>
+            <p style="font-size:.85rem;">Your analytics dashboard will appear here</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Manual KPI tracker -->
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title">&#128203; Manual KPI Snapshot</span>
+          <button class="btn btn-primary btn-sm" onclick="saveKpis()">&#128190; Save KPIs</button>
+        </div>
+        <div class="panel-body">
+          <p style="font-size:.82rem;color:var(--text3);margin-bottom:1.25rem;">Record your key metrics manually. These are saved to Firestore for reference.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;">
+            <div class="form-group" style="margin:0;">
+              <label class="form-label">Monthly Visitors</label>
+              <input type="number" id="kpi-visitors" class="form-control" placeholder="e.g. 5200"/>
+            </div>
+            <div class="form-group" style="margin:0;">
+              <label class="form-label">Monthly Leads</label>
+              <input type="number" id="kpi-leads" class="form-control" placeholder="e.g. 38"/>
+            </div>
+            <div class="form-group" style="margin:0;">
+              <label class="form-label">Avg. Session (min)</label>
+              <input type="number" id="kpi-session" class="form-control" placeholder="e.g. 2.4" step="0.1"/>
+            </div>
+            <div class="form-group" style="margin:0;">
+              <label class="form-label">Bounce Rate (%)</label>
+              <input type="number" id="kpi-bounce" class="form-control" placeholder="e.g. 42" step="0.1"/>
+            </div>
+            <div class="form-group" style="margin:0;">
+              <label class="form-label">Top Organic Keyword</label>
+              <input type="text" id="kpi-keyword" class="form-control" placeholder="e.g. digital marketing agency Delhi"/>
+            </div>
+            <div class="form-group" style="margin:0;">
+              <label class="form-label">Google Ranking (keyword)</label>
+              <input type="text" id="kpi-rank" class="form-control" placeholder="e.g. #4 Page 1"/>
+            </div>
+          </div>
+          <div style="margin-top:1rem;" id="kpi-saved-display"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════ CALENDLY ════════ -->
+    <section class="tab-panel" id="tab-calendly">
+      <h1 class="page-title">Calendly</h1>
+      <p class="page-sub">Manage your booking links and generate shareable client links.</p>
+
+      <div class="section-grid">
+        <!-- Left: Setup -->
+        <div style="display:flex;flex-direction:column;gap:1.5rem;">
+
+          <!-- Main Calendly URL -->
+          <div class="panel">
+            <div class="panel-header">
+              <span class="panel-title">&#128279; Your Calendly URL</span>
+              <button class="btn btn-primary btn-sm" onclick="saveCalendlySettings()">&#128190; Save</button>
+            </div>
+            <div class="panel-body">
+              <div class="form-group">
+                <label class="form-label">Calendly Username / Profile URL</label>
+                <input type="url" id="cal-main-url" class="form-control"
+                  placeholder="https://calendly.com/yourname"
+                  oninput="updateCalendlyPreviews()"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Your Name (shown to clients)</label>
+                <input type="text" id="cal-host-name" class="form-control" placeholder="Priyansh — Creative Oracle"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Custom Message for Clients</label>
+                <textarea id="cal-message" class="form-control" rows="3"
+                  placeholder="Book a free 30-min strategy call with us. We'll audit your digital presence and suggest a growth plan."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Meeting types -->
+          <div class="panel">
+            <div class="panel-header">
+              <span class="panel-title">&#128198; Meeting Types</span>
+              <button class="btn btn-primary btn-sm" onclick="addMeetingType()">&#43; Add</button>
+            </div>
+            <div class="panel-body">
+              <div id="meeting-types-list" style="display:flex;flex-direction:column;gap:.75rem;">
+                <!-- populated by JS -->
+              </div>
+              <div id="meeting-type-form" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);display:none;">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label">Meeting Name</label>
+                    <input type="text" id="mt-name" class="form-control" placeholder="Free Strategy Call"/>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Duration</label>
+                    <input type="text" id="mt-duration" class="form-control" placeholder="30 min"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Calendly Event URL</label>
+                  <input type="url" id="mt-url" class="form-control" placeholder="https://calendly.com/yourname/free-call"/>
+                </div>
+                <div style="display:flex;gap:.5rem;">
+                  <button class="btn btn-primary" onclick="saveMeetingType()">&#128190; Save Meeting</button>
+                  <button class="btn btn-secondary" onclick="cancelMeetingType()">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Share widget -->
+          <div class="panel">
+            <div class="panel-header"><span class="panel-title">&#128279; Shareable Client Links</span></div>
+            <div class="panel-body" id="share-links-body">
+              <div class="items-empty" style="padding:1rem;">Save your Calendly URL first to generate links.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: Preview + Embed -->
+        <div style="display:flex;flex-direction:column;gap:1.5rem;">
+
+          <!-- Embed preview -->
+          <div class="panel">
+            <div class="panel-header">
+              <span class="panel-title">&#128064; Live Widget Preview</span>
+              <button class="btn btn-secondary btn-sm" onclick="refreshCalPreview()">&#128260; Refresh</button>
+            </div>
+            <div class="panel-body" style="padding:0;">
+              <div id="cal-preview-container" style="min-height:400px;background:var(--bg3);border-radius:0 0 16px 16px;display:flex;align-items:center;justify-content:center;">
+                <div style="text-align:center;color:var(--text3);">
+                  <div style="font-size:2rem;margin-bottom:.5rem;">&#128197;</div>
+                  <p>Enter your Calendly URL to preview the booking widget</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Embed code -->
+          <div class="panel">
+            <div class="panel-header"><span class="panel-title">&#128203; Embed Code</span></div>
+            <div class="panel-body">
+              <p style="font-size:.82rem;color:var(--text3);margin-bottom:.75rem;">Copy this code to embed the booking widget on any webpage:</p>
+              <textarea id="cal-embed-code" class="form-control" rows="6" readonly style="font-family:monospace;font-size:.75rem;">Enter your Calendly URL above to generate embed code.</textarea>
+              <button class="btn btn-secondary btn-full" style="margin-top:.5rem;" onclick="copyCalEmbed()">&#128203; Copy Embed Code</button>
+            </div>
+          </div>
+
+          <!-- Client booking page -->
+          <div class="panel">
+            <div class="panel-header"><span class="panel-title">&#128196; Client Booking Page</span></div>
+            <div class="panel-body">
+              <p style="font-size:.82rem;color:var(--text3);margin-bottom:.75rem;">Share this direct booking link with your clients via WhatsApp, email, or social:</p>
+              <div id="cal-share-box" style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:1rem;margin-bottom:.75rem;">
+                <div style="font-size:.78rem;color:var(--text3);margin-bottom:.35rem;">Direct booking link:</div>
+                <div id="cal-share-url" style="color:var(--blue);font-size:.9rem;word-break:break-all;font-weight:500;">—</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:.5rem;">
+                <button class="btn btn-primary btn-full" onclick="copyCalLink()">&#128203; Copy Booking Link</button>
+                <button class="btn btn-secondary btn-full" onclick="shareViaWhatsApp()">&#128242; Share via WhatsApp</button>
+                <button class="btn btn-secondary btn-full" onclick="openCalLink()">&#128064; Preview Booking Page</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+<script type="module">
+import { initializeApp }    from 'https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js';
+import {
+  getFirestore, collection, addDoc, getDocs, getDoc, doc,
+  updateDoc, deleteDoc, serverTimestamp, orderBy, query,
+  where, setDoc
+} from 'https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js';
+
+const firebaseConfig = {
+  apiKey:            "AIzaSyD-Vdf5BJXxPzzjXWDzsZi2mOpc_w8E_Ic",
+  authDomain:        "creative-oracle.firebaseapp.com",
+  projectId:         "creative-oracle",
+  storageBucket:     "creative-oracle.firebasestorage.app",
+  messagingSenderId: "81799914862",
+  appId:             "1:81799914862:web:1b7b4fd83560bf20448d7f"
+};
+const app = initializeApp(firebaseConfig);
+const db  = getFirestore(app);
+
+let ADMIN_PASSWORD = "CO@admin2026";
+
+/* ── QUILL ── */
+const quill = new Quill('#blog-quill', {
+  theme: 'snow',
+  placeholder: 'Write your blog content here...',
+  modules: {
+    toolbar: [
+      [{ header: [2,3,false] }],
+      ['bold','italic','underline'],
+      [{ list:'ordered' },{ list:'bullet' }],
+      ['link','blockquote'],
+      ['clean']
+    ]
+  }
+});
+window.quill = quill;
+
+/* ── CLOCK ── */
+setInterval(() => {
+  const el = document.getElementById('current-time');
+  if (el) el.textContent = new Date().toLocaleTimeString('en-IN');
+}, 1000);
+
+/* ── TOAST ── */
+window.showToast = function(msg, type='success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast ' + type + ' show';
+  setTimeout(() => { t.className = 'toast'; }, 3500);
+};
+
+/* ── LOGIN ── */
+window.doLogin = async function() {
+  const pw = document.getElementById('pw-input').value;
+  try {
+    const snap = await getDoc(doc(db,'settings','admin'));
+    if (snap.exists() && snap.data().password) ADMIN_PASSWORD = snap.data().password;
+  } catch(_) {}
+  if (pw === ADMIN_PASSWORD) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app-screen').style.display   = 'block';
+    loadDashboard();
+  } else {
+    document.getElementById('login-err').style.display = 'block';
+  }
+};
+window.doLogout = function() {
+  document.getElementById('app-screen').style.display   = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('pw-input').value = '';
+  document.getElementById('login-err').style.display = 'none';
+};
+
+/* ── TAB / SIDEBAR ── */
+window.switchTab = function(tabId, navEl) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  if (navEl) navEl.classList.add('active');
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('open');
+  if (tabId === 'dashboard')    loadDashboard();
+  if (tabId === 'blog')         loadBlogs();
+  if (tabId === 'testimonials') loadTestis();
+  if (tabId === 'portfolio')    loadPorts();
+  if (tabId === 'services')     loadSvcs();
+  if (tabId === 'leads')        loadLeads();
+  if (tabId === 'settings')     loadSettings();
+  if (tabId === 'seo')          loadSeoList();
+  if (tabId === 'analytics')    loadAnalyticsTab();
+  if (tabId === 'calendly')     loadCalendlyTab();
+};
+window.toggleSidebar = function() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebar-overlay').classList.toggle('open');
+};
+
+/* ══════════ DASHBOARD ══════════ */
+async function loadDashboard() {
+  try {
+    const [bSnap, tSnap, pSnap, lSnap] = await Promise.all([
+      getDocs(collection(db,'blogs')).catch(()=>({size:0,forEach:()=>{}})),
+      getDocs(collection(db,'testimonials')).catch(()=>({size:0,forEach:()=>{}})),
+      getDocs(collection(db,'portfolio')).catch(()=>({size:0,forEach:()=>{}})),
+      getDocs(collection(db,'leads')).catch(()=>({size:0,forEach:()=>{}}))
+    ]);
+    document.getElementById('stat-blogs').textContent        = bSnap.size || 0;
+    document.getElementById('stat-testimonials').textContent = tSnap.size || 0;
+    document.getElementById('stat-portfolio').textContent    = pSnap.size || 0;
+    document.getElementById('stat-leads').textContent        = lSnap.size || 0;
+    let newL = 0;
+    lSnap.forEach(d => { if (d.data().status === 'new') newL++; });
+    document.getElementById('stat-new-leads').textContent = newL;
+    const tbody = document.getElementById('dash-blogs-table');
+    tbody.innerHTML = '';
+    const recent = [];
+    bSnap.forEach(d => recent.push({id:d.id,...d.data()}));
+    recent.sort((a,b) => (b.publishedAt && b.publishedAt.seconds||0) - (a.publishedAt && a.publishedAt.seconds||0));
+    recent.slice(0,8).forEach(b => {
+      const date = b.publishedAt && b.publishedAt.toDate ? b.publishedAt.toDate().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}) : 'Recent';
+      tbody.innerHTML += '<tr><td style="color:var(--text);font-weight:500;">' + (b.title||'Untitled') + '</td><td><span class="item-badge">' + (b.category||'') + '</span></td><td>' + date + '</td></tr>';
+    });
+    if (!recent.length) tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;color:var(--text3);padding:2rem;">No blog posts yet.</td></tr>';
+  } catch(err) { console.error(err); }
+}
+
+/* ══════════ BLOG ══════════ */
+window.resetBlogForm = function() {
+  document.getElementById('editing-blog-id').value = '';
+  ['blog-title','blog-excerpt','blog-readtime'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('blog-category').value  = 'MARKETING INSIGHTS';
+  document.getElementById('blog-image-val').value = '';
+  removeBlogImg();
+  quill.setContents([]);
+  document.getElementById('blog-url-box').style.display    = 'none';
+  document.getElementById('blog-publish-btn').style.display = 'block';
+  document.getElementById('blog-update-btn').style.display  = 'none';
+  document.getElementById('blog-mode-badge').className      = 'mode-badge mode-new';
+  document.getElementById('blog-mode-badge').textContent    = 'New Post';
+};
+window.handleBlogImg = function(input) {
+  const file = input.files[0]; if (!file) return;
+  if (!file.type.startsWith('image/')) { showToast('Please select a valid image!','error'); return; }
+  showToast('Processing image...');
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      let w = img.width, h = img.height;
+      if (w > 1200) { h = Math.round(h * 1200 / w); w = 1200; }
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img,0,0,w,h);
+      const url = canvas.toDataURL('image/jpeg', 0.85);
+      document.getElementById('blog-image-val').value = url;
+      showBlogImgPreview(url);
+      showToast('Image ready!');
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+};
+function showBlogImgPreview(url) {
+  document.getElementById('blog-upload-prompt').style.display    = url ? 'none' : 'block';
+  document.getElementById('blog-img-preview-wrap').style.display = url ? 'block' : 'none';
+  if (url) document.getElementById('blog-img-preview').src = url;
+}
+window.removeBlogImg = function() {
+  document.getElementById('blog-image-val').value = '';
+  const f = document.getElementById('blog-img-file'); if (f) f.value = '';
+  const u = document.getElementById('blog-img-url');  if (u) u.value = '';
+  showBlogImgPreview('');
+};
+window.toggleBlogUrlInput = function() {
+  const w = document.getElementById('blog-url-input-wrap');
+  w.style.display = w.style.display === 'none' ? 'block' : 'none';
+};
+window.setBlogImgUrl = function(url) {
+  document.getElementById('blog-image-val').value = url;
+  showBlogImgPreview(url);
+};
+window.publishBlog = async function() {
+  const title   = document.getElementById('blog-title').value.trim();
+  const content = quill.root.innerHTML.trim();
+  if (!title)   { showToast('Please enter a title!','error'); return; }
+  if (!content || content === '<p><br></p>') { showToast('Please write some content!','error'); return; }
+  const btn = document.getElementById('blog-publish-btn');
+  btn.disabled = true; btn.textContent = 'Publishing...';
+  try {
+    const docRef = await addDoc(collection(db,'blogs'), {
+      title, excerpt: document.getElementById('blog-excerpt').value.trim(),
+      category: document.getElementById('blog-category').value,
+      imageUrl: document.getElementById('blog-image-val').value.trim(),
+      readTime: document.getElementById('blog-readtime').value.trim() || '5 min read',
+      content, publishedAt: serverTimestamp(), status: 'published'
+    });
+    const liveUrl = window.location.origin + '/blog-post.html?id=' + docRef.id;
+    document.getElementById('blog-url-box').style.display = 'block';
+    document.getElementById('blog-url-link').href = liveUrl;
+    document.getElementById('blog-url-link').textContent = liveUrl;
+    showToast('Blog post published!'); loadBlogs();
+  } catch(err) { showToast('Error: ' + err.message,'error'); }
+  finally { btn.disabled = false; btn.textContent = 'Publish Blog Post'; }
+};
+window.updateBlog = async function() {
+  const id = document.getElementById('editing-blog-id').value;
+  const title = document.getElementById('blog-title').value.trim();
+  if (!id || !title) { showToast('Title required!','error'); return; }
+  const btn = document.getElementById('blog-update-btn');
+  btn.disabled = true; btn.textContent = 'Saving...';
+  try {
+    await updateDoc(doc(db,'blogs',id), {
+      title, excerpt: document.getElementById('blog-excerpt').value.trim(),
+      category: document.getElementById('blog-category').value,
+      imageUrl: document.getElementById('blog-image-val').value.trim(),
+      readTime: document.getElementById('blog-readtime').value.trim() || '5 min read',
+      content: quill.root.innerHTML.trim()
+    });
+    showToast('Post updated!'); resetBlogForm(); loadBlogs();
+  } catch(err) { showToast('Error: '+err.message,'error'); }
+  finally { btn.disabled = false; btn.textContent = 'Save Changes'; }
+};
+async function loadBlogs() {
+  const listEl = document.getElementById('blog-list');
+  listEl.innerHTML = '<div class="items-empty">Loading...</div>';
+  try {
+    const snap = await getDocs(query(collection(db,'blogs'), orderBy('publishedAt','desc')));
+    document.getElementById('blog-count').textContent = snap.size;
+    if (snap.empty) { listEl.innerHTML = '<div class="items-empty">No posts yet. Write your first post!</div>'; return; }
+    listEl.innerHTML = '';
+    snap.forEach(ds => {
+      const p = ds.data(), id = ds.id;
+      const date = p.publishedAt && p.publishedAt.toDate ? p.publishedAt.toDate().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}) : 'Recent';
+      const card = document.createElement('div');
+      card.className = 'item-card';
+      card.innerHTML = '<div class="item-card-title">' + (p.title||'Untitled') + '</div>'
+        + '<div class="item-card-meta"><span>' + date + '</span><span class="item-badge">' + (p.category||'') + '</span></div>'
+        + '<div class="item-actions">'
+        + '<button class="btn btn-success btn-sm" onclick="window.open(\'/blog-post.html?id=' + id + '\',\'_blank\')">View</button>'
+        + '<button class="btn btn-secondary btn-sm" onclick="editBlog(\'' + id + '\')">Edit</button>'
+        + '<button class="btn btn-danger btn-sm" onclick="deleteBlog(\'' + id + '\')">Delete</button>'
+        + '</div>';
+      listEl.appendChild(card);
+    });
+  } catch(err) { listEl.innerHTML = '<div class="items-empty">Error: ' + err.message + '</div>'; }
+}
+window.editBlog = async function(id) {
+  try {
+    const ds = await getDoc(doc(db,'blogs',id));
+    if (!ds.exists()) { showToast('Post not found','error'); return; }
+    const p = ds.data();
+    document.getElementById('editing-blog-id').value = id;
+    document.getElementById('blog-title').value    = p.title    || '';
+    document.getElementById('blog-excerpt').value  = p.excerpt  || '';
+    document.getElementById('blog-readtime').value = p.readTime || '';
+    document.getElementById('blog-category').value = p.category || 'MARKETING INSIGHTS';
+    const img = p.imageUrl || p.coverImage || '';
+    document.getElementById('blog-image-val').value = img;
+    if (img) showBlogImgPreview(img);
+    quill.root.innerHTML = p.content || '';
+    document.getElementById('blog-url-box').style.display    = 'none';
+    document.getElementById('blog-publish-btn').style.display = 'none';
+    document.getElementById('blog-update-btn').style.display  = 'block';
+    document.getElementById('blog-mode-badge').className      = 'mode-badge mode-edit';
+    document.getElementById('blog-mode-badge').textContent    = 'Editing Post';
+    window.scrollTo({top:0,behavior:'smooth'});
+  } catch(err) { showToast('Error: '+err.message,'error'); }
+};
+window.deleteBlog = async function(id) {
+  if (!confirm('Delete this blog post? This cannot be undone.')) return;
+  try { await deleteDoc(doc(db,'blogs',id)); showToast('Post deleted.'); loadBlogs(); }
+  catch(err) { showToast('Error: '+err.message,'error'); }
+};
+const SEED_BLOGS = [
+  { title:"AI Chatbots for Business: Benefits, Costs & Best Platforms in 2026", category:"AI CHATBOTS", readTime:"6 min read", status:"published",
+    excerpt:"A complete guide on how AI website chatbots lower customer support costs, increase lead conversion rates, and the best platforms to use in 2026.",
+    imageUrl:"https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+    content:"<h2>The Problem with Static Contact Forms</h2><p>Static contact forms ask visitors to fill in fields and wait up to 24 hours for a reply. Modern AI Chatbots engage visitors instantly, answer objections in real-time, and qualify leads on the spot.</p>" },
+  { title:"AI Automation for Small Businesses: The Complete 2026 Guide", category:"AI AUTOMATION", readTime:"8 min read", status:"published",
+    excerpt:"Discover how small businesses are using AI and workflow automation to save hours every week and boost operational efficiency.",
+    imageUrl:"https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80",
+    content:"<h2>Why Small Businesses Need AI Automation</h2><p>Manual data entry, sending follow-up emails, and syncing CRM data take up to 15 hours a week for small team owners. AI automation handles these repetitive tasks silently in the background.</p>" },
+  { title:"SEO vs Google Ads: Which Is Right for Your Business?", category:"GOOGLE ADS", readTime:"5 min read", status:"published",
+    excerpt:"Compare short-term sales velocity from search PPC against long-term compounding returns of SEO authority.",
+    imageUrl:"https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=800&q=80",
+    content:"<h2>Google Ads for Speed</h2><p>Google Search Ads deliver instant targeted traffic within 24 hours of campaign launch.</p><h2>SEO for Sustainable Authority</h2><p>SEO builds long-term organic authority that compounds over months.</p>" },
+];
+window.seedDefaultBlogs = async function() {
+  showToast('Importing default blogs...');
+  try {
+    for (const b of SEED_BLOGS) await addDoc(collection(db,'blogs'), {...b, publishedAt: serverTimestamp()});
+    showToast(SEED_BLOGS.length + ' blogs imported!'); loadBlogs();
+  } catch(err) { showToast('Error: '+err.message,'error'); }
+};
+
+/* ══════════ TESTIMONIALS ══════════ */
+let currentRating = 5;
+window.setRating = function(val) {
+  currentRating = val;
+  document.getElementById('testi-rating').value = val;
+  document.querySelectorAll('.star').forEach((s,i) => s.classList.toggle('active', i < val));
+};
+window.resetTestiForm = function() {
+  document.getElementById('editing-testi-id').value = '';
+  ['testi-name','testi-company','testi-avatar','testi-text'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('testi-tag').value = '';
+  setRating(5);
+  document.getElementById('testi-mode-badge').className   = 'mode-badge mode-new';
+  document.getElementById('testi-mode-badge').textContent = 'Add Testimonial';
+  document.getElementById('testi-save-btn').textContent   = 'Add Testimonial';
+};
+window.saveTesti = async function() {
+  const name = document.getElementById('testi-name').value.trim();
+  const text = document.getElementById('testi-text').value.trim();
+  if (!name || !text) { showToast('Name and text required!','error'); return; }
+  const id = document.getElementById('editing-testi-id').value;
+  const btn = document.getElementById('testi-save-btn');
+  btn.disabled = true; btn.textContent = 'Saving...';
+  const data = {
+    name, text,
+    company: document.getElementById('testi-company').value.trim(),
+    avatar:  document.getElementById('testi-avatar').value.trim(),
+    rating:  parseInt(document.getElementById('testi-rating').value) || 5,
+    tag:     document.getElementById('testi-tag').value,
+    updatedAt: serverTimestamp()
+  };
+  try {
+    if (id) { await updateDoc(doc(db,'testimonials',id), data); showToast('Testimonial updated!'); }
+    else    { data.createdAt = serverTimestamp(); await addDoc(collection(db,'testimonials'), data); showToast('Testimonial added!'); }
+    resetTestiForm(); loadTestis();
+  } catch(err) { showToast('Error: '+err.message,'error'); }
+  finally { btn.disabled = false; btn.textContent = 'Add Testimonial'; }
+};
+async function loadTestis() {
+  const listEl = document.getElementById('testi-list');
+  listEl.innerHTML = '<div class="items-empty">Loading...</div>';
+  try {
+    const snap = await getDocs(query(collection(db,'testimonials'), orderBy('createdAt','desc')));
+    document.getElementById('testi-count').textContent = snap.size;
+    if (snap.empty) { listEl.innerHTML = '<div class="items-empty">No testimonials yet.</div>'; return; }
+    listEl.innerHTML = '';
+    snap.forEach(ds => {
+      const t = ds.data(), id = ds.id;
+      const stars = '★'.repeat(t.rating||5) + '☆'.repeat(5-(t.rating||5));
+      const card = document.createElement('div');
+      card.className = 'item-card';
+      card.innerHTML = '<div class="item-card-title">' + t.name + '</div>'
+        + '<div class="item-card-meta"><span>' + (t.company||'') + '</span><span style="color:var(--orange);">' + stars + '</span></div>'
+        + '<div style="font-size:.82rem;color:var(--text2);margin-bottom:.5rem;font-style:italic;">"' + (t.text||'').substring(0,100) + '..."</div>'
+        + (t.tag ? '<span class="item-badge">' + t.tag + '</span>' : '')
+        + '<div class="item-actions" style="margin-top:.5rem;">'
+        + '<button class="btn btn-secondary btn-sm" onclick="editTesti(\'' + id + '\')">Edit</button>'
+        + '<button class="btn btn-danger btn-sm" onclick="deleteTesti(\'' + id + '\')">Delete</button>'
+        + '</div>';
+      listEl.appendChild(card);
+    });
+  } catch(err) { listEl.innerHTML = '<div class="items-empty">Error: ' + err.message + '</div>'; }
+}
+window.editTesti = async function(id) {
+  const ds = await getDoc(doc(db,'testimonials',id));
+  if (!ds.exists()) return;
+  const t = ds.data();
+  document.getElementById('editing-testi-id').value = id;
+  document.getElementById('testi-name').value    = t.name    || '';
+  document.getElementById('testi-company').value = t.company || '';
+  document.getElementById('testi-avatar').value  = t.avatar  || '';
+  document.getElementById('testi-text').value    = t.text    || '';
+  document.getElementById('testi-tag').value     = t.tag     || '';
+  setRating(t.rating || 5);
+  document.getElementById('testi-mode-badge').className   = 'mode-badge mode-edit';
+  document.getElementById('testi-mode-badge').textContent = 'Editing Testimonial';
+  document.getElementById('testi-save-btn').textContent   = 'Save Changes';
+  window.scrollTo({top:0,behavior:'smooth'});
+};
+window.deleteTesti = async function(id) {
+  if (!confirm('Delete this testimonial?')) return;
+  try { await deleteDoc(doc(db,'testimonials',id)); showToast('Testimonial deleted.'); loadTestis(); }
+  catch(err) { showToast('Error: '+err.message,'error'); }
+};
+window.seedTestimonials = async function() {
+  const seeds = [
+    { name:"Sarah Jenkins", company:"CMO, Urban Gabru", rating:5, tag:"Meta Ads", text:"Creative Oracle didn't just run ads; they understood our unit economics and scaled our acquisition profitably. Our ROAS improved significantly within the first two months." },
+    { name:"David Chen", company:"Founder, SGS Consulting", rating:5, tag:"Web Design", text:"The website redesign completely changed how our clients perceive us. It's professional, incredibly fast, and has directly contributed to a higher lead conversion rate." },
+    { name:"Priya Mehta", company:"Marketing Head, Plus Markets", rating:5, tag:"SEO", text:"Within 3 months of working with Creative Oracle, our organic traffic doubled and we started ranking on Page 1 for our top 5 keywords. Incredible results!" },
+  ];
+  showToast('Seeding testimonials...');
+  try {
+    for (const s of seeds) await addDoc(collection(db,'testimonials'), {...s, createdAt: serverTimestamp(), updatedAt: serverTimestamp()});
+    showToast(seeds.length + ' testimonials seeded!'); loadTestis();
+  } catch(err) { showToast('Error: '+err.message,'error'); }
+};
+
+/* ══════════ PORTFOLIO ══════════ */
+window.resetPortForm = function() {
+  document.getElementById('editing-port-id').value = '';
+  ['port-title','port-client','port-desc','port-result','port-link','port-img-url'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('port-image-val').value = '';
+  document.getElementById('port-category').value  = 'Web Design';
+  removePortImg();
+  document.getElementById('port-mode-badge').className   = 'mode-badge mode-new';
+  document.getElementById('port-mode-badge').textContent = 'Add Project';
+  document.getElementById('port-save-btn').textContent   = 'Save Project';
+};
+window.handlePortImg = function(input) {
+  const file = input.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      let w = img.width, h = img.height;
+      if (w > 1200) { h = Math.round(h * 1200 / w); w = 1200; }
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img,0,0,w,h);
+      const url = canvas.toDataURL('image/jpeg', 0.82);
+      document.getElementById('port-image-val').value = url;
+      showPortImgPreview(url);
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+};
+function showPortImgPreview(url) {
+  document.getElementById('port-upload-prompt').style.display    = url ? 'none' : 'block';
+  document.getElementById('port-img-preview-wrap').style.display = url ? 'block' : 'none';
+  if (url) document.getElementById('port-img-preview').src = url;
+}
+window.removePortImg = function() {
+  document.getElementById('port-image-val').value = '';
+  const f = document.getElementById('port-img-file'); if (f) f.value = '';
+  showPortImgPreview('');
+};
+window.setPortImgUrl = function(url) {
+  document.getElementById('port-image-val').value = url;
+  showPortImgPreview(url);
+};
+window.savePort = async function() {
+  const title = document.getElementById('port-title').value.trim();
+  if (!title) { showToast('Project title required!','error'); return; }
+  const id = document.getElementById('editing-port-id').value;
+  const btn = document.getElementById('port-save-btn');
+  btn.disabled = true; btn.textContent = 'Saving...';
+  const data = {
+    title, category: document.getElementById('port-category').value,
+    client:  document.getElementById('port-client').value.trim(),
+    desc:    document.getElementById('port-desc').value.trim(),
+    result:  document.getElementById('port-result').value.trim(),
+    imageUrl: document.getElementById('port-image-val').value.trim(),
+    link:    document.getElementById('port-link').value.trim(),
+    updatedAt: serverTimestamp()
+  };
+  try {
+    if (id) { await updateDoc(doc(db,'portfolio',id), data); showToast('Project updated!'); }
+    else    { data.createdAt = serverTimestamp(); await addDoc(collection(db,'portfolio'), data); showToast('Project added!'); }
+    resetPortForm(); loadPorts();
+  } catch(err) { showToast('Error: '+err.message,'error'); }
+  finally { btn.disabled = false; btn.textContent = 'Save Project'; }
+};
+async function loadPorts() {
+  const listEl = document.getElementById('port-list');
+  listEl.innerHTML = '<div class="items-empty">Loading...</div>';
+  try {
+    const snap = await getDocs(query(collection(db,'portfolio'), orderBy('createdAt','desc')));
+    document.getElementById('port-count').textContent = snap.size;
+    if (snap.empty) { listEl.innerHTML = '<div class="items-empty">No projects yet.</div>'; return; }
+    listEl.innerHTML = '';
+    snap.forEach(ds => {
+      const p = ds.data(), id = ds.id;
+      const card = document.createElement('div');
+      card.className = 'item-card';
+      card.innerHTML = (p.imageUrl ? '<img src="' + p.imageUrl + '" style="width:100%;height:100px;object-fit:cover;border-radius:8px;margin-bottom:.5rem;" onerror="this.style.display=\'none\'" alt=""/>' : '')
+        + '<div class="item-card-title">' + p.title + '</div>'
+        + '<div class="item-card-meta"><span>' + (p.client||'') + '</span><span class="item-badge">' + (p.category||'') + '</span></div>'
+        + (p.result ? '<div style="font-size:.8rem;color:var(--green);font-weight:600;margin-bottom:.35rem;">' + p.result + '</div>' : '')
+        + '<div class="item-actions">'
+        + (p.link ? '<button class="btn btn-success btn-sm" onclick="window.open(\'' + p.link + '\',\'_blank\')">View</button>' : '')
+        + '<button class="btn btn-secondary btn-sm" onclick="editPort(\'' + id + '\')">Edit</button>'
+        + '<button class="btn btn-danger btn-sm" onclick="deletePort(\'' + id + '\')">Delete</button>'
+        + '</div>';
+      listEl.appendChild(card);
+    });
+  } catch(err) { listEl.innerHTML = '<div class="items-empty">Error: ' + err.message + '</div>'; }
+}
+window.editPort = async function(id) {
+  const ds = await getDoc(doc(db,'portfolio',id));
+  if (!ds.exists()) return;
+  const p = ds.data();
+  document.getElementById('editing-port-id').value = id;
+  document.getElementById('port-title').value     = p.title    || '';
+  document.getElementById('port-category').value  = p.category || 'Web Design';
+  document.getElementById('port-client').value    = p.client   || '';
+  document.getElementById('port-desc').value      = p.desc     || '';
+  document.getElementById('port-result').value    = p.result   || '';
+  document.getElementById('port-img-url').value   = p.imageUrl || '';
+  document.getElementById('port-image-val').value = p.imageUrl || '';
+  document.getElementById('port-link').value      = p.link     || '';
+  if (p.imageUrl) showPortImgPreview(p.imageUrl);
+  document.getElementById('port-mode-badge').className   = 'mode-badge mode-edit';
+  document.getElementById('port-mode-badge').textContent = 'Editing Project';
+  document.getElementById('port-save-btn').textContent   = 'Save Changes';
+  window.scrollTo({top:0,behavior:'smooth'});
+};
+window.deletePort = async function(id) {
+  if (!confirm('Delete this project?')) return;
+  try { await deleteDoc(doc(db,'portfolio',id)); showToast('Project deleted.'); loadPorts(); }
+  catch(err) { showToast('Error: '+err.message,'error'); }
+};
+window.seedPortfolio = async function() {
+  const seeds = [
+    { title:"Urban Gabru — Meta Ads Campaign", category:"Meta Ads", client:"Urban Gabru", result:"4.2x ROAS in 60 days", desc:"Full-funnel Meta Ads strategy including creative testing and audience segmentation.", imageUrl:"https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80", link:"/case-study-yoda-taco" },
+    { title:"Plus Markets — Google Ads + SEO", category:"Google Ads", client:"Plus Markets", result:"3.1x ROAS, 320% more leads", desc:"Combined Google Search Ads and technical SEO overhaul.", imageUrl:"https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80", link:"/case-study-plus-markets" },
+    { title:"SGS Consulting — Website Redesign", category:"Web Design", client:"SGS Consulting", result:"67% lower bounce rate", desc:"Full website redesign with conversion-first UX and lightning page speed.", imageUrl:"https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80", link:"" },
+  ];
+  showToast('Seeding portfolio...');
+  try {
+    for (const s of seeds) await addDoc(collection(db,'portfolio'), {...s, createdAt: serverTimestamp(), updatedAt: serverTimestamp()});
+    showToast(seeds.length + ' projects seeded!'); loadPorts();
+  } catch(err) { showToast('Error: '+err.message,'error'); }
+};
+
+/* ══════════ SERVICES ══════════ */
+window.resetSvcForm = function() {
+  document.getElementById('editing-svc-id').value = '';
+  ['svc-title','svc-icon','svc-desc','svc-features','svc-price','svc-link'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('svc-mode-badge').className   = 'mode-badge mode-new';
+  document.getElementById('svc-mode-badge').textContent = 'Add Service';
+  document.getElementById('svc-save-btn').textContent   = 'Save Service';
+};
+window.saveSvc = async function() {
+  const title = document.getElementById('svc-title').value.trim();
+  if (!title) { showToast('Service name required!','error'); return; }
+  const id = document.getElementById('editing-svc-id').value;
+  const btn = document.getElementById('svc-save-btn');
+  btn.disabled = true; btn.textContent = 'Saving...';
+  const features = document.getElementById('svc-features').value.split('\n').map(l=>l.trim()).filter(Boolean);
+  const data = {
+    title, icon: document.getElementById('svc-icon').value.trim(),
+    desc:     document.getElementById('svc-desc').value.trim(),
+    features, price: document.getElementById('svc-price').value.trim(),
+    link:     document.getElementById('svc-link').value.trim(),
+    updatedAt: serverTimestamp()
+  };
+  try {
+    if (id) { await updateDoc(doc(db,'services',id), data); showToast('Service updated!'); }
+    else    { data.createdAt = serverTimestamp(); await addDoc(collection(db,'services'), data); showToast('Service added!'); }
+    resetSvcForm(); loadSvcs();
+  } catch(err) { showToast('Error: '+err.message,'error'); }
+  finally { btn.disabled = false; btn.textContent = 'Save Service'; }
+};
+async function loadSvcs() {
+  const listEl = document.getElementById('svc-list');
+  listEl.innerHTML = '<div class="items-empty">Loading...</div>';
+  try {
+    const snap = await getDocs(query(collection(db,'services'), orderBy('createdAt','desc')));
+    document.getElementById('svc-count').textContent = snap.size;
+    if (snap.empty) { listEl.innerHTML = '<div class="items-empty">No services yet. Click Seed to import defaults.</div>'; return; }
+    listEl.innerHTML = '';
+    snap.forEach(ds => {
+      const s = ds.data(), id = ds.id;
+      const card = document.createElement('div');
+      card.className = 'item-card';
+      card.innerHTML = '<div class="item-card-title">' + (s.icon||'') + ' ' + s.title + '</div>'
+        + '<div class="item-card-meta"><span>' + (s.price||'') + '</span>' + (s.features && s.features.length ? '<span class="item-badge">' + s.features.length + ' features</span>' : '') + '</div>'
+        + '<div style="font-size:.8rem;color:var(--text2);margin-bottom:.45rem;">' + (s.desc||'') + '</div>'
+        + '<div class="item-actions">'
+        + '<button class="btn btn-secondary btn-sm" onclick="editSvc(\'' + id + '\')">Edit</button>'
+        + '<button class="btn btn-danger btn-sm" onclick="deleteSvc(\'' + id + '\')">Delete</button>'
+        + '</div>';
+      listEl.appendChild(card);
+    });
+  } catch(err) { listEl.innerHTML = '<div class="items-empty">Error: ' + err.message + '</div>'; }
+}
+window.editSvc = async function(id) {
+  const ds = await getDoc(doc(db,'services',id));
+  if (!ds.exists()) return;
+  const s = ds.data();
+  document.getElementById('editing-svc-id').value  = id;
+  document.getElementById('svc-title').value    = s.title || '';
+  document.getElementById('svc-icon').value     = s.icon  || '';
+  document.getElementById('svc-desc').value     = s.desc  || '';
+  document.getElementById('svc-features').value = (s.features||[]).join('\n');
+  document.getElementById('svc-price').value    = s.price || '';
+  document.getElementById('svc-link').value     = s.link  || '';
+  document.getElementById('svc-mode-badge').className   = 'mode-badge mode-edit';
+  document.getElementById('svc-mode-badge').textContent = 'Editing Service';
+  document.getElementById('svc-save-btn').textContent   = 'Save Changes';
+  window.scrollTo({top:0,behavior:'smooth'});
+};
+window.deleteSvc = async function(id) {
+  if (!confirm('Delete this service?')) return;
+  try { await deleteDoc(doc(db,'services',id)); showToast('Service deleted.'); loadSvcs(); }
+  catch(err) { showToast('Error: '+err.message,'error'); }
+};
+window.seedServices = async function() {
+  const seeds = [
+    { icon:'📱', title:'Meta Ads Management', desc:'Full-funnel Facebook & Instagram ad campaigns.', features:['Audience research & targeting','Creative A/B testing','Weekly performance reports','Retargeting campaigns'], price:'Rs 18,000 / mo', link:'/ads-management' },
+    { icon:'🔍', title:'SEO Services', desc:'Technical SEO, content strategy, and authority building.', features:['Technical site audit','Keyword research','On-page optimisation','Monthly ranking reports'], price:'Rs 12,000 / mo', link:'/seo' },
+    { icon:'💻', title:'Web Design & Development', desc:'High-performance, conversion-optimised websites.', features:['Custom design','Mobile-first responsive','Fast page speed','Lead capture forms'], price:'Rs 25,000 onwards', link:'/web-development' },
+    { icon:'🤖', title:'AI Automation', desc:'Save hours weekly with automated workflows.', features:['Lead routing automation','WhatsApp notification bots','CRM sync','Custom workflow builds'], price:'Rs 15,000 onwards', link:'/workflow-automation' },
+    { icon:'📧', title:'Lead Generation', desc:'End-to-end lead generation combining ads, landing pages, and follow-up automation.', features:['Multi-channel campaigns','Landing page design','Lead tracking','Monthly lead reports'], price:'Rs 20,000 / mo', link:'/lead-generation' },
+    { icon:'🎨', title:'Brand Identity', desc:'Logo design, brand guidelines, and visual identity.', features:['Logo design (3 concepts)','Brand colour palette','Typography system','Brand style guide PDF'], price:'Rs 15,000 onwards', link:'/services' },
+  ];
+  showToast('Seeding services...');
+  try {
+    for (const s of seeds) await addDoc(collection(db,'services'), {...s, createdAt: serverTimestamp(), updatedAt: serverTimestamp()});
+    showToast(seeds.length + ' services seeded!'); loadSvcs();
+  } catch(err) { showToast('Error: '+err.message,'error'); }
+};
+
+/* ══════════ LEADS ══════════ */
+window.loadLeads = async function() {
+  const tbody  = document.getElementById('leads-table');
+  const filter = document.getElementById('lead-filter').value;
+  tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text3);padding:2rem;">Loading...</td></tr>';
+  try {
+    let q;
+    if (filter === 'new')       q = query(collection(db,'leads'), where('status','==','new'),  orderBy('createdAt','desc'));
+    else if (filter === 'read') q = query(collection(db,'leads'), where('status','==','read'), orderBy('createdAt','desc'));
+    else                        q = query(collection(db,'leads'), orderBy('createdAt','desc'));
+    const snap = await getDocs(q);
+    document.getElementById('leads-count').textContent = snap.size;
+    if (snap.empty) {
+      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text3);padding:3rem;">No leads found.<br/>Wire your contact form to save to Firestore collection <code>leads</code>.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = '';
+    snap.forEach(ds => {
+      const l = ds.data(), id = ds.id;
+      const date  = l.createdAt && l.createdAt.toDate ? l.createdAt.toDate().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}) : 'Recent';
+      const isNew = l.status !== 'read';
+      tbody.innerHTML += '<tr>'
+        + '<td style="font-weight:600;color:var(--text);">' + (l.name||'—') + '</td>'
+        + '<td><div>' + (l.email||'—') + '</div><div style="color:var(--text3);font-size:.75rem;">' + (l.phone||'') + '</div></td>'
+        + '<td>' + (l.service||l.interest||'—') + '</td>'
+        + '<td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + (l.message||'—') + '</td>'
+        + '<td>' + date + '</td>'
+        + '<td class="' + (isNew ? 'lead-status-new' : 'lead-status-read') + '">' + (isNew ? 'New' : 'Read') + '</td>'
+        + '<td style="white-space:nowrap;">'
+        + (isNew ? '<button class="btn btn-secondary btn-sm" onclick="markLeadRead(\'' + id + '\')">Mark Read</button> ' : '')
+        + '<button class="btn btn-danger btn-sm" onclick="deleteLead(\'' + id + '\')">Delete</button>'
+        + '</td></tr>';
+    });
+  } catch(err) {
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text3);padding:2rem;">Error: ' + err.message + '</td></tr>';
+  }
+};
+window.markLeadRead = async function(id) {
+  try { await updateDoc(doc(db,'leads',id),{status:'read'}); showToast('Marked as read.'); loadLeads(); }
+  catch(err) { showToast('Error: '+err.message,'error'); }
+};
+window.deleteLead = async function(id) {
+  if (!confirm('Delete this lead permanently?')) return;
+  try { await deleteDoc(doc(db,'leads',id)); showToast('Lead deleted.'); loadLeads(); }
+  catch(err) { showToast('Error: '+err.message,'error'); }
+};
+
+/* ══════════ SETTINGS ══════════ */
+async function loadSettings() {
+  try {
+    const snap = await getDoc(doc(db,'settings','site'));
+    if (!snap.exists()) return;
+    const s = snap.data();
+    const map = {'set-phone':s.phone,'set-email':s.email,'set-address':s.address,
+      'set-instagram':s.instagram,'set-facebook':s.facebook,'set-linkedin':s.linkedin,
+      'set-whatsapp':s.whatsapp,'set-meta-desc':s.metaDesc,'set-ga4':s.ga4,'set-gtm':s.gtm};
+    Object.entries(map).forEach(([id,val]) => { if (val) document.getElementById(id).value = val; });
+  } catch(_) {}
+}
+window.saveSettings = async function() {
+  const data = {
+    phone:    document.getElementById('set-phone').value.trim(),
+    email:    document.getElementById('set-email').value.trim(),
+    address:  document.getElementById('set-address').value.trim(),
+    instagram:document.getElementById('set-instagram').value.trim(),
+    facebook: document.getElementById('set-facebook').value.trim(),
+    linkedin: document.getElementById('set-linkedin').value.trim(),
+    whatsapp: document.getElementById('set-whatsapp').value.trim(),
+    metaDesc: document.getElementById('set-meta-desc').value.trim(),
+    ga4:      document.getElementById('set-ga4').value.trim(),
+    gtm:      document.getElementById('set-gtm').value.trim(),
+    updatedAt: serverTimestamp()
+  };
+  try { await setDoc(doc(db,'settings','site'), data, {merge:true}); showToast('Settings saved!'); }
+  catch(err) { showToast('Error: '+err.message,'error'); }
+};
+window.changePassword = async function() {
+  const np = document.getElementById('new-pw').value;
+  const cp = document.getElementById('confirm-pw').value;
+  if (!np) { showToast('Enter a new password!','error'); return; }
+  if (np !== cp) { showToast('Passwords do not match!','error'); return; }
+  if (np.length < 8) { showToast('Password must be at least 8 characters!','error'); return; }
+  try {
+    await setDoc(doc(db,'settings','admin'), {password: np, updatedAt: serverTimestamp()}, {merge:true});
+    ADMIN_PASSWORD = np;
+    document.getElementById('new-pw').value = '';
+    document.getElementById('confirm-pw').value = '';
+    showToast('Password updated! Use new password on next login.');
+  } catch(err) { showToast('Error: '+err.message,'error'); }
+};
+
+
+/* ══════════════════════════════════════════════════
+   SEO MANAGER
+══════════════════════════════════════════════════ */
+const PAGE_LABELS = {
+  'home':'Home','about':'About','services':'Services','blog':'Blog',
+  'contact':'Contact','portfolio':'Portfolio','pricing':'Pricing',
+  'seo':'SEO Service','web-development':'Web Development',
+  'ads-management':'Ads Management','lead-generation':'Lead Generation',
+  'social-media':'Social Media','ai-chatbots':'AI Chatbots',
+  'workflow-automation':'Workflow Automation',
+  'custom-ai-solutions':'Custom AI Solutions',
+  'ecommerce-solutions':'E-Commerce','cold-email':'Cold Email',
+  'faq':'FAQ','privacy-policy':'Privacy Policy','terms-conditions':'Terms & Conditions'
+};
+
+window.resetSeoForm = function() {
+  ['seo-title','seo-desc','seo-keywords','seo-canonical','seo-og-title','seo-og-desc','seo-og-image'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('seo-page-select').value   = '';
+  document.getElementById('seo-robots').value        = 'index, follow';
+  document.getElementById('editing-seo-slug').value  = '';
+  document.getElementById('seo-code-wrap').style.display = 'none';
+  updateSeoCounters(); updateSeoPreview(); updateSeoChecklist();
+};
+
+window.onSeoPageSelect = async function(slug) {
+  if (!slug) return;
+  document.getElementById('editing-seo-slug').value = slug;
+  try {
+    const ds = await getDoc(doc(db, 'seo', slug));
+    if (ds.exists()) {
+      const s = ds.data();
+      document.getElementById('seo-title').value      = s.title      || '';
+      document.getElementById('seo-desc').value       = s.desc       || '';
+      document.getElementById('seo-keywords').value   = s.keywords   || '';
+      document.getElementById('seo-canonical').value  = s.canonical  || '';
+      document.getElementById('seo-robots').value     = s.robots     || 'index, follow';
+      document.getElementById('seo-og-title').value   = s.ogTitle    || '';
+      document.getElementById('seo-og-desc').value    = s.ogDesc     || '';
+      document.getElementById('seo-og-image').value   = s.ogImage    || '';
+    } else {
+      ['seo-title','seo-desc','seo-keywords','seo-og-title','seo-og-desc','seo-og-image'].forEach(id => document.getElementById(id).value = '');
+      const base = slug === 'home' ? 'https://creativeoracle.in/' : 'https://creativeoracle.in/' + slug;
+      document.getElementById('seo-canonical').value = base;
+    }
+    updateSeoCounters(); updateSeoPreview(); updateSeoChecklist();
+  } catch(err) { showToast('Error loading SEO: '+err.message,'error'); }
+};
+
+window.updateSeoCounters = function() {
+  const t = document.getElementById('seo-title').value.length;
+  const d = document.getElementById('seo-desc').value.length;
+  document.getElementById('seo-title-count').textContent = t + ' / 60';
+  document.getElementById('seo-desc-count').textContent  = d + ' / 160';
+  const tf = document.getElementById('seo-title-fill');
+  const df = document.getElementById('seo-desc-fill');
+  tf.style.width = Math.min(100, (t/60)*100) + '%';
+  df.style.width = Math.min(100, (d/160)*100) + '%';
+  tf.style.background = t < 30 ? 'var(--orange)' : t <= 60 ? 'var(--green)' : '#ef4444';
+  df.style.background = d < 80 ? 'var(--orange)' : d <= 160 ? 'var(--green)' : '#ef4444';
+  updateSeoPreview(); updateSeoChecklist();
+};
+
+function updateSeoPreview() {
+  const slug    = document.getElementById('editing-seo-slug').value;
+  const title   = document.getElementById('seo-title').value || 'Your page title will appear here';
+  const desc    = document.getElementById('seo-desc').value  || 'Your meta description will appear here. Make it compelling to improve click-through rates.';
+  const canon   = document.getElementById('seo-canonical').value || ('https://creativeoracle.in/' + (slug||''));
+  document.getElementById('seo-preview-url').textContent   = canon;
+  document.getElementById('seo-preview-title').textContent = title.substring(0,60);
+  document.getElementById('seo-preview-desc').textContent  = desc.substring(0,160);
+}
+
+function updateSeoChecklist() {
+  const title    = document.getElementById('seo-title').value;
+  const desc     = document.getElementById('seo-desc').value;
+  const keywords = document.getElementById('seo-keywords').value;
+  const canonical= document.getElementById('seo-canonical').value;
+  const ogTitle  = document.getElementById('seo-og-title').value;
+  const ogImage  = document.getElementById('seo-og-image').value;
+  const checks   = [
+    { ok: title.length >= 30 && title.length <= 60, label: 'Title length: 30\u201360 chars (currently ' + title.length + ')' },
+    { ok: desc.length  >= 120 && desc.length <= 160, label: 'Description length: 120\u2013160 chars (currently ' + desc.length + ')' },
+    { ok: keywords.trim().length > 0,  label: 'Keywords filled in' },
+    { ok: canonical.startsWith('https://'), label: 'Canonical URL is HTTPS' },
+    { ok: ogTitle.trim().length > 0 || title.trim().length > 0, label: 'OG Title set (social share)' },
+    { ok: ogImage.trim().length > 0,  label: 'OG Image URL set (social preview image)' },
+  ];
+  const el = document.getElementById('seo-checklist');
+  el.innerHTML = checks.map(c =>
+    '<div style="display:flex;align-items:center;gap:.5rem;">'
+    + '<span style="color:' + (c.ok ? 'var(--green)' : '#ef4444') + ';">' + (c.ok ? '\u2713' : '\u2717') + '</span>'
+    + '<span style="color:' + (c.ok ? 'var(--text2)' : 'var(--text3)') + ';">' + c.label + '</span>'
+    + '</div>'
+  ).join('');
+}
+
+function generateMetaTags() {
+  const title    = document.getElementById('seo-title').value.trim();
+  const desc     = document.getElementById('seo-desc').value.trim();
+  const keywords = document.getElementById('seo-keywords').value.trim();
+  const canonical= document.getElementById('seo-canonical').value.trim();
+  const robots   = document.getElementById('seo-robots').value;
+  const ogTitle  = document.getElementById('seo-og-title').value.trim() || title;
+  const ogDesc   = document.getElementById('seo-og-desc').value.trim()  || desc;
+  const ogImage  = document.getElementById('seo-og-image').value.trim();
+  let code = '';
+  if (title)    code += '<title>' + title + '</title>\n';
+  if (desc)     code += '<meta name="description" content="' + desc + '"/>\n';
+  if (keywords) code += '<meta name="keywords" content="' + keywords + '"/>\n';
+  code += '<meta name="robots" content="' + robots + '"/>\n';
+  if (canonical)code += '<link rel="canonical" href="' + canonical + '"/>\n';
+  code += '\n<!-- Open Graph / Social -->\n';
+  if (ogTitle)  code += '<meta property="og:title" content="' + ogTitle + '"/>\n';
+  if (ogDesc)   code += '<meta property="og:description" content="' + ogDesc + '"/>\n';
+  if (ogImage)  code += '<meta property="og:image" content="' + ogImage + '"/>\n';
+  if (canonical)code += '<meta property="og:url" content="' + canonical + '"/>\n';
+  code += '<meta property="og:type" content="website"/>\n';
+  code += '\n<!-- Twitter Card -->\n';
+  code += '<meta name="twitter:card" content="summary_large_image"/>\n';
+  if (ogTitle)  code += '<meta name="twitter:title" content="' + ogTitle + '"/>\n';
+  if (ogDesc)   code += '<meta name="twitter:description" content="' + ogDesc + '"/>\n';
+  if (ogImage)  code += '<meta name="twitter:image" content="' + ogImage + '"/>\n';
+  return code;
+}
+
+window.saveSeo = async function() {
+  const slug = document.getElementById('editing-seo-slug').value || document.getElementById('seo-page-select').value;
+  if (!slug) { showToast('Please select a page first!','error'); return; }
+  const title = document.getElementById('seo-title').value.trim();
+  if (!title) { showToast('Meta title is required!','error'); return; }
+  const btn = document.getElementById('seo-save-btn');
+  btn.disabled = true; btn.textContent = 'Saving...';
+  const data = {
+    slug, page: PAGE_LABELS[slug] || slug,
+    title, desc:     document.getElementById('seo-desc').value.trim(),
+    keywords: document.getElementById('seo-keywords').value.trim(),
+    canonical:document.getElementById('seo-canonical').value.trim(),
+    robots:   document.getElementById('seo-robots').value,
+    ogTitle:  document.getElementById('seo-og-title').value.trim(),
+    ogDesc:   document.getElementById('seo-og-desc').value.trim(),
+    ogImage:  document.getElementById('seo-og-image').value.trim(),
+    updatedAt: serverTimestamp()
+  };
+  try {
+    await setDoc(doc(db,'seo',slug), data, {merge:true});
+    showToast('SEO settings saved for ' + (PAGE_LABELS[slug]||slug) + '!');
+    const code = generateMetaTags();
+    document.getElementById('seo-generated-code').value = code;
+    document.getElementById('seo-code-wrap').style.display = 'block';
+    loadSeoList();
+  } catch(err) { showToast('Error: '+err.message,'error'); }
+  finally { btn.disabled = false; btn.textContent = 'Save SEO Settings'; }
+};
+
+async function loadSeoList() {
+  const listEl = document.getElementById('seo-list');
+  listEl.innerHTML = '<div class="items-empty">Loading...</div>';
+  try {
+    const snap = await getDocs(collection(db,'seo'));
+    document.getElementById('seo-count').textContent = snap.size;
+    if (snap.empty) { listEl.innerHTML = '<div class="items-empty">No pages saved yet. Select a page and save its SEO above.</div>'; return; }
+    listEl.innerHTML = '';
+    snap.forEach(ds => {
+      const s = ds.data(), slug = ds.id;
+      const titleLen = (s.title||'').length, descLen = (s.desc||'').length;
+      const titleOk  = titleLen >= 30 && titleLen <= 60;
+      const descOk   = descLen  >= 120 && descLen <= 160;
+      const score    = [titleOk, descOk, !!s.keywords, !!s.canonical, !!s.ogTitle||!!s.title, !!s.ogImage].filter(Boolean).length;
+      const scoreColor = score >= 5 ? 'var(--green)' : score >= 3 ? 'var(--orange)' : '#ef4444';
+      const card = document.createElement('div');
+      card.className = 'item-card';
+      card.innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.3rem;">'
+        + '<div class="item-card-title" style="margin:0;">' + (PAGE_LABELS[slug]||slug) + '</div>'
+        + '<span style="font-size:.75rem;font-weight:700;color:' + scoreColor + ';">' + score + '/6</span>'
+        + '</div>'
+        + '<div style="font-size:.78rem;color:var(--text3);margin-bottom:.4rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + (s.title||'(no title)') + '</div>'
+        + '<div class="item-actions">'
+        + '<button class="btn btn-secondary btn-sm" onclick="loadSeoForEdit(\'' + slug + '\')">Edit</button>'
+        + '<button class="btn btn-danger btn-sm" onclick="deleteSeoPage(\'' + slug + '\')">Delete</button>'
+        + '</div>';
+      listEl.appendChild(card);
+    });
+  } catch(err) { listEl.innerHTML = '<div class="items-empty">Error: '+err.message+'</div>'; }
+}
+
+window.loadSeoForEdit = async function(slug) {
+  document.getElementById('seo-page-select').value = slug;
+  await onSeoPageSelect(slug);
+  window.scrollTo({top:0,behavior:'smooth'});
+};
+
+window.deleteSeoPage = async function(slug) {
+  if (!confirm('Delete SEO settings for ' + (PAGE_LABELS[slug]||slug) + '?')) return;
+  try { await deleteDoc(doc(db,'seo',slug)); showToast('Deleted.'); loadSeoList(); }
+  catch(err) { showToast('Error: '+err.message,'error'); }
+};
+
+window.copySeoCode = function() {
+  const el = document.getElementById('seo-generated-code');
+  el.select();
+  document.execCommand('copy');
+  showToast('Meta tags copied to clipboard!');
+};
+
+/* ══════════════════════════════════════════════════
+   ANALYTICS
+══════════════════════════════════════════════════ */
+async function loadAnalyticsTab() {
+  try {
+    const ds = await getDoc(doc(db,'settings','analytics'));
+    if (ds.exists()) {
+      const a = ds.data();
+      if (a.embedUrl) document.getElementById('analytics-embed-url').value = a.embedUrl;
+      if (a.visitors) document.getElementById('kpi-visitors').value = a.visitors;
+      if (a.leads)    document.getElementById('kpi-leads').value    = a.leads;
+      if (a.session)  document.getElementById('kpi-session').value  = a.session;
+      if (a.bounce)   document.getElementById('kpi-bounce').value   = a.bounce;
+      if (a.keyword)  document.getElementById('kpi-keyword').value  = a.keyword;
+      if (a.rank)     document.getElementById('kpi-rank').value     = a.rank;
+      if (a.embedUrl) loadAnalyticsEmbed();
+      updateKpiDisplay(a);
+    }
+  } catch(_) {}
+}
+
+window.saveAnalyticsEmbed = async function() {
+  const url = document.getElementById('analytics-embed-url').value.trim();
+  try {
+    await setDoc(doc(db,'settings','analytics'), {embedUrl: url, updatedAt: serverTimestamp()}, {merge:true});
+    showToast('Analytics embed URL saved!');
+  } catch(err) { showToast('Error: '+err.message,'error'); }
+};
+
+window.loadAnalyticsEmbed = function() {
+  const url = document.getElementById('analytics-embed-url').value.trim();
+  if (!url) { showToast('Paste an embed URL first!','error'); return; }
+  document.getElementById('analytics-iframe').src = url;
+  document.getElementById('analytics-embed-container').style.display  = 'block';
+  document.getElementById('analytics-embed-placeholder').style.display = 'none';
+};
+
+window.saveKpis = async function() {
+  const data = {
+    visitors: document.getElementById('kpi-visitors').value,
+    leads:    document.getElementById('kpi-leads').value,
+    session:  document.getElementById('kpi-session').value,
+    bounce:   document.getElementById('kpi-bounce').value,
+    keyword:  document.getElementById('kpi-keyword').value,
+    rank:     document.getElementById('kpi-rank').value,
+    updatedAt: serverTimestamp()
+  };
+  try {
+    await setDoc(doc(db,'settings','analytics'), data, {merge:true});
+    showToast('KPIs saved!'); updateKpiDisplay(data);
+  } catch(err) { showToast('Error: '+err.message,'error'); }
+};
+
+function updateKpiDisplay(data) {
+  const el = document.getElementById('kpi-saved-display');
+  if (!data || !data.updatedAt) { el.innerHTML = ''; return; }
+  el.innerHTML = '<div style="font-size:.78rem;color:var(--green);margin-top:.5rem;">Last saved. Visitors: '+(data.visitors||'—')+' &nbsp;|&nbsp; Leads: '+(data.leads||'—')+'</div>';
+}
+
+/* ══════════════════════════════════════════════════
+   CALENDLY
+══════════════════════════════════════════════════ */
+let meetingTypes = [];
+
+async function loadCalendlyTab() {
+  try {
+    const ds = await getDoc(doc(db,'settings','calendly'));
+    if (ds.exists()) {
+      const c = ds.data();
+      if (c.mainUrl)   document.getElementById('cal-main-url').value    = c.mainUrl;
+      if (c.hostName)  document.getElementById('cal-host-name').value   = c.hostName;
+      if (c.message)   document.getElementById('cal-message').value     = c.message;
+      if (c.meetingTypes) meetingTypes = c.meetingTypes;
+      renderMeetingTypes();
+      updateCalendlyPreviews();
+    }
+  } catch(_) {}
+}
+
+window.saveCalendlySettings = async function() {
+  const url  = document.getElementById('cal-main-url').value.trim();
+  const name = document.getElementById('cal-host-name').value.trim();
+  const msg  = document.getElementById('cal-message').value.trim();
+  if (!url) { showToast('Enter your Calendly URL!','error'); return; }
+  try {
+    await setDoc(doc(db,'settings','calendly'), {mainUrl:url, hostName:name, message:msg, meetingTypes, updatedAt:serverTimestamp()}, {merge:true});
+    showToast('Calendly settings saved!'); updateCalendlyPreviews();
+  } catch(err) { showToast('Error: '+err.message,'error'); }
+};
+
+window.updateCalendlyPreviews = function() {
+  const url = document.getElementById('cal-main-url').value.trim();
+  document.getElementById('cal-share-url').textContent = url || '—';
+  if (url) {
+    const code = '<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"/>\n'
+      + '<div class="calendly-inline-widget" data-url="' + url + '" style="min-width:320px;height:630px;"></div>\n'
+      + '<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"><\/script>';
+    document.getElementById('cal-embed-code').value = code;
+  }
+  renderShareLinks();
+};
+
+window.refreshCalPreview = function() {
+  const url = document.getElementById('cal-main-url').value.trim();
+  const container = document.getElementById('cal-preview-container');
+  if (!url) { showToast('Enter your Calendly URL first!','error'); return; }
+  container.innerHTML = '<iframe src="' + url + '?embed_domain=admin&embed_type=Inline" width="100%" height="500" frameborder="0"></iframe>';
+};
+
+function renderShareLinks() {
+  const url  = document.getElementById('cal-main-url').value.trim();
+  const name = document.getElementById('cal-host-name').value.trim() || 'Creative Oracle';
+  const msg  = document.getElementById('cal-message').value.trim() || 'Book a free strategy call with us.';
+  const body = document.getElementById('share-links-body');
+  if (!url) { body.innerHTML = '<div class="items-empty" style="padding:1rem;">Save your Calendly URL to generate share links.</div>'; return; }
+  const waMsg = encodeURIComponent(msg + '\n\nBook here: ' + url);
+  const emailSubj = encodeURIComponent('Book a call with ' + name);
+  const emailBody = encodeURIComponent(msg + '\n\nClick to book: ' + url);
+  body.innerHTML = '<div style="display:flex;flex-direction:column;gap:.6rem;">'
+    + linkRow('Direct Booking Link', url, url)
+    + '<div style="display:flex;flex-direction:column;gap:.4rem;">'
+    + '<a href="https://wa.me/?text=' + waMsg + '" target="_blank" class="btn btn-secondary btn-sm" style="text-decoration:none;text-align:center;">&#128242; Share via WhatsApp</a>'
+    + '<a href="mailto:?subject=' + emailSubj + '&body=' + emailBody + '" class="btn btn-secondary btn-sm" style="text-decoration:none;text-align:center;">&#128139; Share via Email</a>'
+    + '<a href="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(url) + '" target="_blank" class="btn btn-secondary btn-sm" style="text-decoration:none;text-align:center;">&#9638; Download QR Code</a>'
+    + '</div></div>';
+  if (meetingTypes.length > 0) {
+    body.innerHTML += '<div style="margin-top:1rem;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--text3);">Meeting Types</div>';
+    meetingTypes.forEach((mt, i) => {
+      body.innerHTML += '<div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;">'
+        + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem;">'
+        + '<span style="font-weight:600;font-size:.88rem;">' + mt.name + '</span>'
+        + '<span class="item-badge">' + mt.duration + '</span>'
+        + '</div>'
+        + '<div style="font-size:.78rem;color:var(--text3);margin-bottom:.5rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + mt.url + '</div>'
+        + '<button class="btn btn-secondary btn-sm" onclick="copyText(\'' + mt.url + '\')">&#128203; Copy Link</button>'
+        + '</div>';
+    });
+  }
+}
+
+function linkRow(label, url, display) {
+  return '<div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;">'
+    + '<div style="font-size:.72rem;color:var(--text3);margin-bottom:.25rem;">' + label + '</div>'
+    + '<div style="color:var(--blue);font-size:.82rem;word-break:break-all;margin-bottom:.4rem;">' + display + '</div>'
+    + '<button class="btn btn-secondary btn-sm" onclick="copyText(\'' + url + '\')">&#128203; Copy</button>'
+    + '</div>';
+}
+
+window.addMeetingType    = function() { document.getElementById('meeting-type-form').style.display = 'block'; };
+window.cancelMeetingType = function() { document.getElementById('meeting-type-form').style.display = 'none'; ['mt-name','mt-duration','mt-url'].forEach(id=>document.getElementById(id).value=''); };
+
+window.saveMeetingType = async function() {
+  const name = document.getElementById('mt-name').value.trim();
+  const dur  = document.getElementById('mt-duration').value.trim();
+  const url  = document.getElementById('mt-url').value.trim();
+  if (!name || !url) { showToast('Name and URL required!','error'); return; }
+  meetingTypes.push({name, duration:dur||'30 min', url});
+  renderMeetingTypes(); cancelMeetingType(); renderShareLinks();
+  try {
+    await setDoc(doc(db,'settings','calendly'), {meetingTypes, updatedAt:serverTimestamp()}, {merge:true});
+    showToast('Meeting type added!');
+  } catch(err) { showToast('Error saving: '+err.message,'error'); }
+};
+
+function renderMeetingTypes() {
+  const el = document.getElementById('meeting-types-list');
+  if (!meetingTypes.length) { el.innerHTML = '<div style="font-size:.85rem;color:var(--text3);">No meeting types yet. Click + Add to create one.</div>'; return; }
+  el.innerHTML = meetingTypes.map((mt,i) =>
+    '<div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:.5rem;">'
+    + '<div><div style="font-weight:600;font-size:.88rem;">' + mt.name + '</div>'
+    + '<div style="font-size:.75rem;color:var(--text3);">' + mt.duration + ' &nbsp;&#183;&nbsp; ' + mt.url + '</div></div>'
+    + '<button class="btn btn-danger btn-sm" onclick="removeMeetingType(' + i + ')">&#128465;</button>'
+    + '</div>'
+  ).join('');
+}
+
+window.removeMeetingType = async function(i) {
+  meetingTypes.splice(i,1); renderMeetingTypes(); renderShareLinks();
+  try { await setDoc(doc(db,'settings','calendly'), {meetingTypes, updatedAt:serverTimestamp()}, {merge:true}); }
+  catch(_) {}
+};
+
+window.copyCalEmbed = function() {
+  const el = document.getElementById('cal-embed-code'); el.select(); document.execCommand('copy'); showToast('Embed code copied!');
+};
+window.copyCalLink = function() {
+  const url = document.getElementById('cal-main-url').value.trim();
+  if (!url) { showToast('No Calendly URL set!','error'); return; }
+  copyText(url); showToast('Booking link copied!');
+};
+window.openCalLink = function() {
+  const url = document.getElementById('cal-main-url').value.trim();
+  if (url) window.open(url,'_blank'); else showToast('No Calendly URL set!','error');
+};
+window.shareViaWhatsApp = function() {
+  const url = document.getElementById('cal-main-url').value.trim();
+  const msg = document.getElementById('cal-message').value.trim() || 'Book a free strategy call with Creative Oracle.';
+  if (!url) { showToast('No Calendly URL set!','error'); return; }
+  window.open('https://wa.me/?text=' + encodeURIComponent(msg + '\n\nBook here: ' + url), '_blank');
+};
+window.copyText = function(text) {
+  navigator.clipboard.writeText(text).then(() => showToast('Copied!')).catch(() => { const t=document.createElement('textarea'); t.value=text; document.body.appendChild(t); t.select(); document.execCommand('copy'); document.body.removeChild(t); showToast('Copied!'); });
+};
+
+</script>
+</body>
+</html>

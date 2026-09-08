@@ -756,7 +756,7 @@
         status: 'published'
       });
 
-      const liveUrl = `${window.location.origin}/blog-post.html?id=${docRef.id}`;
+      const liveUrl = `${window.location.origin}/blog-post?id=${docRef.id}`;
       const urlBox = document.getElementById('url-box');
       const urlLink = document.getElementById('url-box-link');
       urlBox.style.display = 'block';
@@ -902,7 +902,7 @@
 
   // ── View ──
   window.viewPost = function(id) {
-    window.open(`/blog-post.html?id=${id}`, '_blank');
+    window.open(`/blog-post?id=${id}`, '_blank');
   };
 
   // ── Edit ──

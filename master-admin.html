@@ -1488,7 +1488,7 @@ window.publishBlog = async function() {
       readTime: document.getElementById('blog-readtime').value.trim() || '5 min read',
       content, publishedAt: serverTimestamp(), status: 'published'
     });
-    const liveUrl = window.location.origin + '/blog-post.html?id=' + docRef.id;
+    const liveUrl = window.location.origin + '/blog-post?id=' + docRef.id;
     document.getElementById('blog-url-box').style.display = 'block';
     document.getElementById('blog-url-link').href = liveUrl;
     document.getElementById('blog-url-link').textContent = liveUrl;
@@ -1530,7 +1530,7 @@ async function loadBlogs() {
       card.innerHTML = '<div class="item-card-title">' + (p.title||'Untitled') + '</div>'
         + '<div class="item-card-meta"><span>' + date + '</span><span class="item-badge">' + (p.category||'') + '</span></div>'
         + '<div class="item-actions">'
-        + '<button class="btn btn-success btn-sm" onclick="window.open(\'/blog-post.html?id=' + id + '\',\'_blank\')">View</button>'
+        + '<button class="btn btn-success btn-sm" onclick="window.open(\'/blog-post?id=' + id + '\',\'_blank\')">View</button>'
         + '<button class="btn btn-secondary btn-sm" onclick="editBlog(\'' + id + '\')">Edit</button>'
         + '<button class="btn btn-danger btn-sm" onclick="deleteBlog(\'' + id + '\')">Delete</button>'
         + '</div>';

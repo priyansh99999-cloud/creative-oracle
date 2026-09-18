@@ -62,9 +62,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .marquee-container.right { animation: marqueeRight 40s linear infinite; }
         .marquee-container:hover { animation-play-state: paused; }
         .marquee-group { display: flex; gap: 1.5rem; }
-        .logo-pill { display: flex; align-items: center; gap: 1.25rem; padding: 1.2rem 2rem; background: var(--bg-secondary); border: 1px solid var(--border-dark); border-radius: 16px; color: var(--text-primary); font-size: 0.9rem; font-weight: 600; letter-spacing: 0.02em; white-space: nowrap; transition: all 0.3s ease; }
-        .logo-pill img { height: 56px; width: auto; max-width: 160px; border-radius: 4px; object-fit: contain; }
+        .logo-pill { display: flex; align-items: center; gap: 1rem; padding: 0.8rem 1.6rem; background: var(--bg-secondary); border: 1px solid var(--border-dark); border-radius: 16px; color: var(--text-primary); font-size: 0.95rem; font-weight: 600; letter-spacing: 0.02em; white-space: nowrap; transition: all 0.3s ease; }
+        .logo-pill img, .logo-pill picture { height: 42px; width: 42px; border-radius: 8px; object-fit: contain; background: #ffffff; padding: 3px; border: 1px solid rgba(0,0,0,0.06); flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; }
+        .logo-pill picture img { height: 100%; width: 100%; object-fit: contain; border-radius: 5px; padding: 0; border: none; background: transparent; }
         .logo-pill:hover { background: #ffffff; border-color: rgba(0,0,0,0.15); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+
         @keyframes marqueeLeft { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 0.75rem)); } }
         @keyframes marqueeRight { 0% { transform: translateX(calc(-50% - 0.75rem)); } 100% { transform: translateX(0); } }
         
@@ -285,7 +287,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Main Content -->
 <main class="portfolio-v2">
 <!-- HERO SECTION -->
-<section class="hero-minimal" id="hero" style="position: relative; overflow: hidden;">
+<section class="hero-minimal" id="hero" style="position: relative; overflow: hidden; padding-top: 140px; padding-bottom: 60px;">
+
 <!-- Background Mesh Blobs -->
 <div class="blob-container">
 <div class="gradient-blob blob-purple"></div>
@@ -330,49 +333,50 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Row 1: Scrolling Left -->
 <div class="marquee-container left">
 <div class="marquee-group">
-<div class="logo-pill"><picture><source srcset="assets/logos/Urban Gabru.webp" type="image/webp"/><img alt="Urban Gabru" loading="lazy" src="assets/logos/Urban Gabru.jpeg" width="40" height="40"/ width="40" height="40"/></picture>Urban Gabru</div>
-<div class="logo-pill"><img alt="MiHeSo" loading="lazy" src="assets/logos/MeHiSo.webp" width="40" height="40"/ width="40" height="40"/>MiHeSo</div>
-<div class="logo-pill"><picture><source srcset="assets/logos/Yoda Taco Goa.webp" type="image/webp"/><img alt="Yoda Taco Goa" loading="lazy" src="assets/logos/Yoda Taco Goa.png" width="40" height="40"/ width="40" height="40"/></picture>Yoda Taco Goa</div>
-<div class="logo-pill"><img alt="Prepleaf" loading="lazy" src="assets/logos/Pref.webp" width="40" height="40"/ width="40" height="40"/>Prepleaf</div>
-<div class="logo-pill"><picture><source srcset="assets/logos/Fortune Gold Detergent.webp" type="image/webp"/><img alt="Fortune Gold Detergent" loading="lazy" src="assets/logos/Fortune Gold Detergent.jpg" width="40" height="40"/ width="40" height="40"/></picture>Fortune Gold Detergent</div>
-<div class="logo-pill"><picture><source srcset="assets/logos/Plus Markets.webp" type="image/webp"/><img alt="Plus Markets" loading="lazy" src="assets/logos/Plus Markets.png" width="40" height="40"/ width="40" height="40"/></picture>Plus Markets</div>
-<div class="logo-pill"><picture><source srcset="assets/logos/ardorsavvy_logo.webp" type="image/webp"/><img alt="Ardorsavvy" loading="lazy" src="assets/logos/ardorsavvy_logo.jpeg" width="40" height="40"/ width="40" height="40"/></picture>Ardorsavvy</div>
+<div class="logo-pill"><picture><source srcset="assets/logos/Urban Gabru.webp" type="image/webp"/><img alt="Urban Gabru" loading="lazy" src="assets/logos/Urban Gabru.jpeg" width="40" height="40"/></picture>Urban Gabru</div>
+<div class="logo-pill"><img alt="MiHeSo" loading="lazy" src="assets/logos/MeHiSo.webp" width="40" height="40"/>MiHeSo</div>
+<div class="logo-pill"><picture><source srcset="assets/logos/Yoda Taco Goa.webp" type="image/webp"/><img alt="Yoda Taco Goa" loading="lazy" src="assets/logos/Yoda Taco Goa.png" width="40" height="40"/></picture>Yoda Taco Goa</div>
+<div class="logo-pill"><img alt="Prepleaf" loading="lazy" src="assets/logos/Pref.webp" width="40" height="40"/>Prepleaf</div>
+<div class="logo-pill"><picture><source srcset="assets/logos/Fortune Gold Detergent.webp" type="image/webp"/><img alt="Fortune Gold Detergent" loading="lazy" src="assets/logos/Fortune Gold Detergent.jpg" width="40" height="40"/></picture>Fortune Gold Detergent</div>
+<div class="logo-pill"><picture><source srcset="assets/logos/Plus Markets.webp" type="image/webp"/><img alt="Plus Markets" loading="lazy" src="assets/logos/Plus Markets.png" width="40" height="40"/></picture>Plus Markets</div>
+<div class="logo-pill"><picture><source srcset="assets/logos/ardorsavvy_logo.webp" type="image/webp"/><img alt="Ardorsavvy" loading="lazy" src="assets/logos/ardorsavvy_logo.jpeg" width="40" height="40"/></picture>Ardorsavvy</div>
 </div>
 <!-- Duplicate Group for Seamless Scroll -->
 <div class="marquee-group">
-<div class="logo-pill"><picture><source srcset="assets/logos/Urban Gabru.webp" type="image/webp"/><img alt="Urban Gabru" loading="lazy" src="assets/logos/Urban Gabru.jpeg" width="40" height="40"/ width="40" height="40"/></picture>Urban Gabru</div>
-<div class="logo-pill"><img alt="MiHeSo" loading="lazy" src="assets/logos/MeHiSo.webp" width="40" height="40"/ width="40" height="40"/>MiHeSo</div>
-<div class="logo-pill"><picture><source srcset="assets/logos/Yoda Taco Goa.webp" type="image/webp"/><img alt="Yoda Taco Goa" loading="lazy" src="assets/logos/Yoda Taco Goa.png" width="40" height="40"/ width="40" height="40"/></picture>Yoda Taco Goa</div>
-<div class="logo-pill"><img alt="Prepleaf" loading="lazy" src="assets/logos/Pref.webp" width="40" height="40"/ width="40" height="40"/>Prepleaf</div>
-<div class="logo-pill"><picture><source srcset="assets/logos/Fortune Gold Detergent.webp" type="image/webp"/><img alt="Fortune Gold Detergent" loading="lazy" src="assets/logos/Fortune Gold Detergent.jpg" width="40" height="40"/ width="40" height="40"/></picture>Fortune Gold Detergent</div>
-<div class="logo-pill"><picture><source srcset="assets/logos/Plus Markets.webp" type="image/webp"/><img alt="Plus Markets" loading="lazy" src="assets/logos/Plus Markets.png" width="40" height="40"/ width="40" height="40"/></picture>Plus Markets</div>
-<div class="logo-pill"><picture><source srcset="assets/logos/ardorsavvy_logo.webp" type="image/webp"/><img alt="Ardorsavvy" loading="lazy" src="assets/logos/ardorsavvy_logo.jpeg" width="40" height="40"/ width="40" height="40"/></picture>Ardorsavvy</div>
+<div class="logo-pill"><picture><source srcset="assets/logos/Urban Gabru.webp" type="image/webp"/><img alt="Urban Gabru" loading="lazy" src="assets/logos/Urban Gabru.jpeg" width="40" height="40"/></picture>Urban Gabru</div>
+<div class="logo-pill"><img alt="MiHeSo" loading="lazy" src="assets/logos/MeHiSo.webp" width="40" height="40"/>MiHeSo</div>
+<div class="logo-pill"><picture><source srcset="assets/logos/Yoda Taco Goa.webp" type="image/webp"/><img alt="Yoda Taco Goa" loading="lazy" src="assets/logos/Yoda Taco Goa.png" width="40" height="40"/></picture>Yoda Taco Goa</div>
+<div class="logo-pill"><img alt="Prepleaf" loading="lazy" src="assets/logos/Pref.webp" width="40" height="40"/>Prepleaf</div>
+<div class="logo-pill"><picture><source srcset="assets/logos/Fortune Gold Detergent.webp" type="image/webp"/><img alt="Fortune Gold Detergent" loading="lazy" src="assets/logos/Fortune Gold Detergent.jpg" width="40" height="40"/></picture>Fortune Gold Detergent</div>
+<div class="logo-pill"><picture><source srcset="assets/logos/Plus Markets.webp" type="image/webp"/><img alt="Plus Markets" loading="lazy" src="assets/logos/Plus Markets.png" width="40" height="40"/></picture>Plus Markets</div>
+<div class="logo-pill"><picture><source srcset="assets/logos/ardorsavvy_logo.webp" type="image/webp"/><img alt="Ardorsavvy" loading="lazy" src="assets/logos/ardorsavvy_logo.jpeg" width="40" height="40"/></picture>Ardorsavvy</div>
 </div>
 </div>
 <!-- Row 2: Scrolling Right -->
 <div class="marquee-container right">
 <div class="marquee-group">
-<div class="logo-pill"><img alt="Zedblack" loading="lazy" src="assets/logos/Zed-Black-Logo1_1300x.webp" width="40" height="40"/ width="40" height="40"/>Zedblack</div>
-<div class="logo-pill"><picture><source srcset="assets/logos/SGS Consulting.webp" type="image/webp"/><img alt="SGS Consulting" loading="lazy" src="assets/logos/SGS Consulting.png" width="40" height="40"/ width="40" height="40"/></picture>SGS Consulting</div>
-<div class="logo-pill"><img alt="Cave by Craftels" loading="lazy" src="assets/logos/Craftels by Craftels.avif" width="40" height="40"/ width="40" height="40"/>Cave by Craftels</div>
-<div class="logo-pill"><picture><source srcset="assets/logos/Silver coin Atta.webp" type="image/webp"/><img alt="Silver Coin" loading="lazy" src="assets/logos/Silver coin Atta.jpeg" width="40" height="40"/ width="40" height="40"/></picture>Silver Coin Atta</div>
-<div class="logo-pill"><picture><source srcset="assets/logos/Obrigado by Craftels.webp" type="image/webp"/><img alt="Obrigado" loading="lazy" src="assets/logos/Obrigado by Craftels.png" width="40" height="40"/ width="40" height="40"/></picture>Obrigado by Craftels</div>
-<div class="logo-pill"><img alt="Armoro" loading="lazy" src="assets/logos/Armoro.webp" width="40" height="40"/ width="40" height="40"/>Armoro</div>
-<div class="logo-pill"><picture><source srcset="assets/logos/Canvasify.webp" type="image/webp"/><img alt="Canvasify" loading="lazy" src="assets/logos/Canvasify.png" width="40" height="40"/ width="40" height="40"/></picture>Canvasify</div>
-<div class="logo-pill"><picture><source srcset="assets/logos/DIn Din.webp" type="image/webp"/><img alt="Din Din" loading="lazy" src="assets/logos/DIn Din.png" width="40" height="40"/ width="40" height="40"/></picture>Din Din</div>
+<div class="logo-pill"><img alt="Zedblack" loading="lazy" src="assets/logos/Zed-Black-Logo1_1300x.webp" width="40" height="40"/>Zedblack</div>
+<div class="logo-pill"><picture><source srcset="assets/logos/SGS Consulting.webp" type="image/webp"/><img alt="SGS Consulting" loading="lazy" src="assets/logos/SGS Consulting.png" width="40" height="40"/></picture>SGS Consulting</div>
+<div class="logo-pill"><img alt="Cave by Craftels" loading="lazy" src="assets/logos/Craftels by Craftels.avif" width="40" height="40"/>Cave by Craftels</div>
+<div class="logo-pill"><picture><source srcset="assets/logos/Silver coin Atta.webp" type="image/webp"/><img alt="Silver Coin" loading="lazy" src="assets/logos/Silver coin Atta.jpeg" width="40" height="40"/></picture>Silver Coin Atta</div>
+<div class="logo-pill"><picture><source srcset="assets/logos/Obrigado by Craftels.webp" type="image/webp"/><img alt="Obrigado" loading="lazy" src="assets/logos/Obrigado by Craftels.png" width="40" height="40"/></picture>Obrigado by Craftels</div>
+<div class="logo-pill"><picture><source srcset="assets/logos/Armoro.webp" type="image/webp"/><img alt="Armoro" loading="lazy" src="assets/logos/Armoro.webp" width="40" height="40"/></picture>Armoro</div>
+<div class="logo-pill"><picture><source srcset="assets/logos/Canvasify.webp" type="image/webp"/><img alt="Canvasify" loading="lazy" src="assets/logos/Canvasify.png" width="40" height="40"/></picture>Canvasify</div>
+<div class="logo-pill"><picture><source srcset="assets/logos/DIn Din.webp" type="image/webp"/><img alt="Din Din" loading="lazy" src="assets/logos/DIn Din.png" width="40" height="40"/></picture>Din Din</div>
 </div>
 <!-- Duplicate Group for Seamless Scroll -->
 <div class="marquee-group">
-<div class="logo-pill"><img alt="Zedblack" loading="lazy" src="assets/logos/Zed-Black-Logo1_1300x.webp" width="40" height="40"/ width="40" height="40"/>Zedblack</div>
-<div class="logo-pill"><picture><source srcset="assets/logos/SGS Consulting.webp" type="image/webp"/><img alt="SGS Consulting" loading="lazy" src="assets/logos/SGS Consulting.png" width="40" height="40"/ width="40" height="40"/></picture>SGS Consulting</div>
-<div class="logo-pill"><img alt="Cave by Craftels" loading="lazy" src="assets/logos/Craftels by Craftels.avif" width="40" height="40"/ width="40" height="40"/>Cave by Craftels</div>
-<div class="logo-pill"><picture><source srcset="assets/logos/Silver coin Atta.webp" type="image/webp"/><img alt="Silver Coin" loading="lazy" src="assets/logos/Silver coin Atta.jpeg" width="40" height="40"/ width="40" height="40"/></picture>Silver Coin Atta</div>
-<div class="logo-pill"><picture><source srcset="assets/logos/Obrigado by Craftels.webp" type="image/webp"/><img alt="Obrigado" loading="lazy" src="assets/logos/Obrigado by Craftels.png" width="40" height="40"/ width="40" height="40"/></picture>Obrigado by Craftels</div>
-<div class="logo-pill"><img alt="Armoro" loading="lazy" src="assets/logos/Armoro.webp" width="40" height="40"/ width="40" height="40"/>Armoro</div>
-<div class="logo-pill"><picture><source srcset="assets/logos/Canvasify.webp" type="image/webp"/><img alt="Canvasify" loading="lazy" src="assets/logos/Canvasify.png" width="40" height="40"/ width="40" height="40"/></picture>Canvasify</div>
-<div class="logo-pill"><picture><source srcset="assets/logos/DIn Din.webp" type="image/webp"/><img alt="Din Din" loading="lazy" src="assets/logos/DIn Din.png" width="40" height="40"/ width="40" height="40"/></picture>Din Din</div>
+<div class="logo-pill"><img alt="Zedblack" loading="lazy" src="assets/logos/Zed-Black-Logo1_1300x.webp" width="40" height="40"/>Zedblack</div>
+<div class="logo-pill"><picture><source srcset="assets/logos/SGS Consulting.webp" type="image/webp"/><img alt="SGS Consulting" loading="lazy" src="assets/logos/SGS Consulting.png" width="40" height="40"/></picture>SGS Consulting</div>
+<div class="logo-pill"><img alt="Cave by Craftels" loading="lazy" src="assets/logos/Craftels by Craftels.avif" width="40" height="40"/>Cave by Craftels</div>
+<div class="logo-pill"><picture><source srcset="assets/logos/Silver coin Atta.webp" type="image/webp"/><img alt="Silver Coin" loading="lazy" src="assets/logos/Silver coin Atta.jpeg" width="40" height="40"/></picture>Silver Coin Atta</div>
+<div class="logo-pill"><picture><source srcset="assets/logos/Obrigado by Craftels.webp" type="image/webp"/><img alt="Obrigado" loading="lazy" src="assets/logos/Obrigado by Craftels.png" width="40" height="40"/></picture>Obrigado by Craftels</div>
+<div class="logo-pill"><picture><source srcset="assets/logos/Armoro.webp" type="image/webp"/><img alt="Armoro" loading="lazy" src="assets/logos/Armoro.webp" width="40" height="40"/></picture>Armoro</div>
+<div class="logo-pill"><picture><source srcset="assets/logos/Canvasify.webp" type="image/webp"/><img alt="Canvasify" loading="lazy" src="assets/logos/Canvasify.png" width="40" height="40"/></picture>Canvasify</div>
+<div class="logo-pill"><picture><source srcset="assets/logos/DIn Din.webp" type="image/webp"/><img alt="Din Din" loading="lazy" src="assets/logos/DIn Din.png" width="40" height="40"/></picture>Din Din</div>
 </div>
 </div>
+
 </div>
 </section>
 <!-- FEATURED WORK -->
